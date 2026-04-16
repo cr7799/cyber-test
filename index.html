@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>⚡ CYBER TEST – Sécurité Numérique</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@600;900&display=swap');
+
+    :root {
+      --green:   #00ff9f;
+      --green2:  #2affb6;
+      --dim:     #00b36f;
+      --bg:      #060d14;
+      --card:    #0b1622;
+      --card2:   #0f1e2d;
+      --border:  #1a3a2f;
+      --text:    #c8e8d8;
+      --muted:   #5a8a72;
+      --yellow:  #ffe666;
+      --orange:  #ffaa44;
+      --red:     #ff4466;
+      --easy:    #44ff99;
+      --medium:  #ffcc44;
+      --hard:    #ff6644;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: var(--bg);
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 1rem 4rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Matrix rain background */
+    #matrix-bg {
+      position: fixed; top:0; left:0; width:100%; height:100%;
+      z-index: 0; opacity: 0.06; pointer-events: none;
+    }
+
+    .terminal {
+      position: relative; z-index: 1;
+      max-width: 720px; width: 100%;
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--green2);
+      box-shadow: 0 0 30px rgba(0,255,159,0.15), 0 0 80px rgba(0,0,0,0.8);
+      overflow: hidden;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #040d0a 0%, #071a12 100%);
+      padding: 1.6rem 1.5rem 1.2rem;
+      border-bottom: 2px solid var(--green2);
+      text-align: center;
+    }
+    .header-bar {
+      display: flex; gap: 8px; margin-bottom: 14px;
+    }
+    .dot { width:13px; height:13px; border-radius:50%; }
+    .dot-r { background:#ff5f56; }
+    .dot-y { background:#ffbd2e; }
+    .dot-g { background:#27c93f; }
+    .header h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.1rem, 4vw, 1.6rem);
+      color: var(--green);
+      text-shadow: 0 0 12px var(--green), 0 0 30px rgba(0,255,159,0.3);
+      letter-spacing: 3px;
+    }
+    .header-sub {
+      color: var(--muted); font-size: 0.78rem; margin-top: 6px;
+      letter-spacing: 1px;
+    }
+    .blink { animation: blink 1s step-end infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ── PROGRESS ── */
+    .progress-area { padding: 18px 24px 0; background: var(--bg); }
+    .progress-bar { height: 6px; background: #1a2a20; border-radius: 20px; overflow:hidden; }
+    .progress-fill {
+      width: 0%; height: 100%;
+      background: linear-gradient(90deg, var(--dim), var(--green));
+      border-radius: 20px; transition: width 0.4s ease;
+      box-shadow: 0 0 8px var(--green);
+    }
+    .step-counter {
+      display: flex; justify-content: space-between;
+      color: var(--green2); font-size: 0.72rem; margin-top: 8px; padding-bottom: 8px;
+    }
+
+    /* ── QUIZ CONTENT ── */
+    .quiz-content { padding: 20px 24px 28px; }
+
+    .question { display: none; }
+    .question.active { display: block; animation: slidein 0.25s ease; }
+    @keyframes slidein {
+      from { opacity:0; transform: translateY(10px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    /* Difficulty badge */
+    .diff-badge {
+      display: inline-block; padding: 2px 10px;
+      border-radius: 20px; font-size: 0.7rem; font-weight: bold;
+      letter-spacing: 1px; margin-bottom: 10px;
+      font-family: 'Orbitron', monospace;
+    }
+    .diff-easy   { background: rgba(68,255,153,0.12); color: var(--easy);   border: 1px solid var(--easy); }
+    .diff-medium { background: rgba(255,204,68,0.12); color: var(--medium); border: 1px solid var(--medium); }
+    .diff-hard   { background: rgba(255,102,68,0.12); color: var(--hard);   border: 1px solid var(--hard); }
+    .diff-info   { background: rgba(42,255,182,0.1);  color: var(--green2); border: 1px solid var(--green2); }
+
+    .question h3 {
+      font-size: clamp(0.95rem, 3vw, 1.15rem);
+      color: #e0fff4;
+      margin-bottom: 14px;
+      padding-left: 14px;
+      border-left: 3px solid var(--green2);
+      line-height: 1.5;
+    }
+
+    /* Scenario card */
+    .scenario-card {
+      background: var(--card2);
+      border-radius: 12px; padding: 18px;
+      margin: 14px 0; border: 1px solid #1a3020;
+    }
+    .scenario-preview {
+      background: #030a07;
+      padding: 14px 16px; border-radius: 8px;
+      font-size: 0.82rem; line-height: 1.6;
+      border-left: 4px solid var(--orange);
+      margin-bottom: 16px;
+      color: #aaddcc;
+      white-space: pre-wrap; word-break: break-word;
+    }
+    .scenario-preview .preview-label {
+      color: var(--orange); font-size: 0.7rem; letter-spacing: 1px;
+      display: block; margin-bottom: 8px;
+      font-family: 'Orbitron', monospace;
+    }
+    .scenario-q {
+      color: var(--yellow); font-size: 0.9rem; margin-bottom: 12px;
+    }
+
+    /* Options */
+    .options { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+
+    .option {
+      background: #08131e;
+      border: 1px solid #1e3a2a;
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex; align-items: flex-start; gap: 12px;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    }
+    .option:hover:not(.locked-option) {
+      border-color: var(--green2);
+      background: #0a1a14;
+    }
+    .option.selected {
+      border-color: var(--green2);
+      background: rgba(0,255,159,0.06);
+      box-shadow: 0 0 10px rgba(0,255,159,0.1);
+    }
+    .option.locked-option { cursor: default; }
+
+    .option input[type="radio"] {
+      accent-color: var(--green);
+      width: 16px; height: 16px; min-width:16px;
+      margin-top: 3px; cursor: pointer;
+    }
+    .option label {
+      color: #c8e8d8; font-size: 0.88rem; line-height: 1.5; cursor: pointer; flex:1;
+    }
+    .option.locked-option label { cursor: default; }
+
+    /* Feedback box */
+    .feedback {
+      margin-top: 14px; padding: 12px 16px;
+      border-radius: 10px;
+      background: #071210;
+      color: #d4ffee;
+      font-size: 0.82rem; line-height: 1.6;
+      border-left: 4px solid var(--green2);
+      display: none;
+    }
+    .feedback.correct { border-left-color: var(--easy); background: rgba(68,255,153,0.05); }
+    .feedback.warning { border-left-color: var(--medium); background: rgba(255,204,68,0.05); color: #ffe0a0; }
+    .feedback.wrong   { border-left-color: var(--hard);   background: rgba(255,68,68,0.05);  color: #ffbbbb; }
+    .lock-notice {
+      display: none; font-size: 0.7rem; color: var(--muted);
+      margin-top: 8px; text-align: right; letter-spacing: 1px;
+    }
+
+    /* Text/select inputs */
+    select, input[type="text"], textarea {
+      width: 100%; padding: 13px 16px;
+      background: #08131e;
+      border: 1px solid #1e3a2a;
+      border-radius: 10px;
+      color: #c8e8d8;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem;
+      margin: 14px 0 0;
+      transition: border-color 0.2s;
+    }
+    select:focus, input[type="text"]:focus, textarea:focus {
+      outline: none; border-color: var(--green2);
+      box-shadow: 0 0 6px rgba(42,255,182,0.2);
+    }
+    select option { background: #0b1622; color: #c8e8d8; }
+    textarea { resize: vertical; min-height: 80px; border-radius: 10px; }
+
+    /* Score chip */
+    .score-chip {
+      display: inline-block; padding: 3px 12px;
+      background: rgba(0,255,159,0.1); border: 1px solid var(--green2);
+      color: var(--green); border-radius: 20px; font-size: 0.72rem;
+      letter-spacing: 1px;
+    }
+
+    /* Nav buttons */
+    .nav-buttons {
+      display: flex; gap: 12px; margin-top: 28px;
+    }
+    .btn {
+      background: #0c1e16; border: 1px solid #1e3a2a;
+      padding: 12px 20px; border-radius: 10px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem; color: #9acfb4;
+      cursor: pointer; transition: 0.2s; flex:1;
+    }
+    .btn:hover { border-color: var(--green2); color: var(--green); filter: brightness(1.1); }
+    .btn-next {
+      background: #0a2618; border-color: var(--dim);
+      color: var(--green); box-shadow: 0 0 8px rgba(0,255,159,0.1);
+    }
+    .btn-submit {
+      width: 100%; margin-top: 16px; padding: 14px;
+      background: var(--green); color: #060d14;
+      border: none; border-radius: 10px;
+      font-family: 'Orbitron', monospace; font-size: 0.95rem;
+      font-weight: 600; cursor: pointer; letter-spacing: 2px;
+      transition: 0.2s; box-shadow: 0 0 20px rgba(0,255,159,0.3);
+    }
+    .btn-submit:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Messages */
+    .message {
+      margin-top: 14px; padding: 12px 16px;
+      border-radius: 10px; font-size: 0.85rem;
+      display: none; text-align: center;
+    }
+    .message.success {
+      display: block; background: rgba(0,255,159,0.1);
+      border: 1px solid var(--green); color: #a0ffcc;
+    }
+    .message.error {
+      display: block; background: rgba(255,68,68,0.1);
+      border: 1px solid var(--red); color: #ffaaaa;
+    }
+
+    /* Final score screen */
+    #scoreScreen {
+      display: none; text-align: center; padding: 30px 20px;
+    }
+    .score-big {
+      font-family: 'Orbitron', monospace;
+      font-size: 3.5rem; color: var(--green);
+      text-shadow: 0 0 20px var(--green);
+    }
+    .score-label { color: var(--muted); font-size: 0.85rem; margin: 8px 0 20px; letter-spacing:2px; }
+    .score-breakdown { text-align:left; margin-top:20px; }
+    .score-breakdown .sb-item {
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 8px 12px; border-radius:8px; margin-bottom:6px;
+      background: #081412; font-size:0.82rem; color: #a0c8b8;
+    }
+    .sb-correct { color: var(--easy); }
+    .sb-wrong   { color: var(--hard); }
+
+    footer {
+      text-align: center; font-size: 0.68rem;
+      color: #2a4a3a; padding: 14px;
+      border-top: 1px solid #0f2018;
+      letter-spacing: 1px;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #1a3a2a; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<canvas id="matrix-bg"></canvas>
+
+<div class="terminal">
+  <div class="header">
+    <div class="header-bar">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+    </div>
+    <h1>[ CYBER_TEST v2.0 ]<span class="blink">_</span></h1>
+    <div class="header-sub">// Teste tes réflexes face aux cybermenaces • 100% anonyme</div>
+  </div>
+
+  <div class="progress-area">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="step-counter">
+      <span id="stepCounter">Question 1 / 12</span>
+      <span id="scoreChip" class="score-chip">Score: 0 pts</span>
+    </div>
+  </div>
+
+  <div class="quiz-content">
+    <div id="questionsContainer"></div>
+    <div id="scoreScreen"></div>
+
+    <div class="nav-buttons" id="navButtons">
+      <button class="btn" id="prevBtn" style="display:none;">◀ RETOUR</button>
+      <button class="btn btn-next" id="nextBtn">SUIVANT ▶</button>
+    </div>
+    <div id="submitContainer" style="display:none;">
+      <button class="btn-submit" id="submitBtn">📡 ENVOYER MES RÉPONSES</button>
+    </div>
+    <div id="messageBox" class="message"></div>
+  </div>
+
+  <footer>🔒 Aucune donnée personnelle identifiable • Réponses utilisées pour la prévention</footer>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  ⚙️  CONFIGURATION – Remplace cette URL après déploiement
+// ═══════════════════════════════════════════════════════
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyIGi6pdLaIpMNnM6-zhwpOfd1OCDDVZtsaq1hjVe1HHCJY3F-BOUYkPhwUB6Z_yvk7A/exec";
+
+// ═══════════════════════════════════════════════════════
+//  📋  QUESTIONS (démographiques + scénarios)
+// ═══════════════════════════════════════════════════════
+const questions = [
+
+  /* ──────── INTRO DÉMOGRAPHIQUE ──────── */
+  {
+    id: "genre",
+    text: "🎭 Quel est ton genre ?",
+    type: "radio",
+    diff: "info",
+    options: ["♂ Masculin", "♀ Féminin"],
+    correct: null
+  },
+  {
+    id: "filiere",
+    text: "📚 Quelle est ta filière ?",
+    type: "select",
+    diff: "info",
+    options: ["2AP1", "2AP2", "GCSE", "BDAI", "GI", "GSTR", "GM", "SCM", "GC"],
+    allowCustom: true,
+    correct: null
+  },
+
+  /* ──────── NIVEAU FACILE ──────── */
+  {
+    id: "q_email_phishing",
+    text: "📧 [FACILE] — Tu reçois cet e-mail :",
+    type: "scenario",
+    diff: "easy",
+    preview: "De : support@paypa1-secure.com\nObjet : ⚠️ Votre compte sera suspendu dans 24h\n\nBonjour,\nCliquez ici pour vérifier votre identité :\nhttp://paypal-verif.xyz/login\n\n— L'équipe PayPal",
+    question: "Que fais-tu ?",
+    options: [
+      "Je clique immédiatement pour sauver mon compte",
+      "Je transfère le lien à un ami pour qu'il vérifie à ma place",
+      "Je vais sur paypal.com moi-même sans cliquer sur le lien",
+      "Je signale l'e-mail comme phishing et le supprime"
+    ],
+    correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"💀 Tu aurais offert tes identifiants au hacker. 'paypa1' (avec un 1) n'est pas PayPal !" },
+      { type:"warning", text:"⚠️ Mieux, mais ton ami pourrait aussi cliquer. Ne partage jamais ce type de lien." },
+      { type:"warning", text:"✅ Bon réflexe de ne pas cliquer, mais signaler aide aussi à protéger les autres." },
+      { type:"correct", text:"🏆 Parfait ! Signaler + supprimer est la meilleure réaction. Remarque le '1' dans paypa1." }
+    ]
+  },
+  {
+    id: "q_mdp_facile",
+    text: "🔑 [FACILE] — Lequel de ces mots de passe est le PLUS sûr ?",
+    type: "scenario",
+    diff: "easy",
+    preview: "Tu dois créer un compte sur ta plateforme scolaire.\nChoisis le mot de passe le plus sécurisé :",
+    question: "Ton choix ?",
+    options: [
+      "azerty123",
+      "P@ssw0rd!",
+      "Mohammed2005",
+      "cheval-correct-batterie-clou"
+    ],
+    correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Cracké en moins d'une seconde. C'est dans tous les dictionnaires." },
+      { type:"warning", text:"⚠️ Ressemble à fort mais 'P@ssw0rd' est l'un des premiers testés par les hackers. Trop prévisible." },
+      { type:"wrong",   text:"❌ Ton prénom + année de naissance = facile à deviner via tes réseaux sociaux." },
+      { type:"correct", text:"🏆 Bingo ! Une phrase de passe longue bat les mots courts complexes. Plus longue = plus forte. Utilise un gestionnaire !" }
+    ]
+  },
+  {
+    id: "q_wifi_public",
+    text: "📶 [FACILE] — WiFi public",
+    type: "scenario",
+    diff: "easy",
+    preview: "Tu es dans un café. Tu dois vérifier ta note sur l'ENT de ton école.\nLe WiFi s'appelle 'Cafe_Free_WiFi' et ne demande pas de mot de passe.",
+    question: "Que fais-tu ?",
+    options: [
+      "Je me connecte directement, c'est juste l'ENT",
+      "Je me connecte mais n'entre aucun mot de passe",
+      "J'active un VPN avant de me connecter",
+      "Je préfère utiliser mes données mobiles"
+    ],
+    correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Sur un WiFi non sécurisé, quelqu'un peut intercepter tes identifiants (attaque Man-in-the-Middle)." },
+      { type:"warning", text:"⚠️ Consulter sans se connecter est plus safe, mais le trafic reste visible sur le réseau." },
+      { type:"correct", text:"✅ Très bien ! Un VPN chiffre ta connexion. Assure-toi qu'il est fiable." },
+      { type:"correct", text:"🏆 La meilleure option. Tes données mobiles sont chiffrées par défaut par ton opérateur." }
+    ]
+  },
+
+  /* ──────── NIVEAU INTERMÉDIAIRE ──────── */
+  {
+    id: "q_usb",
+    text: "💾 [INTERMÉDIAIRE] — Clé USB mystérieuse",
+    type: "scenario",
+    diff: "medium",
+    preview: "Tu trouves une clé USB toute neuve dans le couloir de l'école.\nIl y a une étiquette : '📁 RÉSULTATS DES EXAMENS 2025'",
+    question: "Ta réaction ?",
+    options: [
+      "Je la branche sur mon PC pour vérifier si c'est vrai",
+      "Je la formate avant de l'utiliser, comme ça c'est safe",
+      "Je la remets à l'administration sans la brancher",
+      "Je la jette, ce n'est pas mon problème"
+    ],
+    correctIndex: 2,
+    feedbacks: [
+      { type:"wrong",   text:"💀 Classic 'USB drop attack'. L'étiquette est un leurre. Un malware peut s'exécuter dès le branchement." },
+      { type:"warning", text:"⚠️ Même formater est risqué car certains malwares s'exécutent au niveau du firmware, AVANT Windows." },
+      { type:"correct", text:"🏆 Parfait. L'administration peut la traiter en sécurité avec les bons outils." },
+      { type:"warning", text:"⚠️ Mieux que de la brancher, mais la remettre à l'administration permet d'alerter tout le monde." }
+    ]
+  },
+  {
+    id: "q_2fa",
+    text: "📲 [INTERMÉDIAIRE] — Code 2FA inattendu",
+    type: "scenario",
+    diff: "medium",
+    preview: "Il est 3h du matin. Tu reçois un SMS :\n\n'Ton code de vérification est : 847291\nNe le partage avec personne.'\n\nTu n'essayais pas de te connecter.",
+    question: "Que fais-tu ?",
+    options: [
+      "Je clique sur le lien du SMS pour annuler la connexion",
+      "J'ignore, c'est sûrement une erreur",
+      "Je change mon mot de passe immédiatement sur le site officiel",
+      "Je saisis le code pour voir ce qui se passe"
+    ],
+    correctIndex: 2,
+    feedbacks: [
+      { type:"wrong",   text:"⚠️ Le SMS ne contient pas de lien. Ne clique jamais sur des liens dans des SMS non sollicités." },
+      { type:"warning", text:"⚠️ Quelqu'un connaît ton mot de passe et essaie de se connecter. Ignorer = mauvaise idée." },
+      { type:"correct", text:"🏆 Exactement ! Quelqu'un a ton mot de passe. Change-le immédiatement sur le site officiel." },
+      { type:"wrong",   text:"💀 Catastrophique. Tu valides toi-même la connexion du hacker. Ne partage ni ne saisis jamais un code non demandé." }
+    ]
+  },
+  {
+    id: "q_url",
+    text: "🌐 [INTERMÉDIAIRE] — Vrai site ou piège ?",
+    type: "scenario",
+    diff: "medium",
+    preview: "Tu cherches à te connecter à ta banque CIH.\nUne recherche Google te propose ces 4 résultats :",
+    question: "Laquelle est la vraie URL de ta banque ?",
+    options: [
+      "https://cih-banque.secure-login.net/compte",
+      "https://www.cihbank.ma",
+      "http://cihbank.ma.verification-id.com",
+      "https://clhbank.ma"
+    ],
+    correctIndex: 1,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Le vrai domaine est 'cihbank.ma'. 'secure-login.net' est un sous-domaine d'un autre site." },
+      { type:"correct", text:"🏆 Oui ! C'est le domaine officiel .ma avec HTTPS. Vérifie toujours le nom de domaine principal." },
+      { type:"wrong",   text:"❌ Technique du sous-domaine trompeur. 'cihbank.ma' est ici une partie du chemin, pas le domaine." },
+      { type:"wrong",   text:"❌ Regarde attentivement : 'clhbank' (l et h inversés). Typosquatting !" }
+    ]
+  },
+
+  /* ──────── NIVEAU DIFFICILE ──────── */
+  {
+    id: "q_https_mythe",
+    text: "🔒 [DIFFICILE] — Le mythe du cadenas HTTPS",
+    type: "scenario",
+    diff: "hard",
+    preview: "Ton professeur affirme :\n\n'Si un site affiche le cadenas 🔒 et commence par HTTPS,\nc'est un site sûr et légitime sur lequel tu peux entrer ton mot de passe.'",
+    question: "Cette affirmation est-elle correcte ?",
+    options: [
+      "Oui, HTTPS + cadenas = site sûr à 100%",
+      "Non, HTTPS signifie juste que la connexion est chiffrée, pas que le site est fiable",
+      "Seulement si le site a aussi un .com ou .fr",
+      "Oui, les hackers ne peuvent pas obtenir de certificat HTTPS"
+    ],
+    correctIndex: 1,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Erreur très commune. Des milliers de sites de phishing utilisent HTTPS. Le cadenas ≠ site honnête." },
+      { type:"correct", text:"🏆 Exactement ! HTTPS chiffre uniquement le canal de communication. Un site frauduleux peut très bien avoir HTTPS." },
+      { type:"wrong",   text:"❌ L'extension (.com, .fr) n'a rien à voir avec la sécurité. On peut enregistrer n'importe quel domaine." },
+      { type:"wrong",   text:"❌ Faux. N'importe qui peut obtenir gratuitement un certificat HTTPS valide (ex: Let's Encrypt)." }
+    ]
+  },
+  {
+    id: "q_ingenierie_sociale",
+    text: "☎️ [DIFFICILE] — Appel du 'service informatique'",
+    type: "scenario",
+    diff: "hard",
+    preview: "Tu décroches ton téléphone. Une voix :\n\n'Bonjour, je suis Yassine du service IT. On a détecté une activité\nsuspect sur ton compte. Pour sécuriser ton accès immédiatement,\nj'ai besoin de ton mot de passe ou que tu valides une\nnotification sur ton téléphone. C'est urgent.'",
+    question: "Que réponds-tu ?",
+    options: [
+      "Je lui donne mon mot de passe, c'est l'informatique donc c'est fiable",
+      "Je lui donne uniquement mon identifiant, pas le mot de passe",
+      "Je valide la notification push, ça ne donne pas mon mot de passe",
+      "Je raccroche et contacte le service IT via les canaux officiels"
+    ],
+    correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"💀 Le service IT légitime ne demande JAMAIS ton mot de passe. Ingénierie sociale classique." },
+      { type:"warning", text:"⚠️ Ton identifiant peut suffire à un attaquant pour cibler d'autres attaques. Raccroche." },
+      { type:"wrong",   text:"💀 Valider une notif MFA = tu donnes l'accès à l'attaquant ! C'est l'attaque 'MFA Fatigue'." },
+      { type:"correct", text:"🏆 Parfait ! Raccroche, puis vérifie en contactant le vrai IT via l'adresse email ou numéro officiel." }
+    ]
+  },
+  {
+    id: "q_vpn_mythe",
+    text: "🕵️ [DIFFICILE] — Le VPN rend-il anonyme ?",
+    type: "scenario",
+    diff: "hard",
+    preview: "Ton ami te dit :\n\n'Avec un VPN, je suis complètement anonyme sur Internet.\nJe peux faire n'importe quoi, personne ne peut me retrouver.'",
+    question: "Quelle est la réponse la plus précise ?",
+    options: [
+      "Il a 100% raison, un VPN = anonymat total",
+      "Le VPN cache l'IP mais le fournisseur VPN peut voir ton trafic et coopérer avec les autorités",
+      "Un VPN empêche aussi les virus et les hackers",
+      "Le VPN est inutile, les autorités peuvent toujours voir tout ce qu'on fait"
+    ],
+    correctIndex: 1,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Un VPN masque ton IP de certains sites, mais ne garantit pas l'anonymat. Le fournisseur VPN te voit." },
+      { type:"correct", text:"🏆 Exact ! Un VPN déplace la confiance vers le fournisseur VPN. Un VPN gratuit peut même revendre tes données." },
+      { type:"wrong",   text:"❌ Un VPN ne protège pas contre les malwares ou les attaques. Ce sont des outils différents." },
+      { type:"wrong",   text:"❌ Un VPN est utile (WiFi public, contournement de censure), mais il n'est pas une cape d'invisibilité." }
+    ]
+  },
+
+  /* ──────── BONUS ──────── */
+  {
+    id: "gestionnaire_mdp",
+    text: "🗝️ Bonus — Utilises-tu un gestionnaire de mots de passe ?",
+    type: "radio",
+    diff: "info",
+    options: [
+      "Oui, j'utilise Bitwarden / 1Password / autre",
+      "Non, je retiens tout de tête",
+      "Non, j'utilise le même mot de passe partout",
+      "Parfois, mais pas systématiquement"
+    ],
+    correct: null
+  },
+  {
+    id: "commentaire",
+    text: "💬 Un conseil, une anecdote ou une question ? (optionnel)",
+    type: "comment",
+    diff: "info"
+  }
+];
+
+// ═══════════════════════════════════════════════════════
+//  📊  ÉTAT DE L'APPLICATION
+// ═══════════════════════════════════════════════════════
+let answers   = Array(questions.length).fill(null);
+let locked    = Array(questions.length).fill(false); // once answered, can't change
+let score     = 0;
+let scoreMax  = questions.filter(q => q.type === "scenario").length;
+let currentIndex = 0;
+
+const container      = document.getElementById("questionsContainer");
+const prevBtn        = document.getElementById("prevBtn");
+const nextBtn        = document.getElementById("nextBtn");
+const submitContainer= document.getElementById("submitContainer");
+const progressFill   = document.getElementById("progressFill");
+const stepCounterSpan= document.getElementById("stepCounter");
+const scoreChip      = document.getElementById("scoreChip");
+const messageBox     = document.getElementById("messageBox");
+
+// ═══════════════════════════════════════════════════════
+//  🏗️  BUILD HTML
+// ═══════════════════════════════════════════════════════
+function diffLabel(d) {
+  const map = {
+    easy:   ['diff-easy',   '🟢 FACILE'],
+    medium: ['diff-medium', '🟡 INTERMÉDIAIRE'],
+    hard:   ['diff-hard',   '🔴 DIFFICILE'],
+    info:   ['diff-info',   '📋 INFO']
+  };
+  const [cls, label] = map[d] || map.info;
+  return `<span class="diff-badge ${cls}">${label}</span>`;
+}
+
+function esc(s) {
+  if (!s) return "";
+  return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function buildQuestionHTML(q, idx) {
+  let h = `<div class="question" id="q_${idx}" data-qidx="${idx}">`;
+  h += diffLabel(q.diff);
+  h += `<h3>${q.text}</h3>`;
+
+  if (q.type === "radio") {
+    h += `<div class="options" id="opts_${idx}">`;
+    q.options.forEach((opt, oi) => {
+      const chk = answers[idx] === opt ? "checked" : "";
+      h += `<div class="option${answers[idx] === opt ? ' selected' : ''}${locked[idx] ? ' locked-option' : ''}" data-val="${esc(opt)}">
+              <input type="radio" name="q_${idx}" value="${esc(opt)}" id="q_${idx}_${oi}" ${chk} ${locked[idx] ? 'disabled' : ''}>
+              <label for="q_${idx}_${oi}">${esc(opt)}</label>
+            </div>`;
+    });
+    h += `</div>`;
+  }
+  else if (q.type === "select") {
+    h += `<select id="select_${idx}">`;
+    q.options.forEach(opt => {
+      const sel = answers[idx] === opt ? "selected" : "";
+      h += `<option value="${esc(opt)}" ${sel}>${esc(opt)}</option>`;
+    });
+    if (q.allowCustom) {
+      const isCustom = answers[idx] && !q.options.includes(answers[idx]);
+      h += `<option value="__custom__" ${isCustom ? "selected" : ""}>Autre (précise)…</option>`;
+    }
+    h += `</select>`;
+    if (q.allowCustom) {
+      const isCustom = answers[idx] && !q.options.includes(answers[idx]);
+      h += `<input type="text" id="custom_${idx}" placeholder="Ta filière…" value="${isCustom ? esc(answers[idx]) : ''}" style="display:${isCustom ? 'block' : 'none'}">`;
+    }
+  }
+  else if (q.type === "comment") {
+    h += `<textarea id="comment_${idx}" rows="4" placeholder="Ton retour, suggestion, expérience…">${answers[idx] || ''}</textarea>`;
+  }
+  else if (q.type === "scenario") {
+    const sc = q;
+    h += `<div class="scenario-card">
+            <div class="scenario-preview"><span class="preview-label">// SITUATION</span>${esc(sc.preview).replace(/\n/g,'<br>')}</div>
+            <div class="scenario-q">🤔 ${esc(sc.question || 'Que fais-tu ?')}</div>
+            <div class="options" id="opts_${idx}">`;
+    sc.options.forEach((opt, oi) => {
+      const chk  = answers[idx] === opt ? "checked" : "";
+      const selC = answers[idx] === opt ? " selected" : "";
+      const lkC  = locked[idx] ? " locked-option" : "";
+      h += `<div class="option${selC}${lkC}" data-optidx="${oi}">
+              <input type="radio" name="q_${idx}" value="${esc(opt)}" id="q_${idx}_${oi}" ${chk} ${locked[idx] ? 'disabled' : ''}>
+              <label for="q_${idx}_${oi}">${esc(opt)}</label>
+            </div>`;
+    });
+    // Restore feedback if already answered
+    let fbStyle = "display:none;", fbClass = "", fbText = "";
+    if (locked[idx] && answers[idx] !== null) {
+      const oi = sc.options.indexOf(answers[idx]);
+      if (oi >= 0) {
+        const fb = sc.feedbacks[oi];
+        fbStyle = "display:block;";
+        fbClass = fb.type;
+        fbText  = `💡 ${esc(fb.text)}`;
+      }
+    }
+    h += `</div>
+          <div class="feedback ${fbClass}" id="fb_${idx}" style="${fbStyle}">${fbText}</div>
+          <div class="lock-notice" id="ln_${idx}" style="${locked[idx] ? 'display:block;' : ''}">🔒 Réponse verrouillée</div>
+        </div>`;
+  }
+
+  h += `</div>`;
+  return h;
+}
+
+// ═══════════════════════════════════════════════════════
+//  🎮  EVENTS
+// ═══════════════════════════════════════════════════════
+function bindEvents() {
+  questions.forEach((q, idx) => {
+    if (q.type === "radio") {
+      document.querySelectorAll(`#q_${idx} .option`).forEach(div => {
+        const radio = div.querySelector('input');
+        if (radio) {
+          radio.addEventListener('change', () => {
+            answers[idx] = radio.value;
+            document.querySelectorAll(`#q_${idx} .option`).forEach(o => o.classList.remove('selected'));
+            div.classList.add('selected');
+          });
+          if (radio.checked) div.classList.add('selected');
+        }
+      });
+    }
+    else if (q.type === "select") {
+      const sel = document.getElementById(`select_${idx}`);
+      const ci  = document.getElementById(`custom_${idx}`);
+      if (sel) {
+        // init
+        if (!answers[idx]) answers[idx] = sel.value;
+        sel.addEventListener('change', () => {
+          if (sel.value === "__custom__") {
+            if (ci) { ci.style.display = "block"; answers[idx] = ci.value; }
+          } else {
+            if (ci) ci.style.display = "none";
+            answers[idx] = sel.value;
+          }
+        });
+        if (ci) ci.addEventListener('input', () => { answers[idx] = ci.value; });
+      }
+    }
+    else if (q.type === "comment") {
+      const txt = document.getElementById(`comment_${idx}`);
+      if (txt) txt.addEventListener('input', () => { answers[idx] = txt.value; });
+    }
+    else if (q.type === "scenario") {
+      const optDivs   = document.querySelectorAll(`#q_${idx} .option`);
+      const feedbackEl= document.getElementById(`fb_${idx}`);
+      const lockNotice= document.getElementById(`ln_${idx}`);
+
+      optDivs.forEach((div, oi) => {
+        const radio = div.querySelector('input');
+        if (!radio) return;
+
+        // Restore selected state
+        if (radio.checked) div.classList.add('selected');
+
+        radio.addEventListener('change', () => {
+          if (locked[idx]) return; // 🔒 already locked
+
+          const fb = q.feedbacks[oi];
+          answers[idx] = radio.value;
+
+          // Score tracking
+          if (oi === q.correctIndex) score++;
+          updateScoreChip();
+
+          // Lock all options in this question
+          locked[idx] = true;
+          optDivs.forEach(od => {
+            od.classList.add('locked-option');
+            const r = od.querySelector('input');
+            if (r) r.disabled = true;
+          });
+
+          // Highlight selected
+          optDivs.forEach(o => o.classList.remove('selected'));
+          div.classList.add('selected');
+
+          // Show feedback
+          if (feedbackEl) {
+            feedbackEl.innerHTML = `💡 ${esc(fb.text)}`;
+            feedbackEl.className = `feedback ${fb.type}`;
+            feedbackEl.style.display = "block";
+          }
+          if (lockNotice) lockNotice.style.display = "block";
+        });
+      });
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+//  🖥️  NAVIGATION
+// ═══════════════════════════════════════════════════════
+function showQuestion(idx) {
+  document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+  const el = document.getElementById(`q_${idx}`);
+  if (el) el.classList.add('active');
+
+  const pct = ((idx + 1) / questions.length) * 100;
+  progressFill.style.width = `${pct}%`;
+  stepCounterSpan.textContent = `Question ${idx + 1} / ${questions.length}`;
+
+  prevBtn.style.display = idx === 0 ? 'none' : 'block';
+  const isLast = idx === questions.length - 1;
+  nextBtn.style.display     = isLast ? 'none' : 'block';
+  submitContainer.style.display = isLast ? 'block' : 'none';
+  messageBox.style.display  = 'none';
+}
+
+function saveInput() {
+  const q = questions[currentIndex];
+  if (!q) return;
+  if (q.type === "radio") {
+    const sel = document.querySelector(`#q_${currentIndex} input[type="radio"]:checked`);
+    if (sel) answers[currentIndex] = sel.value;
+  } else if (q.type === "select") {
+    const s = document.getElementById(`select_${currentIndex}`);
+    const c = document.getElementById(`custom_${currentIndex}`);
+    if (s) answers[currentIndex] = s.value === "__custom__" && c ? c.value : s.value;
+  } else if (q.type === "comment") {
+    const t = document.getElementById(`comment_${currentIndex}`);
+    if (t) answers[currentIndex] = t.value;
+  }
+}
+
+function nextStep() {
+  saveInput();
+  const q = questions[currentIndex];
+  if (q.type !== "comment" && !answers[currentIndex]) {
+    showMsg("🔐 Réponds à cette question avant de continuer !", "error");
+    return;
+  }
+  if (q.type === "scenario" && !locked[currentIndex]) {
+    showMsg("🔐 Sélectionne une réponse pour voir le feedback avant de continuer.", "error");
+    return;
+  }
+  if (currentIndex < questions.length - 1) {
+    currentIndex++;
+    showQuestion(currentIndex);
+  }
+}
+
+function prevStep() {
+  saveInput();
+  if (currentIndex > 0) { currentIndex--; showQuestion(currentIndex); }
+}
+
+function showMsg(msg, type) {
+  messageBox.textContent = msg;
+  messageBox.className   = `message ${type}`;
+  messageBox.style.display = 'block';
+  setTimeout(() => { messageBox.style.display = 'none'; }, 3500);
+}
+
+function updateScoreChip() {
+  scoreChip.textContent = `Score: ${score} / ${scoreMax}`;
+}
+
+// ═══════════════════════════════════════════════════════
+//  📡  SUBMIT
+// ═══════════════════════════════════════════════════════
+async function submitAll() {
+  saveInput();
+  for (let i = 0; i < questions.length; i++) {
+    if (questions[i].type !== "comment" && !answers[i]) {
+      currentIndex = i; showQuestion(i);
+      showMsg(`⚠️ Question ${i + 1} sans réponse`, "error");
+      return;
+    }
+  }
+
+  const submitBtn = document.getElementById("submitBtn");
+  submitBtn.disabled = true;
+  submitBtn.textContent = "📡 ENVOI EN COURS…";
+
+  const payload = {};
+  questions.forEach((q, i) => { payload[q.id] = answers[i] || ""; });
+  payload.score = `${score}/${scoreMax}`;
+  payload.timestamp = new Date().toISOString();
+
+  if (GOOGLE_SCRIPT_URL === "REMPLACE_PAR_TON_URL_APPS_SCRIPT") {
+    showMsg("❌ Configure d'abord l'URL Google Apps Script dans le code.", "error");
+    submitBtn.disabled = false; submitBtn.textContent = "📡 ENVOYER MES RÉPONSES";
+    return;
+  }
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST", mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    showFinalScreen();
+  } catch (e) {
+    showMsg("❌ Erreur réseau. Réessaie.", "error");
+    submitBtn.disabled = false; submitBtn.textContent = "📡 ENVOYER MES RÉPONSES";
+  }
+}
+
+function showFinalScreen() {
+  document.getElementById("questionsContainer").style.display = "none";
+  document.getElementById("navButtons").style.display = "none";
+  submitContainer.style.display = "none";
+  messageBox.style.display = "none";
+
+  const pct = Math.round((score / scoreMax) * 100);
+  let verdict = "", vColor = "";
+  if (pct === 100) { verdict = "🏆 Expert en cybersécurité !";     vColor = "var(--easy)"; }
+  else if (pct >= 75) { verdict = "✅ Très bon niveau !";           vColor = "var(--green)"; }
+  else if (pct >= 50) { verdict = "⚡ Niveau intermédiaire.";       vColor = "var(--medium)"; }
+  else                { verdict = "🛡️ À améliorer — continue !";    vColor = "var(--hard)"; }
+
+  const scenarioQs = questions.filter(q => q.type === "scenario");
+  let breakdown = "";
+  scenarioQs.forEach((q, i) => {
+    const qi = questions.indexOf(q);
+    const isCorrect = questions[qi].options.indexOf(answers[qi]) === q.correctIndex;
+    breakdown += `<div class="sb-item">
+      <span>${q.text.replace(/\[.*?\]\s*—\s*/,'').substring(0,45)}…</span>
+      <span class="${isCorrect ? 'sb-correct' : 'sb-wrong'}">${isCorrect ? '✅' : '❌'}</span>
+    </div>`;
+  });
+
+  const screen = document.getElementById("scoreScreen");
+  screen.innerHTML = `
+    <div class="score-big">${score}<span style="font-size:1.8rem;color:var(--muted)">/${scoreMax}</span></div>
+    <div class="score-label" style="color:${vColor}">${verdict}</div>
+    <p style="color:var(--muted);font-size:0.78rem;margin-bottom:16px;">Tes réponses ont été envoyées. Merci !</p>
+    <div class="score-breakdown">${breakdown}</div>`;
+  screen.style.display = "block";
+  progressFill.style.width = "100%";
+}
+
+// ═══════════════════════════════════════════════════════
+//  🌧️  MATRIX RAIN
+// ═══════════════════════════════════════════════════════
+(function matrixRain() {
+  const canvas = document.getElementById("matrix-bg");
+  const ctx = canvas.getContext("2d");
+  const chars = "アイウエオカキクケコ01アBCDEFGHIJKLMNOPQRSTUVWXYZ<>/{}[]0123456789";
+  let drops = [];
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    drops = Array(Math.floor(canvas.width / 14)).fill(1);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  setInterval(() => {
+    ctx.fillStyle = "rgba(6,13,20,0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#00ff9f";
+    ctx.font = "13px 'Share Tech Mono', monospace";
+    drops.forEach((y, i) => {
+      ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * 14, y * 14);
+      if (y * 14 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    });
+  }, 55);
+})();
+
+// ═══════════════════════════════════════════════════════
+//  🚀  INIT
+// ═══════════════════════════════════════════════════════
+function init() {
+  let html = "";
+  questions.forEach((q, i) => { html += buildQuestionHTML(q, i); });
+  container.innerHTML = html;
+  bindEvents();
+  showQuestion(0);
+  updateScoreChip();
+  prevBtn.addEventListener("click", prevStep);
+  nextBtn.addEventListener("click", nextStep);
+  document.getElementById("submitBtn")?.addEventListener("click", submitAll);
+}
+init();
+</script>
+</body>
+</html>
