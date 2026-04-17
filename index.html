@@ -39,7 +39,6 @@
       overflow-x: hidden;
     }
 
-    /* Matrix rain background */
     #matrix-bg {
       position: fixed; top:0; left:0; width:100%; height:100%;
       z-index: 0; opacity: 0.06; pointer-events: none;
@@ -55,16 +54,13 @@
       overflow: hidden;
     }
 
-    /* ── HEADER ── */
     .header {
       background: linear-gradient(135deg, #040d0a 0%, #071a12 100%);
       padding: 1.6rem 1.5rem 1.2rem;
       border-bottom: 2px solid var(--green2);
       text-align: center;
     }
-    .header-bar {
-      display: flex; gap: 8px; margin-bottom: 14px;
-    }
+    .header-bar { display: flex; gap: 8px; margin-bottom: 14px; }
     .dot { width:13px; height:13px; border-radius:50%; }
     .dot-r { background:#ff5f56; }
     .dot-y { background:#ffbd2e; }
@@ -76,14 +72,10 @@
       text-shadow: 0 0 12px var(--green), 0 0 30px rgba(0,255,159,0.3);
       letter-spacing: 3px;
     }
-    .header-sub {
-      color: var(--muted); font-size: 0.78rem; margin-top: 6px;
-      letter-spacing: 1px;
-    }
+    .header-sub { color: var(--muted); font-size: 0.78rem; margin-top: 6px; letter-spacing: 1px; }
     .blink { animation: blink 1s step-end infinite; }
     @keyframes blink { 50% { opacity: 0; } }
 
-    /* ── PROGRESS ── */
     .progress-area { padding: 18px 24px 0; background: var(--bg); }
     .progress-bar { height: 6px; background: #1a2a20; border-radius: 20px; overflow:hidden; }
     .progress-fill {
@@ -97,9 +89,7 @@
       color: var(--green2); font-size: 0.72rem; margin-top: 8px; padding-bottom: 8px;
     }
 
-    /* ── QUIZ CONTENT ── */
     .quiz-content { padding: 20px 24px 28px; }
-
     .question { display: none; }
     .question.active { display: block; animation: slidein 0.25s ease; }
     @keyframes slidein {
@@ -107,7 +97,6 @@
       to   { opacity:1; transform: translateY(0); }
     }
 
-    /* Difficulty badge */
     .diff-badge {
       display: inline-block; padding: 2px 10px;
       border-radius: 20px; font-size: 0.7rem; font-weight: bold;
@@ -128,7 +117,6 @@
       line-height: 1.5;
     }
 
-    /* Scenario card */
     .scenario-card {
       background: var(--card2);
       border-radius: 12px; padding: 18px;
@@ -148,11 +136,8 @@
       display: block; margin-bottom: 8px;
       font-family: 'Orbitron', monospace;
     }
-    .scenario-q {
-      color: var(--yellow); font-size: 0.9rem; margin-bottom: 12px;
-    }
+    .scenario-q { color: var(--yellow); font-size: 0.9rem; margin-bottom: 12px; }
 
-    /* Options */
     .options { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
 
     .option {
@@ -163,56 +148,38 @@
       display: flex; align-items: flex-start; gap: 12px;
       cursor: pointer; transition: border-color 0.2s, background 0.2s;
     }
-    .option:hover:not(.locked-option) {
-      border-color: var(--green2);
-      background: #0a1a14;
-    }
+    .option:hover:not(.locked-option) { border-color: var(--green2); background: #0a1a14; }
     .option.selected {
       border-color: var(--green2);
       background: rgba(0,255,159,0.06);
       box-shadow: 0 0 10px rgba(0,255,159,0.1);
     }
     .option.locked-option { cursor: default; }
-
     .option input[type="radio"] {
       accent-color: var(--green);
       width: 16px; height: 16px; min-width:16px;
       margin-top: 3px; cursor: pointer;
     }
-    .option label {
-      color: #c8e8d8; font-size: 0.88rem; line-height: 1.5; cursor: pointer; flex:1;
-    }
+    .option label { color: #c8e8d8; font-size: 0.88rem; line-height: 1.5; cursor: pointer; flex:1; }
     .option.locked-option label { cursor: default; }
 
-    /* Feedback box */
     .feedback {
       margin-top: 14px; padding: 12px 16px;
-      border-radius: 10px;
-      background: #071210;
-      color: #d4ffee;
-      font-size: 0.82rem; line-height: 1.6;
-      border-left: 4px solid var(--green2);
-      display: none;
+      border-radius: 10px; background: #071210;
+      color: #d4ffee; font-size: 0.82rem; line-height: 1.6;
+      border-left: 4px solid var(--green2); display: none;
     }
     .feedback.correct { border-left-color: var(--easy); background: rgba(68,255,153,0.05); }
     .feedback.warning { border-left-color: var(--medium); background: rgba(255,204,68,0.05); color: #ffe0a0; }
     .feedback.wrong   { border-left-color: var(--hard);   background: rgba(255,68,68,0.05);  color: #ffbbbb; }
-    .lock-notice {
-      display: none; font-size: 0.7rem; color: var(--muted);
-      margin-top: 8px; text-align: right; letter-spacing: 1px;
-    }
+    .lock-notice { display: none; font-size: 0.7rem; color: var(--muted); margin-top: 8px; text-align: right; letter-spacing: 1px; }
 
-    /* Text/select inputs */
     select, input[type="text"], textarea {
       width: 100%; padding: 13px 16px;
-      background: #08131e;
-      border: 1px solid #1e3a2a;
-      border-radius: 10px;
-      color: #c8e8d8;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.9rem;
-      margin: 14px 0 0;
-      transition: border-color 0.2s;
+      background: #08131e; border: 1px solid #1e3a2a;
+      border-radius: 10px; color: #c8e8d8;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.9rem;
+      margin: 14px 0 0; transition: border-color 0.2s;
     }
     select:focus, input[type="text"]:focus, textarea:focus {
       outline: none; border-color: var(--green2);
@@ -221,30 +188,21 @@
     select option { background: #0b1622; color: #c8e8d8; }
     textarea { resize: vertical; min-height: 80px; border-radius: 10px; }
 
-    /* Score chip */
     .score-chip {
       display: inline-block; padding: 3px 12px;
       background: rgba(0,255,159,0.1); border: 1px solid var(--green2);
-      color: var(--green); border-radius: 20px; font-size: 0.72rem;
-      letter-spacing: 1px;
+      color: var(--green); border-radius: 20px; font-size: 0.72rem; letter-spacing: 1px;
     }
 
-    /* Nav buttons */
-    .nav-buttons {
-      display: flex; gap: 12px; margin-top: 28px;
-    }
+    .nav-buttons { display: flex; gap: 12px; margin-top: 28px; }
     .btn {
       background: #0c1e16; border: 1px solid #1e3a2a;
       padding: 12px 20px; border-radius: 10px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.9rem; color: #9acfb4;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; color: #9acfb4;
       cursor: pointer; transition: 0.2s; flex:1;
     }
     .btn:hover { border-color: var(--green2); color: var(--green); filter: brightness(1.1); }
-    .btn-next {
-      background: #0a2618; border-color: var(--dim);
-      color: var(--green); box-shadow: 0 0 8px rgba(0,255,159,0.1);
-    }
+    .btn-next { background: #0a2618; border-color: var(--dim); color: var(--green); box-shadow: 0 0 8px rgba(0,255,159,0.1); }
     .btn-submit {
       width: 100%; margin-top: 16px; padding: 14px;
       background: var(--green); color: #060d14;
@@ -256,48 +214,187 @@
     .btn-submit:hover { filter: brightness(1.1); transform: translateY(-1px); }
     .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    /* Messages */
     .message {
       margin-top: 14px; padding: 12px 16px;
       border-radius: 10px; font-size: 0.85rem;
       display: none; text-align: center;
     }
-    .message.success {
-      display: block; background: rgba(0,255,159,0.1);
-      border: 1px solid var(--green); color: #a0ffcc;
-    }
-    .message.error {
-      display: block; background: rgba(255,68,68,0.1);
-      border: 1px solid var(--red); color: #ffaaaa;
-    }
+    .message.success { display: block; background: rgba(0,255,159,0.1); border: 1px solid var(--green); color: #a0ffcc; }
+    .message.error   { display: block; background: rgba(255,68,68,0.1);  border: 1px solid var(--red);   color: #ffaaaa; }
 
-    /* Final score screen */
-    #scoreScreen {
-      display: none; text-align: center; padding: 30px 20px;
-    }
+    /* ── SCORE SCREEN ── */
+    #scoreScreen { display: none; text-align: center; padding: 30px 20px; }
+
     .score-big {
       font-family: 'Orbitron', monospace;
       font-size: 3.5rem; color: var(--green);
       text-shadow: 0 0 20px var(--green);
     }
-    .score-label { color: var(--muted); font-size: 0.85rem; margin: 8px 0 20px; letter-spacing:2px; }
-    .score-breakdown { text-align:left; margin-top:20px; }
+    .score-label { font-size: 0.85rem; margin: 8px 0 4px; letter-spacing:2px; }
+    .score-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem; margin: 8px 0 20px;
+      text-shadow: 0 0 10px currentColor;
+    }
+
+    /* Section cards */
+    .section-scores {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 10px; margin: 20px 0 24px; text-align: center;
+    }
+    @media (max-width: 480px) {
+      .section-scores { grid-template-columns: 1fr; }
+    }
+    .section-card {
+      background: #081412; border: 1px solid #1a3020;
+      border-radius: 12px; padding: 14px 10px;
+    }
+    .section-card .sc-icon { font-size: 1.4rem; margin-bottom: 6px; }
+    .section-card .sc-label {
+      font-family: 'Orbitron', monospace; font-size: 0.62rem;
+      color: var(--muted); letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .section-card .sc-score {
+      font-size: 1.3rem; font-weight: bold;
+    }
+    .section-card .sc-badge {
+      font-size: 0.68rem; color: var(--muted);
+      margin-top: 5px; letter-spacing: 0.5px;
+      line-height: 1.3;
+    }
+    .sc-bar-bg { height: 4px; background: #1a2a20; border-radius: 20px; margin: 8px 0 4px; overflow:hidden; }
+    .sc-bar-fill { height: 100%; border-radius: 20px; transition: width 0.6s ease; }
+
+    .score-breakdown { text-align:left; margin-top:4px; }
+    .sb-section-header {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.68rem; letter-spacing: 2px;
+      color: var(--muted); padding: 10px 12px 4px;
+      border-top: 1px solid #0f2018; margin-top: 8px;
+    }
+    .sb-section-header:first-child { border-top: none; margin-top: 0; }
     .score-breakdown .sb-item {
       display:flex; justify-content:space-between; align-items:center;
-      padding: 8px 12px; border-radius:8px; margin-bottom:6px;
-      background: #081412; font-size:0.82rem; color: #a0c8b8;
+      padding: 7px 12px; border-radius:8px; margin-bottom:4px;
+      background: #081412; font-size:0.80rem; color: #a0c8b8;
     }
+    .sb-item .sb-q { flex:1; padding-right:8px; line-height:1.4; }
+    .sb-pts { white-space:nowrap; font-weight:bold; }
     .sb-correct { color: var(--easy); }
+    .sb-partial  { color: var(--medium); }
     .sb-wrong   { color: var(--hard); }
 
     footer {
       text-align: center; font-size: 0.68rem;
       color: #2a4a3a; padding: 14px;
-      border-top: 1px solid #0f2018;
-      letter-spacing: 1px;
+      border-top: 1px solid #0f2018; letter-spacing: 1px;
     }
+    /* Animation d’apparition du score */
+@keyframes scorePop {
+  0% { transform: scale(0.8); opacity: 0; text-shadow: 0 0 0 var(--green); }
+  80% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; text-shadow: 0 0 20px var(--green); }
+}
+.score-big {
+  animation: scorePop 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+}
 
-    /* Scrollbar */
+/* Animation des cartes section */
+.section-card {
+  animation: fadeSlideUp 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(15px);
+}
+.section-card:nth-child(1) { animation-delay: 0.1s; }
+.section-card:nth-child(2) { animation-delay: 0.2s; }
+.section-card:nth-child(3) { animation-delay: 0.3s; }
+@keyframes fadeSlideUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Indicateur swipe up */
+.swipe-indicator {
+  margin: 28px auto 15px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.swipe-arrow {
+  font-size: 1.8rem;
+  animation: bounceUp 1.2s infinite ease;
+  display: inline-block;
+}
+.swipe-text {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: var(--muted);
+  font-family: 'Orbitron', monospace;
+  background: rgba(0,255,159,0.1);
+  padding: 4px 12px;
+  border-radius: 30px;
+  backdrop-filter: blur(2px);
+}
+@keyframes bounceUp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.swipe-indicator:hover .swipe-arrow {
+  transform: translateY(-3px);
+  text-shadow: 0 0 8px var(--green);
+}
+
+/* Carte remerciement + conseil */
+.thankyou-card {
+  background: linear-gradient(135deg, #0b1a14, #07120e);
+  border: 1px solid var(--green2);
+  border-radius: 20px;
+  padding: 18px 20px;
+  margin-top: 15px;
+  text-align: left;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease-out, opacity 0.4s ease, margin 0.3s;
+  box-shadow: 0 0 15px rgba(0,255,159,0.1);
+}
+.thankyou-card.open {
+  max-height: 500px;   /* assez grand pour le contenu */
+  opacity: 1;
+  margin-top: 20px;
+}
+.thankyou-title {
+  font-family: 'Orbitron', monospace;
+  color: var(--green);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.thankyou-message {
+  color: var(--text);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+.hacker-tip {
+  background: #030a07;
+  border-left: 3px solid var(--orange);
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.78rem;
+  color: #ffe0aa;
+}
+.hacker-tip strong {
+  color: var(--green2);
+  font-weight: normal;
+}
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: #1a3a2a; border-radius: 3px; }
@@ -315,13 +412,13 @@
       <div class="dot dot-g"></div>
     </div>
     <h1>[ CYBER_TEST v2.0 ]<span class="blink">_</span></h1>
-    <div class="header-sub">// Teste tes réflexes face aux cybermenaces • 100% anonyme</div>
+    <div class="header-sub">// Évalue tes habitudes numériques réelles • 100% anonyme</div>
   </div>
 
   <div class="progress-area">
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
     <div class="step-counter">
-      <span id="stepCounter">Question 1 / 12</span>
+      <span id="stepCounter">Question 1 / ?</span>
       <span id="scoreChip" class="score-chip">Score: 0 pts</span>
     </div>
   </div>
@@ -340,276 +437,589 @@
     <div id="messageBox" class="message"></div>
   </div>
 
-  <footer>🔒 Aucune donnée personnelle identifiable • Réponses utilisées pour la prévention</footer>
+  <footer>🔒 Aucune donnée personnelle identifiable • Réponses utilisées à des fins de prévention</footer>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-//  ⚙️  CONFIGURATION – Remplace cette URL après déploiement
-// ═══════════════════════════════════════════════════════
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyRMa6K8O961WRslW2dzethqhl9-lY6Xzb0-3KTRTYrzCbTMA8HMD6dLjqSKv57QpgE5g/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw1bqtZpbDhMl7AZkYu4MF_geG9vFBYmkaOmivb4-9LW2sbCeHvjJJNkF6ldLmBCPEtbA/exec";
 
 // ═══════════════════════════════════════════════════════
-//  📋  QUESTIONS (démographiques + scénarios)
+//  SECTION METADATA
+// ═══════════════════════════════════════════════════════
+// theme values: "osint" | "physique" | "logiciel"
+// Each theme has its own title ladder based on % score.
+
+const SECTION_META = {
+  osint: {
+    icon: "🕵️",
+    label: "EXPOSITION / OSINT",
+    color: "#c084fc",   // purple
+    barColor: "#a855f7",
+    titles: [
+      { min: 90, title: "Fantôme Numérique",   desc: "Empreinte quasi inexistante. Introuvable." },
+      { min: 70, title: "Discret·e",           desc: "Bonne maîtrise de ton exposition en ligne." },
+      { min: 45, title: "Visible",             desc: "Quelques failles d'exposition à corriger." },
+      { min: 0,  title: "Livre Ouvert",        desc: "Ton profil public est un manuel OSINT." }
+    ]
+  },
+  physique: {
+    icon: "🔒",
+    label: "SÉCURITÉ PHYSIQUE",
+    color: "#38bdf8",   // sky blue
+    barColor: "#0ea5e9",
+    titles: [
+      { min: 90, title: "Agent de Terrain",    desc: "Aucun appareil laissé accessible sans raison." },
+      { min: 70, title: "Vigilant·e",          desc: "Tu sécurises bien tes appareils en public." },
+      { min: 45, title: "Distrait·e",          desc: "Quelques habitudes physiques à revoir." },
+      { min: 0,  title: "Porte Ouverte",       desc: "Tes appareils sont facilement accessibles." }
+    ]
+  },
+  logiciel: {
+    icon: "💻",
+    label: "HYGIÈNE LOGICIELLE",
+    color: "#34d399",   // green
+    barColor: "#10b981",
+    titles: [
+      { min: 90, title: "Analyste Sécurité",   desc: "Mots de passe forts, MAJ à jour, méfiance active." },
+      { min: 70, title: "Utilisateur Averti",  desc: "Bonnes pratiques appliquées au quotidien." },
+      { min: 45, title: "Intermédiaire",       desc: "Des bons réflexes mais des angles morts." },
+      { min: 0,  title: "Exposé·e",            desc: "Habitudes numériques à revoir en profondeur." }
+    ]
+  }
+};
+
+// Global title based on overall %
+const GLOBAL_TITLES = [
+  { min: 90, title: "🏆 OPSEC Expert",           color: "var(--easy)",   desc: "Tes pratiques dépassent la plupart des professionnels. Modèle à suivre." },
+  { min: 75, title: "🛡️ Cyber-Résilient·e",     color: "var(--green)",  desc: "Solide sur les trois piliers. Quelques angles morts à polir." },
+  { min: 55, title: "⚡ Conscient·e du Risque",  color: "var(--medium)", desc: "Tu connais les bases mais tes habitudes ne les suivent pas toujours." },
+  { min: 30, title: "🟠 Utilisateur Standard",   color: "var(--orange)", desc: "Comme la majorité des étudiants. Des pratiques concrètes à adopter." },
+  { min: 0,  title: "🔴 Profil à Risque",        color: "var(--hard)",   desc: "Plusieurs habitudes exposent activement tes données. À corriger d'urgence." }
+];
+
+// ═══════════════════════════════════════════════════════
+//  QUESTIONS
+//  Each scenario question has: theme, scores[], correctIndex, feedbacks[]
+//  Scoring gradient: 0 / 3 / 5 / 7 / 8 / 10
+//  Questions are framed around real behaviour, not hypothetical best practice.
 // ═══════════════════════════════════════════════════════
 const questions = [
 
-  /* ──────── INTRO DÉMOGRAPHIQUE ──────── */
+  /* ──────── DÉMOGRAPHIQUE ──────── */
   {
     id: "genre",
-    text: "🎭 Quel est ton genre ?",
-    type: "radio",
-    diff: "info",
+    text: "Quel est ton genre ?",
+    type: "radio", diff: "info",
     options: ["♂ Masculin", "♀ Féminin"],
     correct: null
   },
   {
-    id: "filiere",
-    text: "📚 Quelle est ta filière ?",
-    type: "select",
-    diff: "info",
-    options: ["2AP1", "2AP2", "GCSE", "BDAI", "GI", "GSTR", "GM", "SCM", "GC"],
-    allowCustom: true,
-    correct: null
-  },
+  id: "filiere",
+  text: "Quelle est ta filière ?",
+  type: "select", diff: "info",
+  options: ["2AP1","2AP2","GCSE","BDAI","GI","GSTR","GM","SCM","GC"],
+  // allowCustom: true,   ← à supprimer
+  correct: null
+},
 
-  /* ──────── NIVEAU FACILE ──────── */
+  /* ══════════════════════════════
+     OSINT — EXPOSITION EN LIGNE
+     ══════════════════════════════ */
   {
     id: "q_email_phishing",
-    text: "📧 [FACILE] — Tu reçois cet e-mail :",
+    theme: "osint", diff: "easy",
+    text: "📧 Tu reçois cet e-mail :",
     type: "scenario",
-    diff: "easy",
     preview: "De : support@paypa1-secure.com\nObjet : ⚠️ Votre compte sera suspendu dans 24h\n\nBonjour,\nCliquez ici pour vérifier votre identité :\nhttp://paypal-verif.xyz/login\n\n— L'équipe PayPal",
-    question: "Que fais-tu ?",
+    question: "Qu'est-ce que tu ferais en réalité ?",
     options: [
-      "Je clique immédiatement pour sauver mon compte",
-      "Je transfère le lien à un ami pour qu'il vérifie à ma place",
-      "Je vais sur paypal.com moi-même sans cliquer sur le lien",
-      "Je signale l'e-mail comme phishing et le supprime"
+      "Je clique sur le lien pour ne pas perdre mon compte — l'urgence me pousse à agir vite",
+      "Je transfère le message à quelqu'un de plus calé pour qu'il vérifie à ma place",
+      "Je ferme l'e-mail et je me connecte à PayPal directement depuis mon navigateur",
+      "Je signale l'e-mail comme phishing, je le supprime, et je vérifie l'expéditeur pour comprendre le piège"
     ],
-    correctIndex: 3,
+    scores: [0, 3, 7, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"💀 Tu aurais offert tes identifiants au hacker. 'paypa1' (avec un 1) n'est pas PayPal !" },
-      { type:"warning", text:"⚠️ Mieux, mais ton ami pourrait aussi cliquer. Ne partage jamais ce type de lien." },
-      { type:"warning", text:"✅ Bon réflexe de ne pas cliquer, mais signaler aide aussi à protéger les autres." },
-      { type:"correct", text:"🏆 Parfait ! Signaler + supprimer est la meilleure réaction. Remarque le '1' dans paypa1." }
+      { type:"wrong",   text:"💀 L'urgence artificielle est le levier principal du phishing. 'paypa1' avec un '1' n'est pas PayPal — et aucun service légitime ne suspend un compte en 24h sans contact préalable." },
+      { type:"warning", text:"⚠️ Déléguer évite la faute immédiate, mais diffuse le lien à une autre personne susceptible de cliquer. Le signalement direct est plus efficace." },
+      { type:"warning", text:"✅ Naviguer directement est le bon réflexe. Aller un cran plus loin en signalant le phishing protège aussi les autres utilisateurs." },
+      { type:"correct", text:"🏆 Réaction complète : pas de clic, signalement, suppression, et analyse du leurre. Remarque le '1' dans 'paypa1' — technique de typosquatting classique." }
     ]
   },
   {
-    id: "q_mdp_facile",
-    text: "🔑 [FACILE] — Lequel de ces mots de passe est le PLUS sûr ?",
+    id: "q_reseaux_sociaux",
+    theme: "osint", diff: "easy",
+    text: "📱 Comment est configuré ton profil principal sur les réseaux sociaux (Instagram, Snapchat, TikTok…) en ce moment ?",
     type: "scenario",
-    diff: "easy",
-    preview: "Tu dois créer un compte sur ta plateforme scolaire.\nChoisis le mot de passe le plus sécurisé :",
-    question: "Ton choix ?",
+    preview: "// SITUATION RÉELLE\nTu as un ou plusieurs comptes actifs sur les réseaux.\nComment décrirais-tu leur configuration actuelle ?",
+    question: "Ta situation réelle ?",
     options: [
-      "azerty123",
-      "P@ssw0rd!",
-      "Mohammed2005",
-      "cheval-correct-batterie-clou"
+      "Profil public avec mon nom complet, mon école, ma ville, et des publications régulières sur ma vie",
+      "Profil public avec mon prénom, quelques photos, mais sans coordonnées directes",
+      "Profil privé avec mon vrai prénom, j'accepte les gens que je connais et quelques inconnus",
+      "Profil privé sous pseudo ou nom non identifiable, uniquement des gens que je connais réellement"
     ],
-    correctIndex: 3,
+    scores: [0, 3, 7, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Cracké en moins d'une seconde. C'est dans tous les dictionnaires." },
-      { type:"warning", text:"⚠️ Ressemble à fort mais 'P@ssw0rd' est l'un des premiers testés par les hackers. Trop prévisible." },
-      { type:"wrong",   text:"❌ Ton prénom + année de naissance = facile à deviner via tes réseaux sociaux." },
-      { type:"correct", text:"🏆 Bingo ! Une phrase de passe longue bat les mots courts complexes. Plus longue = plus forte. Utilise un gestionnaire !" }
+      { type:"wrong",   text:"❌ Nom + école + ville = fiche OSINT complète. Avec ces données, n'importe qui peut identifier ton adresse, ton emploi du temps, tes proches. Ce n'est pas de la paranoïa — c'est ce qu'on apprend en 30 min d'OSINT." },
+      { type:"warning", text:"⚠️ Un profil public reste indexé par Google et scrappable automatiquement, même sans coordonnées directes. Des outils comme Maltego agrègent ces fragments." },
+      { type:"warning", text:"✅ Le profil privé réduit l'exposition. Accepter des inconnus crée quand même des brèches — un faux compte peut passer pour une connaissance." },
+      { type:"correct", text:"🏆 Pseudo + profil privé + cercle connu = exposition minimale. C'est la configuration recommandée pour limiter les attaques par ingénierie sociale ciblée." }
+    ]
+  },
+  {
+    id: "q_localisation",
+    theme: "osint", diff: "medium",
+    text: "📍 Tu viens de rentrer de vacances et tu postes des photos. Que fais-tu habituellement avec les métadonnées GPS de tes photos ?",
+    type: "scenario",
+    preview: "Tes photos contiennent des données EXIF, dont les coordonnées GPS exactes du lieu de prise de vue.\nCes métadonnées sont lisibles par quiconque télécharge l'image.",
+    question: "Ce que tu fais en général ?",
+    options: [
+      "Je publie directement depuis la galerie — je n'avais pas pensé aux métadonnées",
+      "Je publie en story éphémère, je suppose que ça disparaît sans laisser de trace",
+      "Je supprime les métadonnées avec une application avant de publier",
+      "Je supprime les métadonnées ET je publie quelques jours après le retour pour ne pas signaler mon absence en temps réel"
+    ],
+    scores: [0, 3, 7, 10], correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Les métadonnées EXIF incluent les coordonnées GPS à quelques mètres près. Publier une photo de ta chambre ou de ton école depuis chez toi revient à partager ton adresse." },
+      { type:"warning", text:"⚠️ Les stories peuvent être capturées avant expiration. Les plateformes suppriment souvent les EXIF à l'upload, mais pas systématiquement — et le timing de publication reste un signal." },
+      { type:"warning", text:"✅ Supprimer les métadonnées est le geste technique essentiel. Publier en temps réel reste un signal d'absence à domicile pour qui te suit." },
+      { type:"correct", text:"🏆 Deux vecteurs neutralisés : les données techniques (EXIF) et le signal comportemental (absence = maison vide). Réflexe rare, très efficace." }
+    ]
+  },
+  {
+    id: "q_osint_identite",
+    theme: "osint", diff: "hard",
+    text: "🔍 Quelqu'un tape ton nom complet sur Google. Qu'est-ce qu'il trouve sur toi aujourd'hui ?",
+    type: "scenario",
+    preview: "// AUDIT PERSONNEL\nTape ton nom dans un onglet navigation privée et observe.\nQu'est-ce qui remonte dans les 5 premiers résultats ?",
+    question: "Ce que tu penses qu'on trouve sur toi ?",
+    options: [
+      "Mon LinkedIn public, mon Instagram, des résultats de compétitions ou classements avec mon école et ma ville",
+      "Mon prénom et mon école sur un ou deux sites publics, rien de très précis",
+      "Très peu de choses — j'ai déjà fait le ménage ou j'utilise un pseudo partout",
+      "Presque rien de personnel — j'ai audité mon empreinte et contrôle activement ce qui est indexé"
+    ],
+    scores: [0, 5, 8, 10], correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ LinkedIn + Instagram + classements = profil OSINT complet. Un attaquant peut reconstituer ton réseau social, ton emploi du temps et identifier des vecteurs d'ingénierie sociale en moins d'une heure." },
+      { type:"warning", text:"⚠️ Même des fragments discrets peuvent être croisés avec d'autres sources (fuites de données, annuaires, réseaux de proches) pour construire un profil détaillé." },
+      { type:"warning", text:"✅ Utiliser un pseudo partout réduit significativement l'exposition. Un audit ponctuel est mieux qu'aucun — mais un suivi régulier (tous les 6 mois) est plus robuste." },
+      { type:"correct", text:"🏆 L'audit actif de son empreinte numérique est la pratique la plus avancée de ce domaine. Outils utiles : haveibeenpwned.com, Google Alerts sur ton nom, Namechk." }
+    ]
+  },
+  {
+    id: "q_partage_contact",
+    theme: "osint", diff: "medium",
+    text: "📋 Un site de petites annonces te demande de publier ton numéro de téléphone pour être contacté. Comment gères-tu ça habituellement ?",
+    type: "scenario",
+    preview: "Tu mets en vente un objet sur Avito ou un groupe Facebook.\nLe formulaire te demande un numéro de contact visible publiquement.",
+    question: "Ce que tu fais d'habitude ?",
+    options: [
+      "Je mets mon numéro principal directement — c'est plus simple pour être contacté rapidement",
+      "Je mets mon numéro mais je le supprime du post une fois la vente faite",
+      "J'utilise la messagerie interne de la plateforme et j'évite de publier mon numéro",
+      "J'utilise un numéro secondaire dédié aux usages publics, ou la messagerie interne uniquement"
+    ],
+    scores: [0, 3, 8, 10], correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Un numéro publié en clair est scrappé en quelques heures par des bots. Il finit dans des bases de données revendues pour du spam, du phishing vocal (vishing) ou du SIM swapping." },
+      { type:"warning", text:"⚠️ Mieux, mais le numéro a déjà été indexé et collecté pendant la période de publication. Les robots ne font pas de pause." },
+      { type:"warning", text:"✅ La messagerie interne protège ton numéro réel. Certaines plateformes masquent automatiquement les numéros — vérifie les paramètres avant de publier." },
+      { type:"correct", text:"🏆 Compartimenter ses numéros de contact est une pratique de séparation d'identité efficace. Des apps comme Google Voice ou un forfait prépayé servent à ça." }
+    ]
+  },
+
+  /* ══════════════════════════════
+     PHYSIQUE — SÉCURITÉ DES APPAREILS
+     ══════════════════════════════ */
+  {
+    id: "q_ecran_verrouille",
+    theme: "physique", diff: "easy",
+    text: "🔐 Tu es en amphi, tu te lèves pour aller au tableau ou aux toilettes. Qu'est-ce que tu fais habituellement avec ton ordinateur ?",
+    type: "scenario",
+    preview: "Situation courante : tu quittes ta place 5 à 10 minutes.\nTa session est active, des fichiers sont ouverts.",
+    question: "Ce que tu fais en général ?",
+    options: [
+      "Je laisse l'ordinateur ouvert — personne ne va y toucher dans une salle de cours",
+      "Je ferme les onglets sensibles ou minimise les fenêtres, mais je laisse la session active",
+      "Je verrouille systématiquement l'écran (Win+L ou équivalent) avant de me lever",
+      "Je verrouille l'écran et je referme l'écran ou retourne l'ordinateur pour limiter la visibilité"
+    ],
+    scores: [0, 3, 8, 10], correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ 5 minutes suffisent pour copier des fichiers sensibles, installer un keylogger ou consulter des e-mails. La salle de cours n'est pas un environnement de confiance — même entre collègues." },
+      { type:"warning", text:"⚠️ Fermer des fenêtres ne protège pas la session. L'explorateur de fichiers, l'historique de navigation et les mails restent accessibles en quelques secondes." },
+      { type:"warning", text:"✅ Verrouiller l'écran est le geste essentiel. Laisser l'écran visible expose aux notifications, aux fichiers récents et au shoulder surfing passif." },
+      { type:"correct", text:"🏆 Verrouillage + réduction de la surface visible = protection complète. Le réflexe Win+L ou Cmd+Ctrl+Q doit devenir automatique." }
+    ]
+  },
+  {
+    id: "q_shoulder_surfing",
+    theme: "physique", diff: "medium",
+    text: "👀 Tu dois entrer un mot de passe ou un code confidentiel dans un espace public (cafétéria, bibliothèque, transport). Quelle est ton habitude réelle ?",
+    type: "scenario",
+    preview: "Espace partagé, personnes autour de toi.\nTu as besoin de te connecter à un compte.",
+    question: "Ce que tu fais en général ?",
+    options: [
+      "Je tape normalement — je ne pense pas aux personnes autour de moi dans ce contexte",
+      "Je tape rapidement et j'incline légèrement l'écran, mais sans vérifier autour",
+      "Je balaie visuellement mon environnement et je couvre le clavier ou l'écran pendant la saisie",
+      "Je reporte la connexion si c'est possible, ou j'utilise un filtre de confidentialité d'écran en déplacement"
+    ],
+    scores: [0, 3, 8, 10], correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Le shoulder surfing ne nécessite aucun équipement — juste un angle de vue favorable. Une caméra de surveillance ou un smartphone braqué dans ta direction suffit aussi." },
+      { type:"warning", text:"⚠️ La vitesse ne protège pas. Un observateur attentif (ou une caméra) capte facilement des frappes rapides sur un clavier connu." },
+      { type:"warning", text:"✅ Vérifier l'environnement et couvrir le clavier est une bonne défense. L'écran reste souvent le point faible — lisible de côté même couvert." },
+      { type:"correct", text:"🏆 Reporter la saisie ou utiliser un filtre physique élimine le risque à la source. Les filtres de confidentialité 3M coûtent 20-30€ et valent chaque centime." }
+    ]
+  },
+  {
+    id: "q_usb",
+    theme: "physique", diff: "medium",
+    text: "💾 Tu trouves une clé USB dans le couloir de l'école. Il y a une étiquette : '📁 RÉSULTATS DES EXAMENS 2025'. Comment réagis-tu honnêtement ?",
+    type: "scenario",
+    preview: "Clé USB neuve, étiquette attrayante, trouvée dans un lieu de passage à l'école.",
+    question: "Ta réaction honnête ?",
+    options: [
+      "Je la branche sur mon PC — l'étiquette est trop tentante pour ne pas vérifier",
+      "Je la formate d'abord puis je l'utilise — ça devrait éliminer les risques",
+      "Je la remets à l'administration ou à un enseignant sans la brancher",
+      "Je la remets à l'administration en signalant explicitement qu'elle a été trouvée et qu'elle ne doit pas être branchée sans précaution"
+    ],
+    scores: [0, 3, 8, 10], correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ C'est une technique d'attaque documentée : USB drop attack. L'étiquette est délibérément conçue pour piquer la curiosité. Le malware s'exécute dès l'insertion, avant même que tu lises quoi que ce soit." },
+      { type:"warning", text:"⚠️ Certains malwares logent dans le firmware du contrôleur USB — une couche que Windows ne peut pas formater. La clé paraît vide mais reste active." },
+      { type:"warning", text:"✅ Remettre sans brancher est la bonne décision. Signaler explicitement le risque permet à l'administration d'alerter tout l'établissement." },
+      { type:"correct", text:"🏆 Remettre + alerter sur le vecteur potentiel est la réponse responsable. Une administration avertie peut isoler la clé et vérifier les autres espaces communs." }
+    ]
+  },
+  {
+    id: "q_telephone_oublie",
+    theme: "physique", diff: "easy",
+    text: "📱 Tu poses ton téléphone sur une table et tu t'éloignes 2-3 minutes. Est-ce que ton téléphone est verrouillé à ce moment-là ?",
+    type: "scenario",
+    preview: "Cafétéria, salle commune, bureau partagé.\nTu te lèves brièvement — pour chercher quelque chose, discuter, aller aux toilettes.",
+    question: "Ce qui se passe en général ?",
+    options: [
+      "Mon téléphone n'a pas de code ou de verrouillage biométrique — je trouve ça contraignant",
+      "Mon téléphone est verrouillé mais avec un code simple (0000, 1234, date de naissance)",
+      "Mon téléphone se verrouille automatiquement après 30-60 secondes d'inactivité",
+      "Mon téléphone se verrouille en moins de 15 secondes, avec biométrie + code fort en backup"
+    ],
+    scores: [0, 3, 7, 10], correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Un téléphone sans verrouillage est une porte ouverte. En 90 secondes, quelqu'un peut accéder à tes apps bancaires, tes codes 2FA, installer un stalkerware ou exfiltrer tes contacts." },
+      { type:"warning", text:"⚠️ Les codes simples (0000, 1234, date de naissance) sont les premiers testés. Un code à 6 chiffres non prévisible est le minimum acceptable." },
+      { type:"warning", text:"✅ Le verrouillage automatique est essentiel. 30-60 secondes reste une fenêtre suffisante pour un accès rapide. 15 secondes ou moins est recommandé." },
+      { type:"correct", text:"🏆 Verrouillage rapide + biométrie + code solide en fallback = protection optimale. La biométrie accélère l'accès légitime sans sacrifier la sécurité." }
+    ]
+  },
+  {
+    id: "q_appareil_prete",
+    theme: "physique", diff: "hard",
+    text: "🤝 Un camarade ou un proche te demande d'emprunter ton téléphone ou ton ordinateur quelques minutes. Comment tu gères ça normalement ?",
+    type: "scenario",
+    preview: "Situation banale entre étudiants.\n'T'as pas ton chargeur ? Je peux utiliser ton téléphone pour appeler ?' ou\n'Tu peux me prêter ton laptop 10 minutes pour imprimer ?'",
+    question: "Ce que tu fais habituellement ?",
+    options: [
+      "Je prête directement — c'est quelqu'un que je connais, je lui fais confiance",
+      "Je prête mais je reste à côté pour voir ce qu'il fait",
+      "Je prête après avoir fermé ou verrouillé les applications sensibles (mails, banque, stockage cloud)",
+      "Je crée un accès limité si possible (mode invité, profil séparé) ou je gère la tâche moi-même plutôt que de prêter"
+    ],
+    scores: [0, 5, 8, 10], correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ La confiance personnelle ne suffit pas. Une curiosité passagère, une distraction, ou un malware déjà présent sur ses appareils peuvent compromettre le tien sans mauvaise intention de sa part." },
+      { type:"warning", text:"⚠️ Rester à côté réduit le risque mais ne l'élimine pas — une notification visible, un fichier récent accessible, ou une action rapide peuvent exposer des données." },
+      { type:"warning", text:"✅ Fermer les apps sensibles avant de prêter est une bonne pratique. Le mode invité Android ou le profil restreint macOS est encore plus robuste." },
+      { type:"correct", text:"🏆 Le mode invité ou la gestion directe de la tâche sont les approches les plus sûres. Sur Android : Paramètres > Utilisateurs > Invité. Sur macOS : Système > Utilisateurs > Invité." }
+    ]
+  },
+
+  /* ══════════════════════════════
+     LOGICIEL — HYGIÈNE NUMÉRIQUE
+     ══════════════════════════════ */
+  {
+    id: "q_mdp_facile",
+    theme: "logiciel", diff: "easy",
+    text: "🔑 Lequel de ces mots de passe ressemble le plus à ceux que tu utilises réellement ?",
+    type: "scenario",
+    preview: "Sois honnête — l'objectif n'est pas de tester ta connaissance théorique\nmais de cartographier les pratiques réelles des étudiants.",
+    question: "Ton profil réel de mot de passe ?",
+    options: [
+      "Un mot simple avec quelques chiffres : prenom123, azerty2024, école_nom",
+      "Un mot avec substitutions : P@ssw0rd!, S3cur1ty!, Mon€cole2024",
+      "Mon prénom ou surnom combiné à une date significative : Ahmed2005, FatimaStar99",
+      "Des phrases longues aléatoires ou des mots de passe générés, différents pour chaque site"
+    ],
+    scores: [0, 3, 1, 10], correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Ces formats sont dans tous les dictionnaires d'attaque par force brute. Un outil standard les casse en secondes à minutes, même avec les chiffres." },
+      { type:"warning", text:"⚠️ Les substitutions classiques (@→a, 0→o, 3→e) sont connues des outils de cracking depuis les années 90. Elles n'ajoutent que quelques secondes à une attaque." },
+      { type:"wrong",   text:"❌ Prénom + date = données publiques. Avec ton Instagram ou LinkedIn, n'importe qui peut générer une liste personnalisée d'essais en quelques minutes (attaque de dictionnaire ciblée)." },
+      { type:"correct", text:"🏆 Une phrase longue (4+ mots) ou un mot de passe généré aléatoirement et unique par site est la seule protection robuste. Un gestionnaire de mots de passe (Bitwarden, gratuit) rend ça facile." }
     ]
   },
   {
     id: "q_wifi_public",
-    text: "📶 [FACILE] — WiFi public",
+    theme: "logiciel", diff: "easy",
+    text: "📶 Tu es dans un café ou à la gare. Tu dois accéder à un compte en ligne (ENT, mail, banque). Comment tu te connectes habituellement ?",
     type: "scenario",
-    diff: "easy",
-    preview: "Tu es dans un café. Tu dois vérifier ta note sur l'ENT de ton école.\nLe WiFi s'appelle 'Cafe_Free_WiFi' et ne demande pas de mot de passe.",
-    question: "Que fais-tu ?",
+    preview: "WiFi public disponible, gratuit, sans mot de passe.\nTon accès mobile est limité ou plus lent.",
+    question: "Ce que tu fais en général ?",
     options: [
-      "Je me connecte directement, c'est juste l'ENT",
-      "Je me connecte mais n'entre aucun mot de passe",
-      "J'active un VPN avant de me connecter",
-      "Je préfère utiliser mes données mobiles"
+      "Je me connecte au WiFi public — c'est plus rapide et ça économise mes données",
+      "Je me connecte au WiFi mais j'évite de saisir des mots de passe si je peux attendre",
+      "Je me connecte au WiFi uniquement avec un VPN actif",
+      "Je préfère utiliser mes données mobiles ou un hotspot personnel plutôt que le WiFi public"
     ],
-    correctIndex: 3,
+    scores: [0, 3, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Sur un WiFi non sécurisé, quelqu'un peut intercepter tes identifiants (attaque Man-in-the-Middle)." },
-      { type:"warning", text:"⚠️ Consulter sans se connecter est plus safe, mais le trafic reste visible sur le réseau." },
-      { type:"correct", text:"✅ Très bien ! Un VPN chiffre ta connexion. Assure-toi qu'il est fiable." },
-      { type:"correct", text:"🏆 La meilleure option. Tes données mobiles sont chiffrées par défaut par ton opérateur." }
+      { type:"wrong",   text:"❌ Sur un WiFi ouvert, le trafic non chiffré est lisible par toute personne sur le même réseau. Une attaque Man-in-the-Middle ne nécessite aucun équipement spécialisé — juste un laptop et Wireshark." },
+      { type:"warning", text:"⚠️ Éviter la saisie de mots de passe aide, mais ton trafic reste visible : sites visités, cookies de session, données transmises. Une session déjà ouverte peut être hijackée." },
+      { type:"warning", text:"✅ Un VPN fiable chiffre l'ensemble du trafic sortant. Évite les VPN gratuits — ils monétisent souvent tes données. Proton VPN (gratuit) ou Mullvad sont des options sérieuses." },
+      { type:"correct", text:"🏆 Les données mobiles 4G/5G sont chiffrées au niveau réseau par ton opérateur. C'est significativement plus sûr qu'un WiFi public, même avec VPN." }
     ]
   },
-
-  /* ──────── NIVEAU INTERMÉDIAIRE ──────── */
   {
-    id: "q_usb",
-    text: "💾 [INTERMÉDIAIRE] — Clé USB mystérieuse",
+    id: "q_mises_a_jour",
+    theme: "logiciel", diff: "easy",
+    text: "🔄 Quand une notification de mise à jour de sécurité apparaît sur ton ordinateur ou téléphone, quel est ton comportement habituel ?",
     type: "scenario",
-    diff: "medium",
-    preview: "Tu trouves une clé USB toute neuve dans le couloir de l'école.\nIl y a une étiquette : '📁 RÉSULTATS DES EXAMENS 2025'",
-    question: "Ta réaction ?",
+    preview: "La notification apparaît au mauvais moment — tu es en plein TP,\nen train de regarder quelque chose, ou tu as juste la flemme.",
+    question: "Ce que tu fais en général ?",
     options: [
-      "Je la branche sur mon PC pour vérifier si c'est vrai",
-      "Je la formate avant de l'utiliser, comme ça c'est safe",
-      "Je la remets à l'administration sans la brancher",
-      "Je la jette, ce n'est pas mon problème"
+      "Je la ferme et je l'oublie — ça finit par s'installer tout seul ou je le ferai plus tard",
+      "Je la reporte de quelques jours ou semaines, le temps d'avoir une occasion calme",
+      "Je l'installe dès que je peux, généralement le même jour ou le lendemain",
+      "J'ai activé les mises à jour automatiques et je n'attends pas les notifications manuelles"
     ],
-    correctIndex: 2,
+    scores: [0, 3, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"💀 Classic 'USB drop attack'. L'étiquette est un leurre. Un malware peut s'exécuter dès le branchement." },
-      { type:"warning", text:"⚠️ Même formater est risqué car certains malwares s'exécutent au niveau du firmware, AVANT Windows." },
-      { type:"correct", text:"🏆 Parfait. L'administration peut la traiter en sécurité avec les bons outils." },
-      { type:"warning", text:"⚠️ Mieux que de la brancher, mais la remettre à l'administration permet d'alerter tout le monde." }
+      { type:"wrong",   text:"❌ Les correctifs de sécurité publiés sont souvent la réponse à des failles déjà activement exploitées. Chaque jour sans mise à jour est une fenêtre d'exploitation ouverte — en particulier pour les systèmes connectés à Internet." },
+      { type:"warning", text:"⚠️ Reporter de quelques semaines laisse le temps aux attaquants d'exploiter la faille documentée publiquement. Les CVE (failles connues) sont publiées dès la sortie du patch." },
+      { type:"warning", text:"✅ Installer le jour même est une bonne discipline. Les mises à jour automatiques suppriment le risque lié à l'oubli ou à la procrastination." },
+      { type:"correct", text:"🏆 Les mises à jour automatiques sont la protection la plus efficace contre les exploits connus. À activer pour l'OS, le navigateur et les applications critiques." }
     ]
   },
   {
     id: "q_2fa",
-    text: "📲 [INTERMÉDIAIRE] — Code 2FA inattendu",
+    theme: "logiciel", diff: "medium",
+    text: "📲 Il est 3h du matin. Tu reçois un SMS avec un code de vérification que tu n'as pas demandé. Qu'est-ce que tu ferais ?",
     type: "scenario",
-    diff: "medium",
-    preview: "Il est 3h du matin. Tu reçois un SMS :\n\n'Ton code de vérification est : 847291\nNe le partage avec personne.'\n\nTu n'essayais pas de te connecter.",
-    question: "Que fais-tu ?",
+    preview: "SMS reçu :\n'Ton code de vérification est : 847291\nNe le partage avec personne.'\n\nTu dormais. Tu n'as rien initié.",
+    question: "Ta réaction honnête ?",
     options: [
-      "Je clique sur le lien du SMS pour annuler la connexion",
-      "J'ignore, c'est sûrement une erreur",
-      "Je change mon mot de passe immédiatement sur le site officiel",
-      "Je saisis le code pour voir ce qui se passe"
+      "Je note le code au cas où, et je me rendors — ça doit être une erreur",
+      "Je cherche un lien dans le SMS pour annuler la tentative de connexion",
+      "Je me lève et je change le mot de passe du compte concerné sur le site officiel",
+      "Je change le mot de passe immédiatement sur le site officiel ET j'active une méthode 2FA par application (pas SMS) si ce n'est pas encore fait"
     ],
-    correctIndex: 2,
+    scores: [0, 0, 7, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"⚠️ Le SMS ne contient pas de lien. Ne clique jamais sur des liens dans des SMS non sollicités." },
-      { type:"warning", text:"⚠️ Quelqu'un connaît ton mot de passe et essaie de se connecter. Ignorer = mauvaise idée." },
-      { type:"correct", text:"🏆 Exactement ! Quelqu'un a ton mot de passe. Change-le immédiatement sur le site officiel." },
-      { type:"wrong",   text:"💀 Catastrophique. Tu valides toi-même la connexion du hacker. Ne partage ni ne saisis jamais un code non demandé." }
+      { type:"wrong",   text:"❌ Ce n'est pas une erreur : quelqu'un connaît ton mot de passe et tente de se connecter maintenant. Ignorer laisse la porte entrouverte — le code expire, mais l'attaquant peut réessayer." },
+      { type:"wrong",   text:"❌ Le SMS ne contient pas de lien. Si tu en vois un, c'est du phishing. Ne clique jamais sur un lien dans un SMS non sollicité — même pour 'annuler'." },
+      { type:"warning", text:"✅ Changer le mot de passe sur le site officiel est la bonne réaction immédiate. Passer d'un 2FA par SMS à une application (Google Authenticator, Aegis) renforce encore plus la sécurité." },
+      { type:"correct", text:"🏆 Réaction complète : mot de passe changé + migration vers 2FA applicatif. Le 2FA par SMS est vulnérable au SIM swapping — les apps TOTP comme Aegis (open source) sont plus robustes." }
     ]
   },
   {
     id: "q_url",
-    text: "🌐 [INTERMÉDIAIRE] — Vrai site ou piège ?",
+    theme: "logiciel", diff: "medium",
+    text: "🌐 Tu veux te connecter à ta banque CIH depuis un résultat Google. Laquelle de ces URL choisis-tu instinctivement ?",
     type: "scenario",
-    diff: "medium",
-    preview: "Tu cherches à te connecter à ta banque CIH.\nUne recherche Google te propose ces 4 résultats :",
-    question: "Laquelle est la vraie URL de ta banque ?",
+    preview: "Tu googles 'CIH Bank connexion' et plusieurs résultats apparaissent.\nObserve chaque URL attentivement avant de répondre.",
+    question: "Ton choix instinctif ?",
     options: [
       "https://cih-banque.secure-login.net/compte",
       "https://www.cihbank.ma",
       "http://cihbank.ma.verification-id.com",
       "https://clhbank.ma"
     ],
-    correctIndex: 1,
+    scores: [0, 10, 0, 0], correctIndex: 1,
     feedbacks: [
-      { type:"wrong",   text:"❌ Le vrai domaine est 'cihbank.ma'. 'secure-login.net' est un sous-domaine d'un autre site." },
-      { type:"correct", text:"🏆 Oui ! C'est le domaine officiel .ma avec HTTPS. Vérifie toujours le nom de domaine principal." },
-      { type:"wrong",   text:"❌ Technique du sous-domaine trompeur. 'cihbank.ma' est ici une partie du chemin, pas le domaine." },
-      { type:"wrong",   text:"❌ Regarde attentivement : 'clhbank' (l et h inversés). Typosquatting !" }
+      { type:"wrong",   text:"❌ Le domaine réel ici est 'secure-login.net' — 'cih-banque' est juste un sous-domaine. L'affichage ressemble au nom de la banque mais l'adresse appartient à quelqu'un d'autre." },
+      { type:"correct", text:"🏆 'cihbank.ma' est le domaine officiel marocain, servi en HTTPS. Règle générale : le vrai domaine est ce qui précède le premier slash, après le dernier point significatif." },
+      { type:"wrong",   text:"❌ Technique du faux sous-domaine : 'cihbank.ma' est ici dans le chemin de l'URL, pas dans le domaine. Le vrai domaine est 'verification-id.com'." },
+      { type:"wrong",   text:"❌ Typosquatting : 'clhbank' au lieu de 'cihbank' — le 'i' et le 'l' sont inversés. Ces domaines sont achetés spécifiquement pour capturer les fautes de frappe." }
     ]
   },
-
-  /* ──────── NIVEAU DIFFICILE ──────── */
+  {
+    id: "q_telechargement",
+    theme: "logiciel", diff: "medium",
+    text: "📥 Tu as besoin d'un logiciel (Adobe Reader, VLC, WinRAR…). Comment tu le télécharges habituellement ?",
+    type: "scenario",
+    preview: "Tu googles le nom du logiciel + 'téléchargement gratuit'.\nPlusieurs options apparaissent dans les résultats.",
+    question: "Ce que tu fais en général ?",
+    options: [
+      "Je clique sur le premier lien ou la première annonce — c'est le plus rapide",
+      "Je télécharge depuis un site agrégateur connu (01net, Clubic, Softonic)",
+      "Je vais directement sur le site officiel de l'éditeur",
+      "Je vais sur le site officiel ET je vérifie que l'URL est correcte avant de télécharger"
+    ],
+    scores: [0, 5, 8, 10], correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Les annonces Google Ads pour des logiciels populaires sont régulièrement achetées par des acteurs malveillants pour distribuer des trojans. Ce vecteur a permis des compromissions massives en 2022-2024." },
+      { type:"warning", text:"⚠️ Les agrégateurs modifient parfois les installateurs pour y inclure des bundlewares ou des adwares. Certains sont légitimes, d'autres non — difficile de faire la différence." },
+      { type:"warning", text:"✅ Le site officiel est la bonne source. La vérification de l'URL avant de cliquer protège contre les sites d'imitation référencés juste sous le vrai site." },
+      { type:"correct", text:"🏆 Site officiel + vérification de l'URL = protection complète. Exemple : 'adobe-reader-gratuit.com' ou 'vlc-download.net' sont des sites d'imitation courants. L'URL officielle de VLC est videolan.org." }
+    ]
+  },
   {
     id: "q_https_mythe",
-    text: "🔒 [DIFFICILE] — Le mythe du cadenas HTTPS",
+    theme: "logiciel", diff: "hard",
+    text: "🔒 Un camarade dit : 'Ce site a le cadenas HTTPS donc c'est sûr, tu peux entrer ton mot de passe.' Comment tu réagis ?",
     type: "scenario",
-    diff: "hard",
-    preview: "Ton professeur affirme :\n\n'Si un site affiche le cadenas 🔒 et commence par HTTPS,\nc'est un site sûr et légitime sur lequel tu peux entrer ton mot de passe.'",
-    question: "Cette affirmation est-elle correcte ?",
+    preview: "Il te montre un site de connexion à ce qui ressemble à votre ENT.\nL'URL commence par https:// et le cadenas est bien affiché.",
+    question: "Ta réaction ?",
     options: [
-      "Oui, HTTPS + cadenas = site sûr à 100%",
-      "Non, HTTPS signifie juste que la connexion est chiffrée, pas que le site est fiable",
-      "Seulement si le site a aussi un .com ou .fr",
-      "Oui, les hackers ne peuvent pas obtenir de certificat HTTPS"
+      "Je suis d'accord — HTTPS + cadenas, c'est la garantie que le site est légitime",
+      "Je lui explique que HTTPS chiffre la connexion mais ne garantit pas que le site est honnête",
+      "Je vérifie l'URL complète et le domaine exact avant de conclure quoi que ce soit",
+      "Je lui explique la nuance HTTPS ≠ légitimité, je vérifie le domaine ET je lui montre comment identifier les techniques de typosquatting ou sous-domaine trompeur"
     ],
-    correctIndex: 1,
+    scores: [0, 7, 7, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Erreur très commune. Des milliers de sites de phishing utilisent HTTPS. Le cadenas ≠ site honnête." },
-      { type:"correct", text:"🏆 Exactement ! HTTPS chiffre uniquement le canal de communication. Un site frauduleux peut très bien avoir HTTPS." },
-      { type:"wrong",   text:"❌ L'extension (.com, .fr) n'a rien à voir avec la sécurité. On peut enregistrer n'importe quel domaine." },
-      { type:"wrong",   text:"❌ Faux. N'importe qui peut obtenir gratuitement un certificat HTTPS valide (ex: Let's Encrypt)." }
+      { type:"wrong",   text:"❌ C'est l'un des malentendus les plus répandus sur la sécurité web. Des dizaines de milliers de sites de phishing actifs utilisent HTTPS avec un certificat valide. Le cadenas ne prouve que le chiffrement du transport, pas l'identité du serveur." },
+      { type:"warning", text:"✅ Tu as la bonne compréhension théorique. Le compléter par une vérification concrète de l'URL est l'étape qui protège réellement." },
+      { type:"warning", text:"✅ Vérifier l'URL est le geste concret essentiel. Expliquer pourquoi à quelqu'un d'autre renforce aussi ta propre compréhension." },
+      { type:"correct", text:"🏆 Enseigner la nuance + montrer la technique de détection concrète = le meilleur niveau de réponse. Les deux techniques à connaître : typosquatting (paypa1.com) et faux sous-domaine (paypal.com.evil.net)." }
     ]
   },
   {
     id: "q_ingenierie_sociale",
-    text: "☎️ [DIFFICILE] — Appel du 'service informatique'",
+    theme: "logiciel", diff: "hard",
+    text: "☎️ Tu reçois un appel d'une personne qui se présente comme du service informatique de l'école. Elle dit détecter une activité suspecte sur ton compte et demande ton mot de passe ou que tu valides une notification. Comment tu réagis ?",
     type: "scenario",
-    diff: "hard",
-    preview: "Tu décroches ton téléphone. Une voix :\n\n'Bonjour, je suis Yassine du service IT. On a détecté une activité\nsuspect sur ton compte. Pour sécuriser ton accès immédiatement,\nj'ai besoin de ton mot de passe ou que tu valides une\nnotification sur ton téléphone. C'est urgent.'",
-    question: "Que réponds-tu ?",
+    preview: "'Bonjour, je suis du service IT. On a une alerte sur votre compte.\nJ'ai besoin de votre mot de passe pour corriger ça maintenant — c'est urgent.'",
+    question: "Ta réaction honnête ?",
     options: [
-      "Je lui donne mon mot de passe, c'est l'informatique donc c'est fiable",
-      "Je lui donne uniquement mon identifiant, pas le mot de passe",
-      "Je valide la notification push, ça ne donne pas mon mot de passe",
-      "Je raccroche et contacte le service IT via les canaux officiels"
+      "Je lui donne ce qu'il demande — c'est le service informatique, ils ont besoin d'accès pour aider",
+      "Je lui donne mon identifiant mais pas mon mot de passe — un compromis raisonnable",
+      "Je valide la notification push — ça ne donne pas mon mot de passe directement",
+      "Je raccroche sans rien donner, puis je contacte le service IT via l'adresse officielle de l'école pour vérifier"
     ],
-    correctIndex: 3,
+    scores: [0, 3, 0, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"💀 Le service IT légitime ne demande JAMAIS ton mot de passe. Ingénierie sociale classique." },
-      { type:"warning", text:"⚠️ Ton identifiant peut suffire à un attaquant pour cibler d'autres attaques. Raccroche." },
-      { type:"wrong",   text:"💀 Valider une notif MFA = tu donnes l'accès à l'attaquant ! C'est l'attaque 'MFA Fatigue'." },
-      { type:"correct", text:"🏆 Parfait ! Raccroche, puis vérifie en contactant le vrai IT via l'adresse email ou numéro officiel." }
+      { type:"wrong",   text:"❌ Aucun service IT légitime ne demande jamais un mot de passe par téléphone. C'est une règle absolue, universelle. L'urgence et l'autorité apparente sont les deux leviers classiques de l'ingénierie sociale." },
+      { type:"warning", text:"⚠️ Un identifiant + quelques informations publiques (école, filière, e-mail) peuvent suffire pour des attaques de reset de mot de passe ou d'accès à d'autres systèmes." },
+      { type:"wrong",   text:"❌ Valider une notification MFA non sollicitée équivaut à ouvrir toi-même la porte à l'attaquant. C'est l'attaque MFA Fatigue — elle a compromis des entreprises comme Uber et Microsoft." },
+      { type:"correct", text:"🏆 Raccrocher + vérification par canal officiel = réponse correcte. La règle : l'urgence imposée par téléphone est toujours un signal d'alarme. Un vrai problème IT peut attendre 5 minutes le temps que tu rappelles." }
     ]
   },
   {
     id: "q_vpn_mythe",
-    text: "🕵️ [DIFFICILE] — Le VPN rend-il anonyme ?",
+    theme: "logiciel", diff: "hard",
+    text: "🕵️ Un ami utilise un VPN gratuit et dit : 'Avec ça je suis anonyme, je peux tout faire.' Quelle est ta réponse ?",
     type: "scenario",
-    diff: "hard",
-    preview: "Ton ami te dit :\n\n'Avec un VPN, je suis complètement anonyme sur Internet.\nJe peux faire n'importe quoi, personne ne peut me retrouver.'",
-    question: "Quelle est la réponse la plus précise ?",
+    preview: "Il télécharge un VPN gratuit très populaire depuis le Play Store.\n'C'est magique, maintenant personne ne me voit.'",
+    question: "Ta réponse ?",
     options: [
-      "Il a 100% raison, un VPN = anonymat total",
-      "Le VPN cache l'IP mais le fournisseur VPN peut voir ton trafic et coopérer avec les autorités",
-      "Un VPN empêche aussi les virus et les hackers",
-      "Le VPN est inutile, les autorités peuvent toujours voir tout ce qu'on fait"
+      "Je valide — un VPN ça cache bien l'IP et les activités, c'est suffisant pour être anonyme",
+      "Je lui explique que le VPN déplace la confiance vers le fournisseur, qui peut voir et enregistrer tout son trafic",
+      "Je lui explique la limite + je lui dis que les VPN gratuits monétisent souvent les données utilisateur",
+      "Je lui explique les limites du VPN, le modèle économique des gratuits, et je lui recommande une alternative open source avec politique no-log vérifiée"
     ],
-    correctIndex: 1,
+    scores: [0, 5, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Un VPN masque ton IP de certains sites, mais ne garantit pas l'anonymat. Le fournisseur VPN te voit." },
-      { type:"correct", text:"🏆 Exact ! Un VPN déplace la confiance vers le fournisseur VPN. Un VPN gratuit peut même revendre tes données." },
-      { type:"wrong",   text:"❌ Un VPN ne protège pas contre les malwares ou les attaques. Ce sont des outils différents." },
-      { type:"wrong",   text:"❌ Un VPN est utile (WiFi public, contournement de censure), mais il n'est pas une cape d'invisibilité." }
+      { type:"wrong",   text:"❌ Un VPN masque l'IP vis-à-vis des sites visités et chiffre le trafic local — mais le fournisseur VPN voit tout. L'anonymat total n'existe pas avec un VPN commercial." },
+      { type:"warning", text:"⚠️ C'est la nuance essentielle. Déplacer la confiance de son FAI vers un VPN n'est utile que si le VPN est plus digne de confiance que le FAI." },
+      { type:"warning", text:"✅ Identifier le modèle économique des gratuits est crucial. Des études ont montré que des VPN gratuits populaires revendaient les données ou injectaient des publicités dans le trafic." },
+      { type:"correct", text:"🏆 Niveau expert : comprendre les limites techniques + identifier le modèle économique + recommander une alternative vérifiable. Proton VPN (gratuit, open source, basé en Suisse) ou Mullvad sont des références sérieuses." }
+    ]
+  },
+  {
+    id: "q_mdp_reutilise",
+    theme: "logiciel", diff: "hard",
+    text: "🔁 Un site sur lequel tu avais un compte il y a quelques années vient de subir une fuite de données. Ton e-mail et mot de passe de l'époque sont dedans. Comment tu réagis ?",
+    type: "scenario",
+    preview: "Tu reçois un e-mail de HaveIBeenPwned ou tu lis la news.\nLe mot de passe concerné — tu t'en souviens — tu l'utilises peut-être encore ailleurs.",
+    question: "Ce que tu ferais honnêtement ?",
+    options: [
+      "Je ne fais rien — c'était un vieux compte sans importance, le mot de passe était banal",
+      "Je change le mot de passe sur le site compromis uniquement",
+      "Je cherche sur quels autres sites j'utilise ce même mot de passe et je les change",
+      "Je change ce mot de passe sur tous les sites concernés ET j'audite tous mes comptes via un gestionnaire de mots de passe pour éliminer les réutilisations"
+    ],
+    scores: [0, 3, 7, 10], correctIndex: 3,
+    feedbacks: [
+      { type:"wrong",   text:"❌ Les bases de données de fuites sont revendues sur des marchés privés et utilisées pour du credential stuffing automatique — des outils testent des millions de combinaisons par heure sur des centaines de services simultanément." },
+      { type:"warning", text:"⚠️ Changer uniquement sur le site compromis ne protège pas les autres comptes où le même mot de passe est utilisé. C'est là que se trouve le vrai risque." },
+      { type:"warning", text:"✅ Identifier et changer tous les comptes concernés est la bonne approche. Un gestionnaire de mots de passe rend cet audit systématique et automatique." },
+      { type:"correct", text:"🏆 Audit complet + gestionnaire de mots de passe = protection systémique. Bitwarden (gratuit, open source) permet d'identifier les mots de passe réutilisés et les comptes compromis depuis un tableau de bord unique." }
     ]
   },
 
   /* ──────── BONUS ──────── */
   {
     id: "gestionnaire_mdp",
-    text: "🗝️ Bonus — Utilises-tu un gestionnaire de mots de passe ?",
-    type: "radio",
-    diff: "info",
+    text: "🗝️ Est-ce que tu utilises un gestionnaire de mots de passe ?",
+    type: "radio", diff: "info",
     options: [
-      "Oui, j'utilise Bitwarden / 1Password / autre",
-      "Non, je retiens tout de tête",
-      "Non, j'utilise le même mot de passe partout",
-      "Parfois, mais pas systématiquement"
+      "Oui — Bitwarden, 1Password, ou autre",
+      "Non — je mémorise mes mots de passe",
+      "Non — j'utilise souvent les mêmes mots de passe",
+      "Parfois — pour certains comptes seulement"
     ],
     correct: null
   },
   {
     id: "commentaire",
-    text: "💬 Un conseil, une anecdote ou une question ? (optionnel)",
-    type: "comment",
-    diff: "info"
+    text: "💬 Un commentaire, une observation ou une question ? (optionnel)",
+    type: "comment", diff: "info"
   }
 ];
 
 // ═══════════════════════════════════════════════════════
-//  📊  ÉTAT DE L'APPLICATION
+//  ÉTAT
 // ═══════════════════════════════════════════════════════
-let answers   = Array(questions.length).fill(null);
-let locked    = Array(questions.length).fill(false); // once answered, can't change
-let score     = 0;
-let scoreMax  = questions.filter(q => q.type === "scenario").length;
+let answers  = Array(questions.length).fill(null);
+let locked   = Array(questions.length).fill(false);
+let score    = 0;
 let currentIndex = 0;
 
-const container      = document.getElementById("questionsContainer");
-const prevBtn        = document.getElementById("prevBtn");
-const nextBtn        = document.getElementById("nextBtn");
-const submitContainer= document.getElementById("submitContainer");
-const progressFill   = document.getElementById("progressFill");
-const stepCounterSpan= document.getElementById("stepCounter");
-const scoreChip      = document.getElementById("scoreChip");
-const messageBox     = document.getElementById("messageBox");
+// Per-section running scores
+const sectionScore = { osint: 0, physique: 0, logiciel: 0 };
+
+const container       = document.getElementById("questionsContainer");
+const prevBtn         = document.getElementById("prevBtn");
+const nextBtn         = document.getElementById("nextBtn");
+const submitContainer = document.getElementById("submitContainer");
+const progressFill    = document.getElementById("progressFill");
+const stepCounterSpan = document.getElementById("stepCounter");
+const scoreChip       = document.getElementById("scoreChip");
+const messageBox      = document.getElementById("messageBox");
 
 // ═══════════════════════════════════════════════════════
-//  🏗️  BUILD HTML
+//  HELPERS
+// ═══════════════════════════════════════════════════════
+function getSectionMax(theme) {
+  return questions
+    .filter(q => q.type === "scenario" && q.theme === theme)
+    .reduce((acc, q) => acc + Math.max(...q.scores), 0);
+}
+function getTotalMax() {
+  return questions
+    .filter(q => q.type === "scenario")
+    .reduce((acc, q) => acc + Math.max(...q.scores), 0);
+}
+function getTitleForPct(pct, ladder) {
+  return ladder.find(t => pct >= t.min) || ladder[ladder.length - 1];
+}
+// Mélange aléatoire d'un tableau (Fisher-Yates)
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+// ═══════════════════════════════════════════════════════
+//  BUILD HTML
 // ═══════════════════════════════════════════════════════
 function diffLabel(d) {
   const map = {
@@ -621,7 +1031,6 @@ function diffLabel(d) {
   const [cls, label] = map[d] || map.info;
   return `<span class="diff-badge ${cls}">${label}</span>`;
 }
-
 function esc(s) {
   if (!s) return "";
   return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -633,150 +1042,126 @@ function buildQuestionHTML(q, idx) {
   h += `<h3>${q.text}</h3>`;
 
   if (q.type === "radio") {
-    h += `<div class="options" id="opts_${idx}">`;
-    q.options.forEach((opt, oi) => {
-      const chk = answers[idx] === opt ? "checked" : "";
-      h += `<div class="option${answers[idx] === opt ? ' selected' : ''}${locked[idx] ? ' locked-option' : ''}" data-val="${esc(opt)}">
-              <input type="radio" name="q_${idx}" value="${esc(opt)}" id="q_${idx}_${oi}" ${chk} ${locked[idx] ? 'disabled' : ''}>
-              <label for="q_${idx}_${oi}">${esc(opt)}</label>
-            </div>`;
-    });
-    h += `</div>`;
+  let optionsIndices;
+  if (shouldShuffle(q)) {
+    const originalIndices = q.options.map((_, i) => i);
+    optionsIndices = shuffleArray([...originalIndices]);
+  } else {
+    optionsIndices = q.options.map((_, i) => i); // ordre original
   }
+  h += `<div class="options" id="opts_${idx}">`;
+  optionsIndices.forEach(origIdx => {
+    const opt = q.options[origIdx];
+    const chk = answers[idx] === opt ? "checked" : "";
+    h += `<div class="option${answers[idx] === opt ? ' selected' : ''}${locked[idx] ? ' locked-option' : ''}" data-original-idx="${origIdx}">
+            <input type="radio" name="q_${idx}" value="${esc(opt)}" id="q_${idx}_${origIdx}" ${chk} ${locked[idx] ? 'disabled' : ''}>
+            <label for="q_${idx}_${origIdx}">${esc(opt)}</label>
+          </div>`;
+  });
+  h += `</div>`;
+}
   else if (q.type === "select") {
-    h += `<select id="select_${idx}">`;
-    q.options.forEach(opt => {
-      const sel = answers[idx] === opt ? "selected" : "";
-      h += `<option value="${esc(opt)}" ${sel}>${esc(opt)}</option>`;
-    });
-    if (q.allowCustom) {
-      const isCustom = answers[idx] && !q.options.includes(answers[idx]);
-      h += `<option value="__custom__" ${isCustom ? "selected" : ""}>Autre (précise)…</option>`;
-    }
-    h += `</select>`;
-    if (q.allowCustom) {
-      const isCustom = answers[idx] && !q.options.includes(answers[idx]);
-      h += `<input type="text" id="custom_${idx}" placeholder="Ta filière…" value="${isCustom ? esc(answers[idx]) : ''}" style="display:${isCustom ? 'block' : 'none'}">`;
-    }
+  let optionsIndices;
+  if (shouldShuffle(q)) {
+    const originalIndices = q.options.map((_, i) => i);
+    optionsIndices = shuffleArray([...originalIndices]);
+  } else {
+    optionsIndices = q.options.map((_, i) => i);
   }
+  h += `<select id="select_${idx}">`;
+  optionsIndices.forEach(origIdx => {
+    const opt = q.options[origIdx];
+    const sel = answers[idx] === opt ? "selected" : "";
+    h += `<option value="${esc(opt)}" ${sel}>${esc(opt)}</option>`;
+  });
+  h += `</select>`;
+}
   else if (q.type === "comment") {
-    h += `<textarea id="comment_${idx}" rows="4" placeholder="Ton retour, suggestion, expérience…">${answers[idx] || ''}</textarea>`;
-  }
+    h += `<textarea id="comment_${idx}" rows="4" placeholder="Ton retour, suggestion, ou expérience personnelle…">${answers[idx] || ''}</textarea>`;
+  } 
   else if (q.type === "scenario") {
-    const sc = q;
+    const originalIndices = q.options.map((_, i) => i);
+    const shuffledIndices = shuffleArray([...originalIndices]);
     h += `<div class="scenario-card">
-            <div class="scenario-preview"><span class="preview-label">// SITUATION</span>${esc(sc.preview).replace(/\n/g,'<br>')}</div>
-            <div class="scenario-q">🤔 ${esc(sc.question || 'Que fais-tu ?')}</div>
+            <div class="scenario-preview"><span class="preview-label">// SITUATION</span>${esc(q.preview).replace(/\n/g,'<br>')}</div>
+            <div class="scenario-q">🤔 ${esc(q.question)}</div>
             <div class="options" id="opts_${idx}">`;
-    sc.options.forEach((opt, oi) => {
+    shuffledIndices.forEach(origIdx => {
+      const opt = q.options[origIdx];
       const chk  = answers[idx] === opt ? "checked" : "";
       const selC = answers[idx] === opt ? " selected" : "";
       const lkC  = locked[idx] ? " locked-option" : "";
-      h += `<div class="option${selC}${lkC}" data-optidx="${oi}">
-              <input type="radio" name="q_${idx}" value="${esc(opt)}" id="q_${idx}_${oi}" ${chk} ${locked[idx] ? 'disabled' : ''}>
-              <label for="q_${idx}_${oi}">${esc(opt)}</label>
+      h += `<div class="option${selC}${lkC}" data-original-idx="${origIdx}">
+              <input type="radio" name="q_${idx}" value="${esc(opt)}" id="q_${idx}_${origIdx}" ${chk} ${locked[idx] ? 'disabled' : ''}>
+              <label for="q_${idx}_${origIdx}">${esc(opt)}</label>
             </div>`;
     });
-    // Restore feedback if already answered
     let fbStyle = "display:none;", fbClass = "", fbText = "";
     if (locked[idx] && answers[idx] !== null) {
-      const oi = sc.options.indexOf(answers[idx]);
-      if (oi >= 0) {
-        const fb = sc.feedbacks[oi];
-        fbStyle = "display:block;";
-        fbClass = fb.type;
-        fbText  = `💡 ${esc(fb.text)}`;
-      }
+      const origIdx = q.options.indexOf(answers[idx]);
+      if (origIdx >= 0) { const fb = q.feedbacks[origIdx]; fbStyle="display:block;"; fbClass=fb.type; fbText=`💡 ${esc(fb.text)}`; }
     }
     h += `</div>
           <div class="feedback ${fbClass}" id="fb_${idx}" style="${fbStyle}">${fbText}</div>
-          <div class="lock-notice" id="ln_${idx}" style="${locked[idx] ? 'display:block;' : ''}">🔒 Réponse verrouillée</div>
+          <div class="lock-notice" id="ln_${idx}" style="${locked[idx]?'display:block;':''}">🔒 Réponse enregistrée</div>
         </div>`;
   }
-
   h += `</div>`;
   return h;
 }
 
 // ═══════════════════════════════════════════════════════
-//  🎮  EVENTS
+//  EVENTS
 // ═══════════════════════════════════════════════════════
 function bindEvents() {
   questions.forEach((q, idx) => {
     if (q.type === "radio") {
       document.querySelectorAll(`#q_${idx} .option`).forEach(div => {
         const radio = div.querySelector('input');
-        if (radio) {
-          radio.addEventListener('change', () => {
-            answers[idx] = radio.value;
-            document.querySelectorAll(`#q_${idx} .option`).forEach(o => o.classList.remove('selected'));
-            div.classList.add('selected');
-          });
-          if (radio.checked) div.classList.add('selected');
-        }
+        if (!radio) return;
+        radio.addEventListener('change', () => {
+          answers[idx] = radio.value;
+          document.querySelectorAll(`#q_${idx} .option`).forEach(o => o.classList.remove('selected'));
+          div.classList.add('selected');
+        });
+        if (radio.checked) div.classList.add('selected');
       });
-    }
+    } 
     else if (q.type === "select") {
       const sel = document.getElementById(`select_${idx}`);
-      const ci  = document.getElementById(`custom_${idx}`);
       if (sel) {
-        // init
         if (!answers[idx]) answers[idx] = sel.value;
         sel.addEventListener('change', () => {
-          if (sel.value === "__custom__") {
-            if (ci) { ci.style.display = "block"; answers[idx] = ci.value; }
-          } else {
-            if (ci) ci.style.display = "none";
-            answers[idx] = sel.value;
-          }
+          answers[idx] = sel.value;
         });
-        if (ci) ci.addEventListener('input', () => { answers[idx] = ci.value; });
       }
-    }
+    } 
     else if (q.type === "comment") {
       const txt = document.getElementById(`comment_${idx}`);
       if (txt) txt.addEventListener('input', () => { answers[idx] = txt.value; });
-    }
+    } 
     else if (q.type === "scenario") {
-      const optDivs   = document.querySelectorAll(`#q_${idx} .option`);
-      const feedbackEl= document.getElementById(`fb_${idx}`);
-      const lockNotice= document.getElementById(`ln_${idx}`);
-
-      optDivs.forEach((div, oi) => {
+      const optDivs    = document.querySelectorAll(`#q_${idx} .option`);
+      const feedbackEl = document.getElementById(`fb_${idx}`);
+      const lockNotice = document.getElementById(`ln_${idx}`);
+      optDivs.forEach(div => {
         const radio = div.querySelector('input');
         if (!radio) return;
-
-        // Restore selected state
+        const originalIdx = parseInt(div.getAttribute('data-original-idx'));
         if (radio.checked) div.classList.add('selected');
-
         radio.addEventListener('change', () => {
-          if (locked[idx]) return; // 🔒 already locked
-
-          const fb = q.feedbacks[oi];
+          if (locked[idx]) return;
+          const fb = q.feedbacks[originalIdx];
           answers[idx] = radio.value;
-
-          // Score tracking
-          if (oi === q.correctIndex) score++;
+          const pts = q.scores[originalIdx];
+          score += pts;
+          if (q.theme) sectionScore[q.theme] += pts;
           updateScoreChip();
-
-          // Lock all options in this question
           locked[idx] = true;
-          optDivs.forEach(od => {
-            od.classList.add('locked-option');
-            const r = od.querySelector('input');
-            if (r) r.disabled = true;
-          });
-
-          // Highlight selected
+          optDivs.forEach(od => { od.classList.add('locked-option'); const r = od.querySelector('input'); if(r) r.disabled = true; });
           optDivs.forEach(o => o.classList.remove('selected'));
           div.classList.add('selected');
-
-          // Show feedback
-          if (feedbackEl) {
-            feedbackEl.innerHTML = `💡 ${esc(fb.text)}`;
-            feedbackEl.className = `feedback ${fb.type}`;
-            feedbackEl.style.display = "block";
-          }
+          if (feedbackEl) { feedbackEl.innerHTML = `💡 ${esc(fb.text)}`; feedbackEl.className = `feedback ${fb.type}`; feedbackEl.style.display = "block"; }
           if (lockNotice) lockNotice.style.display = "block";
         });
       });
@@ -785,24 +1170,24 @@ function bindEvents() {
 }
 
 // ═══════════════════════════════════════════════════════
-//  🖥️  NAVIGATION
+//  NAVIGATION
 // ═══════════════════════════════════════════════════════
 function showQuestion(idx) {
   document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
   const el = document.getElementById(`q_${idx}`);
   if (el) el.classList.add('active');
-
   const pct = ((idx + 1) / questions.length) * 100;
   progressFill.style.width = `${pct}%`;
   stepCounterSpan.textContent = `Question ${idx + 1} / ${questions.length}`;
-
   prevBtn.style.display = idx === 0 ? 'none' : 'block';
   const isLast = idx === questions.length - 1;
-  nextBtn.style.display     = isLast ? 'none' : 'block';
+  nextBtn.style.display         = isLast ? 'none' : 'block';
   submitContainer.style.display = isLast ? 'block' : 'none';
-  messageBox.style.display  = 'none';
+  messageBox.style.display      = 'none';
 }
-
+function shouldShuffle(question) {
+  return question.id !== "genre" && question.id !== "filiere";
+}
 function saveInput() {
   const q = questions[currentIndex];
   if (!q) return;
@@ -811,8 +1196,7 @@ function saveInput() {
     if (sel) answers[currentIndex] = sel.value;
   } else if (q.type === "select") {
     const s = document.getElementById(`select_${currentIndex}`);
-    const c = document.getElementById(`custom_${currentIndex}`);
-    if (s) answers[currentIndex] = s.value === "__custom__" && c ? c.value : s.value;
+    if (s) answers[currentIndex] = s.value;
   } else if (q.type === "comment") {
     const t = document.getElementById(`comment_${currentIndex}`);
     if (t) answers[currentIndex] = t.value;
@@ -822,18 +1206,9 @@ function saveInput() {
 function nextStep() {
   saveInput();
   const q = questions[currentIndex];
-  if (q.type !== "comment" && !answers[currentIndex]) {
-    showMsg("🔐 Réponds à cette question avant de continuer !", "error");
-    return;
-  }
-  if (q.type === "scenario" && !locked[currentIndex]) {
-    showMsg("🔐 Sélectionne une réponse pour voir le feedback avant de continuer.", "error");
-    return;
-  }
-  if (currentIndex < questions.length - 1) {
-    currentIndex++;
-    showQuestion(currentIndex);
-  }
+  if (q.type !== "comment" && !answers[currentIndex]) { showMsg("🔐 Réponds à cette question avant de continuer !", "error"); return; }
+  if (q.type === "scenario" && !locked[currentIndex]) { showMsg("🔐 Sélectionne une réponse pour voir le feedback avant de continuer.", "error"); return; }
+  if (currentIndex < questions.length - 1) { currentIndex++; showQuestion(currentIndex); }
 }
 
 function prevStep() {
@@ -843,42 +1218,60 @@ function prevStep() {
 
 function showMsg(msg, type) {
   messageBox.textContent = msg;
-  messageBox.className   = `message ${type}`;
+  messageBox.className = `message ${type}`;
   messageBox.style.display = 'block';
   setTimeout(() => { messageBox.style.display = 'none'; }, 3500);
 }
 
 function updateScoreChip() {
-  scoreChip.textContent = `Score: ${score} / ${scoreMax}`;
+  scoreChip.textContent = `Score: ${score} / ${getTotalMax()}`;
 }
 
 // ═══════════════════════════════════════════════════════
-//  📡  SUBMIT
+//  SUBMIT
 // ═══════════════════════════════════════════════════════
 async function submitAll() {
   saveInput();
   for (let i = 0; i < questions.length; i++) {
     if (questions[i].type !== "comment" && !answers[i]) {
       currentIndex = i; showQuestion(i);
-      showMsg(`⚠️ Question ${i + 1} sans réponse`, "error");
-      return;
+      showMsg(`⚠️ Question ${i + 1} sans réponse`, "error"); return;
     }
   }
-
   const submitBtn = document.getElementById("submitBtn");
-  submitBtn.disabled = true;
-  submitBtn.textContent = "📡 ENVOI EN COURS…";
+  submitBtn.disabled = true; submitBtn.textContent = "📡 ENVOI EN COURS…";
 
+  // Récupère toutes les réponses par ID
   const payload = {};
   questions.forEach((q, i) => { payload[q.id] = answers[i] || ""; });
-  payload.score = `${score}/${scoreMax}`;
+
+  // Ajoute les scores
+  const totalMax = getTotalMax();
+  payload.score = `${score}/${totalMax}`;
+  payload.score_osint    = `${sectionScore.osint}/${getSectionMax('osint')}`;
+  payload.score_physique = `${sectionScore.physique}/${getSectionMax('physique')}`;
+  payload.score_logiciel = `${sectionScore.logiciel}/${getSectionMax('logiciel')}`;
   payload.timestamp = new Date().toISOString();
 
-  if (GOOGLE_SCRIPT_URL === "REMPLACE_PAR_TON_URL_APPS_SCRIPT") {
-    showMsg("❌ Configure d'abord l'URL Google Apps Script dans le code.", "error");
-    submitBtn.disabled = false; submitBtn.textContent = "📡 ENVOYER MES RÉPONSES";
-    return;
-  }
+  // Liste des IDs de questions "scénario" qui doivent exister dans le payload
+  // (au cas où certaines n'auraient pas été remplies par la boucle précédente)
+  const requiredScenarioIds = [
+    "q_email_phishing", "q_reseaux_sociaux", "q_localisation", "q_osint_identite",
+    "q_partage_contact", "q_ecran_verrouille", "q_shoulder_surfing", "q_usb",
+    "q_telephone_oublie", "q_appareil_prete", "q_mdp_facile", "q_wifi_public",
+    "q_mises_a_jour", "q_2fa", "q_url", "q_telechargement", "q_https_mythe",
+    "q_ingenierie_sociale", "q_vpn_mythe", "q_mdp_reutilise"
+  ];
+  // S'assurer que chaque champ existe (même vide)
+  requiredScenarioIds.forEach(id => {
+    if (payload[id] === undefined) payload[id] = "";
+  });
+
+  // Champs info supplémentaires (démographie, commentaire)
+  const infoIds = ["genre", "filiere", "gestionnaire_mdp", "commentaire"];
+  infoIds.forEach(id => {
+    if (payload[id] === undefined) payload[id] = "";
+  });
 
   try {
     await fetch(GOOGLE_SCRIPT_URL, {
@@ -892,43 +1285,115 @@ async function submitAll() {
     submitBtn.disabled = false; submitBtn.textContent = "📡 ENVOYER MES RÉPONSES";
   }
 }
-
+// ═══════════════════════════════════════════════════════
+//  FINAL SCREEN
+// ═══════════════════════════════════════════════════════
 function showFinalScreen() {
   document.getElementById("questionsContainer").style.display = "none";
   document.getElementById("navButtons").style.display = "none";
   submitContainer.style.display = "none";
   messageBox.style.display = "none";
 
-  const pct = Math.round((score / scoreMax) * 100);
-  let verdict = "", vColor = "";
-  if (pct === 100) { verdict = "🏆 Expert en cybersécurité !";     vColor = "var(--easy)"; }
-  else if (pct >= 75) { verdict = "✅ Très bon niveau !";           vColor = "var(--green)"; }
-  else if (pct >= 50) { verdict = "⚡ Niveau intermédiaire.";       vColor = "var(--medium)"; }
-  else                { verdict = "🛡️ À améliorer — continue !";    vColor = "var(--hard)"; }
+  const totalMax = getTotalMax();
+  const totalPct = Math.round((score / totalMax) * 100);
+  const globalTitle = getTitleForPct(totalPct, GLOBAL_TITLES);
 
-  const scenarioQs = questions.filter(q => q.type === "scenario");
-  let breakdown = "";
-  scenarioQs.forEach((q, i) => {
-    const qi = questions.indexOf(q);
-    const isCorrect = questions[qi].options.indexOf(answers[qi]) === q.correctIndex;
-    breakdown += `<div class="sb-item">
-      <span>${q.text.replace(/\[.*?\]\s*—\s*/,'').substring(0,45)}…</span>
-      <span class="${isCorrect ? 'sb-correct' : 'sb-wrong'}">${isCorrect ? '✅' : '❌'}</span>
-    </div>`;
+  // Section cards
+  const themes = ['osint', 'physique', 'logiciel'];
+  let sectionCardsHTML = '<div class="section-scores">';
+  themes.forEach(theme => {
+    const meta  = SECTION_META[theme];
+    const max   = getSectionMax(theme);
+    const pts   = sectionScore[theme];
+    const pct   = max > 0 ? Math.round((pts / max) * 100) : 0;
+    const title = getTitleForPct(pct, meta.titles);
+    sectionCardsHTML += `
+      <div class="section-card">
+        <div class="sc-icon">${meta.icon}</div>
+        <div class="sc-label">${meta.label}</div>
+        <div class="sc-score" style="color:${meta.color}">${pts}<span style="font-size:0.8rem;color:var(--muted)">/${max}</span></div>
+        <div class="sc-bar-bg"><div class="sc-bar-fill" style="width:${pct}%;background:${meta.barColor}"></div></div>
+        <div class="sc-badge" style="color:${meta.color}">${title.title}</div>
+        <div class="sc-badge" style="color:var(--muted);font-size:0.62rem">${title.desc}</div>
+      </div>`;
+  });
+  sectionCardsHTML += '</div>';
+
+  // Per-question breakdown grouped by theme
+  const themeLabels = { osint: '🕵️ EXPOSITION / OSINT', physique: '🔒 SÉCURITÉ PHYSIQUE', logiciel: '💻 HYGIÈNE LOGICIELLE' };
+  let breakdown = '';
+  themes.forEach(theme => {
+    const qs = questions.filter(q => q.type === "scenario" && q.theme === theme);
+    if (!qs.length) return;
+    breakdown += `<div class="sb-section-header">${themeLabels[theme]}</div>`;
+    qs.forEach(q => {
+      const qi        = questions.indexOf(q);
+      const chosenIdx = q.options.indexOf(answers[qi]);
+      const pts       = chosenIdx >= 0 ? (q.scores[chosenIdx] || 0) : 0;
+      const maxPts    = Math.max(...q.scores);
+      const pctQ      = maxPts > 0 ? pts / maxPts : 0;
+      const cls       = pctQ >= 0.9 ? 'sb-correct' : pctQ >= 0.5 ? 'sb-partial' : 'sb-wrong';
+      const label     = q.text.replace(/^[^\w]+ /, '').replace(/\[.*?\]\s*/, '').substring(0, 50);
+      breakdown += `<div class="sb-item">
+        <span class="sb-q">${label}…</span>
+        <span class="sb-pts ${cls}">${pts}/${maxPts}</span>
+      </div>`;
+    });
   });
 
+  // Contenu final avec swipe + remerciement
   const screen = document.getElementById("scoreScreen");
   screen.innerHTML = `
-    <div class="score-big">${score}<span style="font-size:1.8rem;color:var(--muted)">/${scoreMax}</span></div>
-    <div class="score-label" style="color:${vColor}">${verdict}</div>
-    <p style="color:var(--muted);font-size:0.78rem;margin-bottom:16px;">Tes réponses ont été envoyées. Merci !</p>
-    <div class="score-breakdown">${breakdown}</div>`;
+    <div class="score-big">${score}<span style="font-size:1.8rem;color:var(--muted)">/${totalMax}</span></div>
+    <div class="score-label" style="color:${globalTitle.color}">${totalPct}% — ${globalTitle.title}</div>
+    <div style="color:var(--muted);font-size:0.78rem;margin-bottom:20px;line-height:1.5">${globalTitle.desc}</div>
+    ${sectionCardsHTML}
+    <p style="color:var(--muted);font-size:0.72rem;margin-bottom:10px;letter-spacing:1px;">// DÉTAIL PAR QUESTION</p>
+    <div class="score-breakdown">${breakdown}</div>
+    
+    <!-- SWIPE UP INDICATOR + THANK YOU CARD -->
+    <div class="swipe-indicator" id="swipeIndicator">
+      <div class="swipe-arrow">⬆️</div>
+      <div class="swipe-text">SWIPE UP → DÉCOUVRIR</div>
+    </div>
+    <div class="thankyou-card" id="thankyouCard">
+      <div class="thankyou-title">
+        <span>🔐</span> MERCI, CYBER-GUERRIER·ÈRE !
+      </div>
+      <div class="thankyou-message">
+        Tu as franchi une étape essentielle : <strong>connaître ses habitudes, c’est déjà se protéger.</strong><br>
+        Chaque réponse t’a donné un feedback concret. Garde ces réflexes.
+      </div>
+    </div>
+  `;
   screen.style.display = "block";
   progressFill.style.width = "100%";
+
+  // Ajout de l'événement click/tap pour ouvrir la carte remerciement
+  const swipeBtn = document.getElementById("swipeIndicator");
+  const thankCard = document.getElementById("thankyouCard");
+  if (swipeBtn && thankCard) {
+    swipeBtn.addEventListener("click", () => {
+      thankCard.classList.toggle("open");
+      // Optionnel : changer le texte après ouverture
+      const arrowSpan = swipeBtn.querySelector(".swipe-arrow");
+      const textSpan = swipeBtn.querySelector(".swipe-text");
+      if (thankCard.classList.contains("open")) {
+        if (arrowSpan) arrowSpan.innerHTML = "👇";
+        if (textSpan) textSpan.innerHTML = "CONSEIL AFFICHÉ ↑";
+        // Désactiver le bounce après ouverture pour ne pas gêner
+        swipeBtn.style.animation = "none";
+      } else {
+        if (arrowSpan) arrowSpan.innerHTML = "⬆️";
+        if (textSpan) textSpan.innerHTML = "SWIPE UP → DÉCOUVRIR";
+        swipeBtn.style.animation = "";
+      }
+    });
+  }
 }
 
 // ═══════════════════════════════════════════════════════
-//  🌧️  MATRIX RAIN
+//  MATRIX RAIN
 // ═══════════════════════════════════════════════════════
 (function matrixRain() {
   const canvas = document.getElementById("matrix-bg");
@@ -940,23 +1405,20 @@ function showFinalScreen() {
     canvas.height = window.innerHeight;
     drops = Array(Math.floor(canvas.width / 14)).fill(1);
   }
-  window.addEventListener('resize', resize);
-  resize();
+  window.addEventListener('resize', resize); resize();
   setInterval(() => {
-    ctx.fillStyle = "rgba(6,13,20,0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#00ff9f";
-    ctx.font = "13px 'Share Tech Mono', monospace";
+    ctx.fillStyle = "rgba(6,13,20,0.05)"; ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "#00ff9f"; ctx.font = "13px 'Share Tech Mono', monospace";
     drops.forEach((y, i) => {
-      ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * 14, y * 14);
-      if (y * 14 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      ctx.fillText(chars[Math.floor(Math.random()*chars.length)], i*14, y*14);
+      if (y*14 > canvas.height && Math.random() > 0.975) drops[i] = 0;
       drops[i]++;
     });
   }, 55);
 })();
 
 // ═══════════════════════════════════════════════════════
-//  🚀  INIT
+//  INIT
 // ═══════════════════════════════════════════════════════
 function init() {
   let html = "";
