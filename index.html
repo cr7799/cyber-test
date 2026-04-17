@@ -1123,6 +1123,7 @@ function bindEvents() {
           answers[idx] = radio.value;
           document.querySelectorAll(`#q_${idx} .option`).forEach(o => o.classList.remove('selected'));
           div.classList.add('selected');
+          scrollToActionArea();
         });
         if (radio.checked) div.classList.add('selected');
       });
@@ -1133,6 +1134,7 @@ function bindEvents() {
         if (!answers[idx]) answers[idx] = sel.value;
         sel.addEventListener('change', () => {
           answers[idx] = sel.value;
+          scrollToActionArea();
         });
       }
     } 
@@ -1163,6 +1165,7 @@ function bindEvents() {
           div.classList.add('selected');
           if (feedbackEl) { feedbackEl.innerHTML = `💡 ${esc(fb.text)}`; feedbackEl.className = `feedback ${fb.type}`; feedbackEl.style.display = "block"; }
           if (lockNotice) lockNotice.style.display = "block";
+          scrollToActionArea();
         });
       });
     }
@@ -1176,6 +1179,7 @@ function showQuestion(idx) {
   document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
   const el = document.getElementById(`q_${idx}`);
   if (el) el.classList.add('active');
+  scrollToActiveQuestion();
   const pct = ((idx + 1) / questions.length) * 100;
   progressFill.style.width = `${pct}%`;
   stepCounterSpan.textContent = `Question ${idx + 1} / ${questions.length}`;
@@ -1226,7 +1230,39 @@ function showMsg(msg, type) {
 function updateScoreChip() {
   scoreChip.textContent = `Score: ${score} / ${getTotalMax()}`;
 }
-
+function scrollToActiveQuestion() {
+  // Attend un court instant que le DOM soit mis à jour
+  setTimeout(() => {
+    const activeQuestion = document.querySelector('.question.active');
+    if (activeQuestion) {
+      activeQuestion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // Fallback : remonter au début du contenu du quiz
+      const quizContent = document.querySelector('.quiz-content');
+      if (quizContent) quizContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 100); // léger délai pour laisser le temps à l’animation CSS
+}
+function scrollToActionArea() {
+  setTimeout(() => {
+    const nextBtn = document.getElementById('nextBtn');
+    const submitContainer = document.getElementById('submitContainer');
+    // Affiche le bouton "SUIVANT" s'il est visible, sinon le conteneur d'envoi
+    let target = null;
+    if (nextBtn && nextBtn.style.display !== 'none') {
+      target = nextBtn;
+    } else if (submitContainer && submitContainer.style.display === 'block') {
+      target = submitContainer;
+    }
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+      // Fallback : pied du contenu du quiz
+      const quizContent = document.querySelector('.quiz-content');
+      if (quizContent) quizContent.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  }, 150);
+}
 // ═══════════════════════════════════════════════════════
 //  SUBMIT
 // ═══════════════════════════════════════════════════════
@@ -1430,6 +1466,11 @@ function init() {
   prevBtn.addEventListener("click", prevStep);
   nextBtn.addEventListener("click", nextStep);
   document.getElementById("submitBtn")?.addEventListener("click", submitAll);
+  
+  // Défilement initial après chargement complet
+  setTimeout(() => {
+    scrollToActiveQuestion();
+  }, 200);
 }
 init();
 </script>
