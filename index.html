@@ -51,9 +51,20 @@
       border-radius: 16px;
       border: 1px solid var(--green2);
       box-shadow: 0 0 30px rgba(0,255,159,0.15), 0 0 80px rgba(0,0,0,0.8);
-      overflow: hidden;
+      overflow: visible;
     }
-
+    .progress-area {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  transition: box-shadow 0.2s, backdrop-filter 0.2s;
+}
+.progress-area.stuck {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  background: rgba(6, 13, 20, 0.92);
+}
     .header {
       background: linear-gradient(135deg, #040d0a 0%, #071a12 100%);
       padding: 1.6rem 1.5rem 1.2rem;
@@ -88,7 +99,12 @@
       display: flex; justify-content: space-between;
       color: var(--green2); font-size: 0.72rem; margin-top: 8px; padding-bottom: 8px;
     }
-
+    .quiz-content {
+  scroll-margin-top: 80px; /* correspond à la hauteur approximative de la barre */
+}
+.question {
+  scroll-margin-top: 85px; /* hauteur approximative de la barre sticky + marge */
+}
     .quiz-content { padding: 20px 24px 28px; }
     .question { display: none; }
     .question.active { display: block; animation: slidein 0.25s ease; }
@@ -390,6 +406,84 @@
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.78rem;
   color: #ffe0aa;
+}
+/* MODAL POPUP */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.modal-content {
+  background: linear-gradient(135deg, #0b1a14, #07120e);
+  border: 1px solid var(--green2);
+  border-radius: 24px;
+  max-width: 90%;
+  width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 24px 20px;
+  box-shadow: 0 0 40px rgba(0, 255, 159, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.2s ease;
+}
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: color 0.2s;
+  font-family: monospace;
+}
+.modal-close:hover {
+  color: var(--green);
+}
+.modal-title {
+  font-family: 'Orbitron', monospace;
+  color: var(--green);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.modal-message {
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.modal-tip {
+  background: #030a07;
+  border-left: 3px solid var(--orange);
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  color: #ffe0aa;
+}
+.modal-tip strong {
+  color: var(--green2);
 }
 .hacker-tip strong {
   color: var(--green2);
@@ -1263,6 +1357,17 @@ function scrollToActionArea() {
     }
   }, 150);
 }
+function handleProgressSticky() {
+  const progressArea = document.querySelector('.progress-area');
+  if (!progressArea) return;
+  const rect = progressArea.getBoundingClientRect();
+  const isStuck = rect.top <= 0;
+  if (isStuck) {
+    progressArea.classList.add('stuck');
+  } else {
+    progressArea.classList.remove('stuck');
+  }
+}
 // ═══════════════════════════════════════════════════════
 //  SUBMIT
 // ═══════════════════════════════════════════════════════
@@ -1334,7 +1439,6 @@ function showFinalScreen() {
   const totalPct = Math.round((score / totalMax) * 100);
   const globalTitle = getTitleForPct(totalPct, GLOBAL_TITLES);
 
-  // Section cards
   const themes = ['osint', 'physique', 'logiciel'];
   let sectionCardsHTML = '<div class="section-scores">';
   themes.forEach(theme => {
@@ -1355,7 +1459,6 @@ function showFinalScreen() {
   });
   sectionCardsHTML += '</div>';
 
-  // Per-question breakdown grouped by theme
   const themeLabels = { osint: '🕵️ EXPOSITION / OSINT', physique: '🔒 SÉCURITÉ PHYSIQUE', logiciel: '💻 HYGIÈNE LOGICIELLE' };
   let breakdown = '';
   themes.forEach(theme => {
@@ -1377,7 +1480,6 @@ function showFinalScreen() {
     });
   });
 
-  // Contenu final avec swipe + remerciement
   const screen = document.getElementById("scoreScreen");
   screen.innerHTML = `
     <div class="score-big">${score}<span style="font-size:1.8rem;color:var(--muted)">/${totalMax}</span></div>
@@ -1386,45 +1488,64 @@ function showFinalScreen() {
     ${sectionCardsHTML}
     <p style="color:var(--muted);font-size:0.72rem;margin-bottom:10px;letter-spacing:1px;">// DÉTAIL PAR QUESTION</p>
     <div class="score-breakdown">${breakdown}</div>
-    
-    <!-- SWIPE UP INDICATOR + THANK YOU CARD -->
-    <div class="swipe-indicator" id="swipeIndicator">
-      <div class="swipe-arrow">⬆️</div>
-      <div class="swipe-text">SWIPE UP → DÉCOUVRIR</div>
-    </div>
-    <div class="thankyou-card" id="thankyouCard">
-      <div class="thankyou-title">
-        <span>🔐</span> MERCI, CYBER-GUERRIER·ÈRE !
-      </div>
-      <div class="thankyou-message">
-        Tu as franchi une étape essentielle : <strong>connaître ses habitudes, c’est déjà se protéger.</strong><br>
-        Chaque réponse t’a donné un feedback concret. Garde ces réflexes.
-      </div>
-    </div>
   `;
   screen.style.display = "block";
   progressFill.style.width = "100%";
 
-  // Ajout de l'événement click/tap pour ouvrir la carte remerciement
-  const swipeBtn = document.getElementById("swipeIndicator");
-  const thankCard = document.getElementById("thankyouCard");
-  if (swipeBtn && thankCard) {
-    swipeBtn.addEventListener("click", () => {
-      thankCard.classList.toggle("open");
-      // Optionnel : changer le texte après ouverture
-      const arrowSpan = swipeBtn.querySelector(".swipe-arrow");
-      const textSpan = swipeBtn.querySelector(".swipe-text");
-      if (thankCard.classList.contains("open")) {
-        if (arrowSpan) arrowSpan.innerHTML = "👇";
-        if (textSpan) textSpan.innerHTML = "CONSEIL AFFICHÉ ↑";
-        // Désactiver le bounce après ouverture pour ne pas gêner
-        swipeBtn.style.animation = "none";
-      } else {
-        if (arrowSpan) arrowSpan.innerHTML = "⬆️";
-        if (textSpan) textSpan.innerHTML = "SWIPE UP → DÉCOUVRIR";
-        swipeBtn.style.animation = "";
-      }
-    });
+  // Créer le modal s'il n'existe pas
+  if (!document.getElementById('thankyouModal')) {
+    const modalHTML = `
+      <div id="thankyouModal" class="modal-overlay">
+        <div class="modal-content">
+          <div class="modal-close" id="modalCloseBtn">&times;</div>
+          <div class="modal-title">
+            <span>🔐</span> MERCI, CYBER-GUERRIER·ÈRE !
+          </div>
+          <div class="modal-message">
+            Tu as franchi une étape essentielle : <strong>connaître ses habitudes, c’est déjà se protéger.</strong><br><br>
+            Chaque réponse t’a donné un feedback concret. Garde ces réflexes.
+          </div>
+          <div class="modal-tip">
+            <strong>💡 ASTUCE HACKER ÉTHIQUE :</strong><br>
+            • Utilise un gestionnaire de mots de passe (Bitwarden est gratuit et open source)<br>
+            • Active la 2FA partout, surtout sur ton mail et tes réseaux<br>
+            • Ne branche jamais une clé USB trouvée par terre — elle peut être piégée<br>
+            • Un VPN gratuit n’existe pas : s’il est gratuit, c’est toi le produit<br>
+            • Vérifie toujours l’URL avant de saisir un mot de passe : le cadenas HTTPS ne garantit pas l’identité du site
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+  }
+
+  const modal = document.getElementById('thankyouModal');
+  let popupShown = false;
+
+  const checkScrollEnd = () => {
+    if (popupShown) return;
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    // Seuil de 50px avant le bas
+    if (scrollTop + windowHeight >= documentHeight - 50) {
+      if (modal) modal.classList.add('active');
+      popupShown = true;
+      window.removeEventListener('scroll', checkScrollEnd);
+    }
+  };
+
+  window.addEventListener('scroll', checkScrollEnd);
+
+  // Fermeture du modal
+  const closeBtn = document.getElementById('modalCloseBtn');
+  if (closeBtn) {
+    closeBtn.onclick = () => modal.classList.remove('active');
+  }
+  if (modal) {
+    modal.onclick = (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    };
   }
 }
 
@@ -1462,6 +1583,8 @@ function init() {
   container.innerHTML = html;
   bindEvents();
   showQuestion(0);
+  window.addEventListener('scroll', handleProgressSticky);
+  handleProgressSticky(); // pour l’état initial
   updateScoreChip();
   prevBtn.addEventListener("click", prevStep);
   nextBtn.addEventListener("click", nextStep);
