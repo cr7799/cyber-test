@@ -604,7 +604,7 @@ const GLOBAL_TITLES = [
 // ═══════════════════════════════════════════════════════
 const questions = [
 
-  /* ──────── DÉMOGRAPHIQUE ──────── */
+  /* ── DÉMOGRAPHIQUE ── */
   {
     id: "genre",
     text: "Quel est ton genre ?",
@@ -613,462 +613,461 @@ const questions = [
     correct: null
   },
   {
-  id: "filiere",
-  text: "Quelle est ta filière ?",
-  type: "select", diff: "info",
-  options: ["2AP1","2AP2","GCSE","BDAI","GI","GSTR","GM","SCM","GC"],
-  // allowCustom: true,   ← à supprimer
-  correct: null
-},
+    id: "filiere",
+    text: "Quelle est ta filière ?",
+    type: "select", diff: "info",
+    options: ["2AP1","2AP2","GCSE","BDAI","GI","GSTR","GM","SCM","GC"],
+    allowCustom: true, correct: null
+  },
 
-  /* ══════════════════════════════
-     OSINT — EXPOSITION EN LIGNE
-     ══════════════════════════════ */
+  /* ═══════════════════════════════════════
+     OSINT — EXPOSITION & IDENTITÉ EN LIGNE
+     ═══════════════════════════════════════ */
   {
     id: "q_email_phishing",
     theme: "osint", diff: "easy",
-    text: "📧 Tu reçois cet e-mail :",
+    text: "📧 Tu reçois un e‑mail concernant un stage de PFE chez OCP. L’expéditeur est 'recrutement@ocpgroup.ma' mais le lien mène vers 'ocp‑carriere.xyz'. Que fais‑tu généralement ?",
     type: "scenario",
-    preview: "De : support@paypa1-secure.com\nObjet : ⚠️ Votre compte sera suspendu dans 24h\n\nBonjour,\nCliquez ici pour vérifier votre identité :\nhttp://paypal-verif.xyz/login\n\n— L'équipe PayPal",
-    question: "Qu'est-ce que tu ferais en réalité ?",
+    preview: "De : recrutement@ocpgroup.ma\nObjet : Candidature PFE – Entretien à planifier\n\n« Félicitations, votre profil a été présélectionné. Veuillez confirmer votre intérêt en cliquant sur le lien ci‑dessous et en renseignant vos coordonnées. »\n[Confirmer ma candidature →]",
+    question: "Quelle serait ta réaction spontanée ?",
     options: [
-      "Je clique sur le lien pour ne pas perdre mon compte — l'urgence me pousse à agir vite",
-      "Je transfère le message à quelqu'un de plus calé pour qu'il vérifie à ma place",
-      "Je ferme l'e-mail et je me connecte à PayPal directement depuis mon navigateur",
-      "Je signale l'e-mail comme phishing, je le supprime, et je vérifie l'expéditeur pour comprendre le piège"
+      "Je clique sur le lien pour voir de quoi il s’agit, c’est peut‑être une vraie opportunité",
+      "Je vérifie d’abord l’adresse complète de l’expéditeur et je survole le lien sans cliquer",
+      "Je contacte un camarade ou le service de scolarité pour savoir si l’offre est connue",
+      "J’ignore l’e‑mail, car je sais que les recruteurs ne contactent pas via des domaines .xyz"
     ],
-    scores: [0, 3, 7, 10], correctIndex: 3,
+    scores: [2, 6, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"💀 L'urgence artificielle est le levier principal du phishing. 'paypa1' avec un '1' n'est pas PayPal — et aucun service légitime ne suspend un compte en 24h sans contact préalable." },
-      { type:"warning", text:"⚠️ Déléguer évite la faute immédiate, mais diffuse le lien à une autre personne susceptible de cliquer. Le signalement direct est plus efficace." },
-      { type:"warning", text:"✅ Naviguer directement est le bon réflexe. Aller un cran plus loin en signalant le phishing protège aussi les autres utilisateurs." },
-      { type:"correct", text:"🏆 Réaction complète : pas de clic, signalement, suppression, et analyse du leurre. Remarque le '1' dans 'paypa1' — technique de typosquatting classique." }
+      { type:"info", text:"Tu as tendance à agir rapidement, parfois avant de vérifier. Le clic est le premier vecteur d’exposition." },
+      { type:"info", text:"Tu adoptes un réflexe de prudence : inspecter l’URL est une bonne habitude, même si les imitateurs peuvent être sophistiqués." },
+      { type:"info", text:"Tu préfères valider l’information par un canal de confiance. Cette approche sociale est courante et rassurante." },
+      { type:"info", text:"Tu repères immédiatement l’anomalie du domaine. Cela indique une vigilance élevée face aux signaux faibles." }
     ]
   },
   {
     id: "q_reseaux_sociaux",
     theme: "osint", diff: "easy",
-    text: "📱 Comment est configuré ton profil principal sur les réseaux sociaux (Instagram, Snapchat, TikTok…) en ce moment ?",
+    text: "📱 Une personne que tu ne connais pas t’ajoute sur LinkedIn avec un message générique. Ton profil affiche ta formation, ton école et ta ville. Comment réagis‑tu ?",
     type: "scenario",
-    preview: "// SITUATION RÉELLE\nTu as un ou plusieurs comptes actifs sur les réseaux.\nComment décrirais-tu leur configuration actuelle ?",
-    question: "Ta situation réelle ?",
+    preview: "Profil : 'Recruteur IT' avec 500+ relations, photo professionnelle. Message : 'Bonjour, j’aimerais vous parler d’une opportunité dans votre région.'",
+    question: "Quelle est ta pratique habituelle sur les réseaux professionnels ?",
     options: [
-      "Profil public avec mon nom complet, mon école, ma ville, et des publications régulières sur ma vie",
-      "Profil public avec mon prénom, quelques photos, mais sans coordonnées directes",
-      "Profil privé avec mon vrai prénom, j'accepte les gens que je connais et quelques inconnus",
-      "Profil privé sous pseudo ou nom non identifiable, uniquement des gens que je connais réellement"
+      "J’accepte presque toutes les demandes, ça élargit mon réseau",
+      "Je jette un coup d’œil au profil avant d’accepter, mais je ne vérifie pas en profondeur",
+      "Je n’accepte que les personnes que je connais ou avec qui j’ai échangé au préalable",
+      "Je n’accepte que les personnes de mon école ou de mon secteur, et je limite les informations visibles sur mon profil"
     ],
-    scores: [0, 3, 7, 10], correctIndex: 3,
+    scores: [2, 5, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Nom + école + ville = fiche OSINT complète. Avec ces données, n'importe qui peut identifier ton adresse, ton emploi du temps, tes proches. Ce n'est pas de la paranoïa — c'est ce qu'on apprend en 30 min d'OSINT." },
-      { type:"warning", text:"⚠️ Un profil public reste indexé par Google et scrappable automatiquement, même sans coordonnées directes. Des outils comme Maltego agrègent ces fragments." },
-      { type:"warning", text:"✅ Le profil privé réduit l'exposition. Accepter des inconnus crée quand même des brèches — un faux compte peut passer pour une connaissance." },
-      { type:"correct", text:"🏆 Pseudo + profil privé + cercle connu = exposition minimale. C'est la configuration recommandée pour limiter les attaques par ingénierie sociale ciblée." }
+      { type:"info", text:"Tu privilégies l’expansion du réseau, quitte à accepter des inconnus. Cela peut exposer tes informations à des profils peu fiables." },
+      { type:"info", text:"Tu as un minimum de vigilance, mais une simple vérification rapide peut laisser passer des comptes usurpés ou générés." },
+      { type:"info", text:"Tu contrôles ton cercle de confiance. Cette approche réduit significativement l’exposition à l’ingénierie sociale." },
+      { type:"info", text:"Tu combines restriction d’accès et limitation des données publiques. Cela minimise les points d’entrée exploitables." }
     ]
   },
   {
     id: "q_localisation",
     theme: "osint", diff: "medium",
-    text: "📍 Tu viens de rentrer de vacances et tu postes des photos. Que fais-tu habituellement avec les métadonnées GPS de tes photos ?",
+    text: "📍 Tu prends une photo dans un café près de l’école et tu la publies sur Instagram. Sans mentionner le lieu, quelles précautions prends‑tu généralement ?",
     type: "scenario",
-    preview: "Tes photos contiennent des données EXIF, dont les coordonnées GPS exactes du lieu de prise de vue.\nCes métadonnées sont lisibles par quiconque télécharge l'image.",
-    question: "Ce que tu fais en général ?",
+    preview: "La photo est prise avec ton smartphone. Le café est un lieu que fréquentent beaucoup d’étudiants de ta promo.",
+    question: "Avant de publier, as‑tu un réflexe particulier ?",
     options: [
-      "Je publie directement depuis la galerie — je n'avais pas pensé aux métadonnées",
-      "Je publie en story éphémère, je suppose que ça disparaît sans laisser de trace",
-      "Je supprime les métadonnées avec une application avant de publier",
-      "Je supprime les métadonnées ET je publie quelques jours après le retour pour ne pas signaler mon absence en temps réel"
+      "Je publie directement depuis l’application, sans rien vérifier",
+      "Je désactive la géolocalisation de l’application, mais je ne touche pas au fichier",
+      "Je pense parfois à supprimer les métadonnées de localisation si j’y pense",
+      "Je supprime systématiquement les données EXIF ou je partage via une messagerie qui les efface"
     ],
-    scores: [0, 3, 7, 10], correctIndex: 3,
+    scores: [2, 5, 7, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Les métadonnées EXIF incluent les coordonnées GPS à quelques mètres près. Publier une photo de ta chambre ou de ton école depuis chez toi revient à partager ton adresse." },
-      { type:"warning", text:"⚠️ Les stories peuvent être capturées avant expiration. Les plateformes suppriment souvent les EXIF à l'upload, mais pas systématiquement — et le timing de publication reste un signal." },
-      { type:"warning", text:"✅ Supprimer les métadonnées est le geste technique essentiel. Publier en temps réel reste un signal d'absence à domicile pour qui te suit." },
-      { type:"correct", text:"🏆 Deux vecteurs neutralisés : les données techniques (EXIF) et le signal comportemental (absence = maison vide). Réflexe rare, très efficace." }
+      { type:"info", text:"Tu ne considères pas les métadonnées comme un risque. Beaucoup d’étudiants partagent sans savoir que la position GPS est enregistrée." },
+      { type:"info", text:"Tu sais que la localisation peut être visible et tu agis au niveau de l’application, ce qui est un premier pas." },
+      { type:"info", text:"Tu as conscience du problème et tu essaies de t’en prémunir occasionnellement. La régularité reste le facteur clé." },
+      { type:"info", text:"Tu as intégré une routine de nettoyage des métadonnées. Cela dénote une bonne compréhension des traces numériques." }
     ]
   },
   {
     id: "q_osint_identite",
     theme: "osint", diff: "hard",
-    text: "🔍 Quelqu'un tape ton nom complet sur Google. Qu'est-ce qu'il trouve sur toi aujourd'hui ?",
+    text: "🔍 Tu tapes ton nom dans Google (navigation privée). Parmi ces résultats, lequel te semblerait le plus gênant pour ta vie privée ?",
     type: "scenario",
-    preview: "// AUDIT PERSONNEL\nTape ton nom dans un onglet navigation privée et observe.\nQu'est-ce qui remonte dans les 5 premiers résultats ?",
-    question: "Ce que tu penses qu'on trouve sur toi ?",
+    preview: "① Une mention de ton classement à un concours régional avec ton lycée d’origine.\n② Une photo de groupe sur le site de l’école où ton nom apparaît en légende.\n③ Un ancien compte Skyblog ou forum où tu utilisais un pseudo mais avec ton prénom.\n④ Une adresse e‑mail partiellement masquée (ex: a***@gmail.com) dans un commentaire public.",
+    question: "Selon toi, quel élément est le plus exploitable par quelqu’un de mal intentionné ?",
     options: [
-      "Mon LinkedIn public, mon Instagram, des résultats de compétitions ou classements avec mon école et ma ville",
-      "Mon prénom et mon école sur un ou deux sites publics, rien de très précis",
-      "Très peu de choses — j'ai déjà fait le ménage ou j'utilise un pseudo partout",
-      "Presque rien de personnel — j'ai audité mon empreinte et contrôle activement ce qui est indexé"
+      "① La mention au concours, car elle donne une information précise sur mon parcours",
+      "② La photo de groupe, car elle associe visage et nom dans un cadre officiel",
+      "③ L’ancien compte, car il peut contenir des détails personnels oubliés",
+      "④ L’e‑mail partiel, car il suffit parfois à retrouver l’adresse complète et lancer des attaques ciblées"
     ],
-    scores: [0, 5, 8, 10], correctIndex: 3,
+    scores: [4, 5, 7, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ LinkedIn + Instagram + classements = profil OSINT complet. Un attaquant peut reconstituer ton réseau social, ton emploi du temps et identifier des vecteurs d'ingénierie sociale en moins d'une heure." },
-      { type:"warning", text:"⚠️ Même des fragments discrets peuvent être croisés avec d'autres sources (fuites de données, annuaires, réseaux de proches) pour construire un profil détaillé." },
-      { type:"warning", text:"✅ Utiliser un pseudo partout réduit significativement l'exposition. Un audit ponctuel est mieux qu'aucun — mais un suivi régulier (tous les 6 mois) est plus robuste." },
-      { type:"correct", text:"🏆 L'audit actif de son empreinte numérique est la pratique la plus avancée de ce domaine. Outils utiles : haveibeenpwned.com, Google Alerts sur ton nom, Namechk." }
+      { type:"info", text:"Tu identifies le risque lié à la traçabilité de ton parcours. Ces informations sont souvent publiques mais pas toujours maîtrisées." },
+      { type:"info", text:"Tu es sensible à l’association visage‑nom, un classique de l’exposition involontaire." },
+      { type:"info", text:"Tu penses aux traces anciennes, souvent négligées mais potentiellement révélatrices." },
+      { type:"info", text:"Tu pointes le vecteur le plus direct : un e‑mail reconstituable ouvre la porte au phishing personnalisé et aux tentatives de récupération de compte." }
     ]
   },
   {
     id: "q_partage_contact",
     theme: "osint", diff: "medium",
-    text: "📋 Un site de petites annonces te demande de publier ton numéro de téléphone pour être contacté. Comment gères-tu ça habituellement ?",
+    text: "📋 Tu t’inscris sur un nouveau service en ligne (site d’annonces, outil collaboratif pour un projet). Quelles informations fournis‑tu généralement ?",
     type: "scenario",
-    preview: "Tu mets en vente un objet sur Avito ou un groupe Facebook.\nLe formulaire te demande un numéro de contact visible publiquement.",
-    question: "Ce que tu fais d'habitude ?",
+    preview: "Le formulaire demande nom, prénom, adresse e‑mail, et parfois ville ou date de naissance.",
+    question: "Ta pratique la plus fréquente :",
     options: [
-      "Je mets mon numéro principal directement — c'est plus simple pour être contacté rapidement",
-      "Je mets mon numéro mais je le supprime du post une fois la vente faite",
-      "J'utilise la messagerie interne de la plateforme et j'évite de publier mon numéro",
-      "J'utilise un numéro secondaire dédié aux usages publics, ou la messagerie interne uniquement"
+      "Je remplis tous les champs, ça évite que mon compte soit bloqué ou incomplet",
+      "Je ne remplis que les champs obligatoires, mais avec mes vraies informations",
+      "Je donne le minimum et j’utilise une adresse e‑mail secondaire pour ce type de services",
+      "Je crée des alias ou j’utilise des pseudonymes selon la sensibilité du service, avec des adresses dédiées"
     ],
-    scores: [0, 3, 8, 10], correctIndex: 3,
+    scores: [2, 6, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Un numéro publié en clair est scrappé en quelques heures par des bots. Il finit dans des bases de données revendues pour du spam, du phishing vocal (vishing) ou du SIM swapping." },
-      { type:"warning", text:"⚠️ Mieux, mais le numéro a déjà été indexé et collecté pendant la période de publication. Les robots ne font pas de pause." },
-      { type:"warning", text:"✅ La messagerie interne protège ton numéro réel. Certaines plateformes masquent automatiquement les numéros — vérifie les paramètres avant de publier." },
-      { type:"correct", text:"🏆 Compartimenter ses numéros de contact est une pratique de séparation d'identité efficace. Des apps comme Google Voice ou un forfait prépayé servent à ça." }
+      { type:"info", text:"Tu privilégies la simplicité et la complétude. Chaque information supplémentaire est une donnée potentiellement exposée en cas de fuite." },
+      { type:"info", text:"Tu limites déjà ce que tu partages. C’est une bonne base, même si une fuite peut lier ton identité réelle au service." },
+      { type:"info", text:"Tu compartimentes en utilisant une adresse dédiée. Cela réduit le risque de croisement entre plateformes." },
+      { type:"info", text:"Tu appliques une stratégie de séparation avancée. Cela dénote une réflexion sur la gestion de ton empreinte numérique." }
     ]
   },
 
-  /* ══════════════════════════════
+  /* ═══════════════════════════════════════
      PHYSIQUE — SÉCURITÉ DES APPAREILS
-     ══════════════════════════════ */
+     ═══════════════════════════════════════ */
   {
     id: "q_ecran_verrouille",
     theme: "physique", diff: "easy",
-    text: "🔐 Tu es en amphi, tu te lèves pour aller au tableau ou aux toilettes. Qu'est-ce que tu fais habituellement avec ton ordinateur ?",
+    text: "🔐 Tu es à la bibliothèque universitaire, tu te lèves pour aller aux toilettes. Que fais‑tu de ton ordinateur portable ?",
     type: "scenario",
-    preview: "Situation courante : tu quittes ta place 5 à 10 minutes.\nTa session est active, des fichiers sont ouverts.",
-    question: "Ce que tu fais en général ?",
+    preview: "Ta session est ouverte avec l’ENT, des documents de cours et ta boîte mail. Des camarades sont assis à côté.",
+    question: "Quel est ton comportement habituel dans cette situation ?",
     options: [
-      "Je laisse l'ordinateur ouvert — personne ne va y toucher dans une salle de cours",
-      "Je ferme les onglets sensibles ou minimise les fenêtres, mais je laisse la session active",
-      "Je verrouille systématiquement l'écran (Win+L ou équivalent) avant de me lever",
-      "Je verrouille l'écran et je referme l'écran ou retourne l'ordinateur pour limiter la visibilité"
+      "Je laisse tout ouvert, je reviens vite et il y a du monde autour",
+      "Je baisse l’écran ou je le ferme sans éteindre",
+      "Je verrouille la session avec un mot de passe",
+      "Je verrouille et j’emporte l’ordinateur avec moi, même pour une courte absence"
     ],
-    scores: [0, 3, 8, 10], correctIndex: 3,
+    scores: [2, 4, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ 5 minutes suffisent pour copier des fichiers sensibles, installer un keylogger ou consulter des e-mails. La salle de cours n'est pas un environnement de confiance — même entre collègues." },
-      { type:"warning", text:"⚠️ Fermer des fenêtres ne protège pas la session. L'explorateur de fichiers, l'historique de navigation et les mails restent accessibles en quelques secondes." },
-      { type:"warning", text:"✅ Verrouiller l'écran est le geste essentiel. Laisser l'écran visible expose aux notifications, aux fichiers récents et au shoulder surfing passif." },
-      { type:"correct", text:"🏆 Verrouillage + réduction de la surface visible = protection complète. Le réflexe Win+L ou Cmd+Ctrl+Q doit devenir automatique." }
+      { type:"info", text:"Tu fais confiance à l’environnement. Beaucoup d’étudiants agissent ainsi, surtout dans des lieux familiers." },
+      { type:"info", text:"Tu penses à cacher l’écran, ce qui limite la visibilité mais pas l’accès à la session." },
+      { type:"info", text:"Tu as le réflexe de verrouiller. Cela protège tes données en cas d’absence rapide." },
+      { type:"info", text:"Tu évites tout risque de vol ou d’accès furtif. Une approche prudente, surtout avec un matériel personnel." }
     ]
   },
   {
     id: "q_shoulder_surfing",
     theme: "physique", diff: "medium",
-    text: "👀 Tu dois entrer un mot de passe ou un code confidentiel dans un espace public (cafétéria, bibliothèque, transport). Quelle est ton habitude réelle ?",
+    text: "👀 Dans le bus ou le train, tu dois saisir un mot de passe sur ton téléphone. Des passagers sont proches. Comment procèdes‑tu généralement ?",
     type: "scenario",
-    preview: "Espace partagé, personnes autour de toi.\nTu as besoin de te connecter à un compte.",
-    question: "Ce que tu fais en général ?",
+    preview: "L’écran est visible depuis les côtés. Le mot de passe est celui de ta messagerie étudiante.",
+    question: "Quelle est ta réaction la plus fréquente ?",
     options: [
-      "Je tape normalement — je ne pense pas aux personnes autour de moi dans ce contexte",
-      "Je tape rapidement et j'incline légèrement l'écran, mais sans vérifier autour",
-      "Je balaie visuellement mon environnement et je couvre le clavier ou l'écran pendant la saisie",
-      "Je reporte la connexion si c'est possible, ou j'utilise un filtre de confidentialité d'écran en déplacement"
+      "Je tape normalement, les gens ne regardent pas vraiment",
+      "J’incline l’écran et je tape plus vite que d’habitude",
+      "Je cache le clavier avec mon autre main pendant la saisie",
+      "Je préfère attendre d’être dans un endroit plus discret ou j’utilise la reconnaissance faciale / empreinte"
     ],
-    scores: [0, 3, 8, 10], correctIndex: 3,
+    scores: [2, 4, 7, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Le shoulder surfing ne nécessite aucun équipement — juste un angle de vue favorable. Une caméra de surveillance ou un smartphone braqué dans ta direction suffit aussi." },
-      { type:"warning", text:"⚠️ La vitesse ne protège pas. Un observateur attentif (ou une caméra) capte facilement des frappes rapides sur un clavier connu." },
-      { type:"warning", text:"✅ Vérifier l'environnement et couvrir le clavier est une bonne défense. L'écran reste souvent le point faible — lisible de côté même couvert." },
-      { type:"correct", text:"🏆 Reporter la saisie ou utiliser un filtre physique élimine le risque à la source. Les filtres de confidentialité 3M coûtent 20-30€ et valent chaque centime." }
+      { type:"info", text:"Tu pars du principe que le risque est faible. La proximité dans les transports augmente pourtant les opportunités d’observation." },
+      { type:"info", text:"Tu essaies de réduire l’angle de vue, mais la rapidité ne protège pas contre un observateur attentif." },
+      { type:"info", text:"Tu utilises une technique simple et efficace pour masquer la frappe. C’est une bonne parade ponctuelle." },
+      { type:"info", text:"Tu choisis de décaler l’action ou d’utiliser une méthode sans saisie visible. Cela élimine presque totalement le risque." }
     ]
   },
   {
     id: "q_usb",
     theme: "physique", diff: "medium",
-    text: "💾 Tu trouves une clé USB dans le couloir de l'école. Il y a une étiquette : '📁 RÉSULTATS DES EXAMENS 2026'. Comment réagis-tu honnêtement ?",
+    text: "💾 Un camarade te propose une clé USB contenant les corrections d’un examen ou un logiciel utile. La clé a déjà servi sur plusieurs PC de l’école. Tu fais quoi ?",
     type: "scenario",
-    preview: "Clé USB neuve, étiquette attrayante, trouvée dans un lieu de passage à l'école.",
-    question: "Ta réaction honnête ?",
+    preview: "Le fichier semble légitime et provient d’une source connue (ami de promo).",
+    question: "Comment réagis‑tu habituellement face à ce type de partage ?",
     options: [
-      "Je la branche sur mon PC — l'étiquette est trop tentante pour ne pas vérifier",
-      "Je la formate d'abord puis je l'utilise — ça devrait éliminer les risques",
-      "Je la remets à l'administration ou à un enseignant sans la brancher",
-      "Je la remets à l'administration en signalant explicitement qu'elle a été trouvée et qu'elle ne doit pas être branchée sans précaution"
+      "Je la branche directement, j’ai besoin du contenu",
+      "Je lance un scan rapide avec l’antivirus avant d’ouvrir quoi que ce soit",
+      "Je lui demande de m’envoyer le fichier par un service cloud (Drive, WeTransfer) plutôt que d’utiliser la clé",
+      "Je refuse poliment, je préfère récupérer le fichier depuis une source officielle ou le site de l’enseignant"
     ],
-    scores: [0, 3, 8, 10], correctIndex: 3,
+    scores: [2, 5, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ C'est une technique d'attaque documentée : USB drop attack. L'étiquette est délibérément conçue pour piquer la curiosité. Le malware s'exécute dès l'insertion, avant même que tu lises quoi que ce soit." },
-      { type:"warning", text:"⚠️ Certains malwares logent dans le firmware du contrôleur USB — une couche que Windows ne peut pas formater. La clé paraît vide mais reste active." },
-      { type:"warning", text:"✅ Remettre sans brancher est la bonne décision. Signaler explicitement le risque permet à l'administration d'alerter tout l'établissement." },
-      { type:"correct", text:"🏆 Remettre + alerter sur le vecteur potentiel est la réponse responsable. Une administration avertie peut isoler la clé et vérifier les autres espaces communs." }
+      { type:"info", text:"Tu privilégies la praticité immédiate. Les clés USB partagées sont un vecteur classique de propagation de malwares en milieu universitaire." },
+      { type:"info", text:"Tu as un minimum de prudence, mais un scan rapide ne détecte pas tous les types de menaces." },
+      { type:"info", text:"Tu contournes le support physique en utilisant un intermédiaire plus sûr. Le cloud filtre souvent mieux les contenus malveillants." },
+      { type:"info", text:"Tu évites complètement le risque en ne connectant pas de périphérique inconnu. Une attitude très préventive." }
     ]
   },
   {
     id: "q_telephone_oublie",
     theme: "physique", diff: "easy",
-    text: "📱 Tu poses ton téléphone sur une table et tu t'éloignes 2-3 minutes. Est-ce que ton téléphone est verrouillé à ce moment-là ?",
+    text: "📱 Si tu oublies ton téléphone sur une table de la cafétéria pendant 10 minutes, quelqu’un peut‑il accéder à tes données ?",
     type: "scenario",
-    preview: "Cafétéria, salle commune, bureau partagé.\nTu te lèves brièvement — pour chercher quelque chose, discuter, aller aux toilettes.",
-    question: "Ce qui se passe en général ?",
+    preview: "Le téléphone est verrouillé ou non selon tes réglages habituels.",
+    question: "Quelle est ta configuration actuelle de verrouillage ?",
     options: [
-      "Mon téléphone n'a pas de code ou de verrouillage biométrique — je trouve ça contraignant",
-      "Mon téléphone est verrouillé mais avec un code simple (0000, 1234, date de naissance)",
-      "Mon téléphone se verrouille automatiquement après 30-60 secondes d'inactivité",
-      "Mon téléphone se verrouille en moins de 15 secondes, avec biométrie + code fort en backup"
+      "Aucun code ou schéma, ou délai très long avant verrouillage automatique",
+      "Code simple (4 chiffres, schéma basique), délai supérieur à 2 minutes",
+      "Code à 6 chiffres ou schéma complexe, verrouillage automatique après 30‑60 secondes",
+      "Déverrouillage biométrique (empreinte/visage) avec code fort en secours, verrouillage quasi immédiat"
     ],
-    scores: [0, 3, 7, 10], correctIndex: 3,
+    scores: [2, 5, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Un téléphone sans verrouillage est une porte ouverte. En 90 secondes, quelqu'un peut accéder à tes apps bancaires, tes codes 2FA, installer un stalkerware ou exfiltrer tes contacts." },
-      { type:"warning", text:"⚠️ Les codes simples (0000, 1234, date de naissance) sont les premiers testés. Un code à 6 chiffres non prévisible est le minimum acceptable." },
-      { type:"warning", text:"✅ Le verrouillage automatique est essentiel. 30-60 secondes reste une fenêtre suffisante pour un accès rapide. 15 secondes ou moins est recommandé." },
-      { type:"correct", text:"🏆 Verrouillage rapide + biométrie + code solide en fallback = protection optimale. La biométrie accélère l'accès légitime sans sacrifier la sécurité." }
+      { type:"info", text:"Ton téléphone est très accessible. En cas d’oubli, quelqu’un pourrait facilement consulter tes messages, photos et applications." },
+      { type:"info", text:"Tu as une protection de base, mais un code simple peut être deviné ou observé." },
+      { type:"info", text:"Ton niveau de verrouillage est correct et dissuade la plupart des tentatives opportunistes." },
+      { type:"info", text:"Tu as activé les options de sécurité les plus robustes, ce qui rend l’accès non autorisé très difficile." }
     ]
   },
   {
     id: "q_appareil_prete",
     theme: "physique", diff: "hard",
-    text: "🤝 Un camarade ou un proche te demande d'emprunter ton téléphone ou ton ordinateur quelques minutes. Comment tu gères ça normalement ?",
+    text: "🤝 Un camarade de classe te demande de lui prêter ton ordinateur portable quelques minutes pour imprimer un document. Comment gères‑tu cela ?",
     type: "scenario",
-    preview: "Situation banale entre étudiants.\n'T'as pas ton chargeur ? Je peux utiliser ton téléphone pour appeler ?' ou\n'Tu peux me prêter ton laptop 10 minutes pour imprimer ?'",
-    question: "Ce que tu fais habituellement ?",
+    preview: "Ta session est ouverte, avec plusieurs onglets dont l’ENT et ta messagerie personnelle.",
+    question: "Quelle est ta réaction la plus habituelle ?",
     options: [
-      "Je prête directement — c'est quelqu'un que je connais, je lui fais confiance",
-      "Je prête mais je reste à côté pour voir ce qu'il fait",
-      "Je prête après avoir fermé ou verrouillé les applications sensibles (mails, banque, stockage cloud)",
-      "Je crée un accès limité si possible (mode invité, profil séparé) ou je gère la tâche moi-même plutôt que de prêter"
+      "Je lui passe l’ordinateur sans hésiter, c’est quelqu’un de confiance",
+      "Je reste à côté pour regarder ce qu’il fait",
+      "Je ferme d’abord les onglets sensibles avant de lui passer",
+      "Je lui propose d’imprimer moi‑même le document ou j’ouvre une session invité"
     ],
-    scores: [0, 5, 8, 10], correctIndex: 3,
+    scores: [2, 5, 7, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ La confiance personnelle ne suffit pas. Une curiosité passagère, une distraction, ou un malware déjà présent sur ses appareils peuvent compromettre le tien sans mauvaise intention de sa part." },
-      { type:"warning", text:"⚠️ Rester à côté réduit le risque mais ne l'élimine pas — une notification visible, un fichier récent accessible, ou une action rapide peuvent exposer des données." },
-      { type:"warning", text:"✅ Fermer les apps sensibles avant de prêter est une bonne pratique. Le mode invité Android ou le profil restreint macOS est encore plus robuste." },
-      { type:"correct", text:"🏆 Le mode invité ou la gestion directe de la tâche sont les approches les plus sûres. Sur Android : Paramètres > Utilisateurs > Invité. Sur macOS : Système > Utilisateurs > Invité." }
+      { type:"info", text:"Tu fais confiance à ton entourage. Même avec de bonnes intentions, une mauvaise manipulation ou une notification peut exposer des données." },
+      { type:"info", text:"Tu supervises l’utilisation, ce qui limite les risques intentionnels mais pas les accidents." },
+      { type:"info", text:"Tu prends des précautions en masquant les informations visibles. Cela réduit l’exposition involontaire." },
+      { type:"info", text:"Tu sépares complètement l’environnement de travail ou tu contrôles l’action toi‑même. C’est la méthode la plus sûre." }
     ]
   },
 
-  /* ══════════════════════════════
-     LOGICIEL — HYGIÈNE NUMÉRIQUE
-     ══════════════════════════════ */
+  /* ═══════════════════════════════════════
+     LOGICIEL — PRATIQUES & OUTILS
+     ═══════════════════════════════════════ */
   {
     id: "q_mdp_facile",
     theme: "logiciel", diff: "easy",
-    text: "🔑 Lequel de ces mots de passe ressemble le plus à ceux que tu utilises réellement ?",
+    text: "🔑 Comment construis‑tu généralement tes mots de passe pour les comptes en ligne (réseaux sociaux, ENT, etc.) ?",
     type: "scenario",
-    preview: "Sois honnête — l'objectif n'est pas de tester ta connaissance théorique\nmais de cartographier les pratiques réelles des étudiants.",
-    question: "Ton profil réel de mot de passe ?",
+    preview: "On te demande de choisir un mot de passe pour un nouveau service.",
+    question: "Quelle méthode correspond le mieux à ta pratique habituelle ?",
     options: [
-      "Un mot simple avec quelques chiffres : prenom123, azerty2024, école_nom",
-      "Un mot avec substitutions : P@ssw0rd!, S3cur1ty!, Mon€cole2024",
-      "Mon prénom ou surnom combiné à une date significative : Ahmed2005, FatimaStar99",
-      "Des phrases longues aléatoires ou des mots de passe générés, différents pour chaque site"
+      "J’utilise un mot ou une date facile à retenir (anniversaire, nom de la ville)",
+      "Je pars d’un mot simple et je le modifie avec des chiffres ou des caractères spéciaux",
+      "J’ai une base commune que j’adapte pour chaque site selon une règle personnelle",
+      "J’utilise un mot de passe généré aléatoirement et stocké dans un gestionnaire"
     ],
-    scores: [0, 3, 1, 10], correctIndex: 3,
+    scores: [2, 4, 7, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Ces formats sont dans tous les dictionnaires d'attaque par force brute. Un outil standard les casse en secondes à minutes, même avec les chiffres." },
-      { type:"warning", text:"⚠️ Les substitutions classiques (@→a, 0→o, 3→e) sont connues des outils de cracking depuis les années 90. Elles n'ajoutent que quelques secondes à une attaque." },
-      { type:"wrong",   text:"❌ Prénom + date = données publiques. Avec ton Instagram ou LinkedIn, n'importe qui peut générer une liste personnalisée d'essais en quelques minutes (attaque de dictionnaire ciblée)." },
-      { type:"correct", text:"🏆 Une phrase longue (4+ mots) ou un mot de passe généré aléatoirement et unique par site est la seule protection robuste. Un gestionnaire de mots de passe (Bitwarden, gratuit) rend ça facile." }
+      { type:"info", text:"Tu privilégies la mémorisation. Ce type de mot de passe est souvent vulnérable aux attaques par dictionnaire." },
+      { type:"info", text:"Tu ajoutes un peu de complexité, mais les substitutions courantes (a→@, e→3) sont connues des outils de cassage." },
+      { type:"info", text:"Tu diversifies tes mots de passe, ce qui limite les dégâts en cas de fuite d’un seul compte." },
+      { type:"info", text:"Tu délègues la création et la mémorisation à un outil spécialisé. C’est la méthode la plus robuste face aux fuites de bases de données." }
     ]
   },
   {
     id: "q_wifi_public",
     theme: "logiciel", diff: "easy",
-    text: "📶 Tu es dans un café ou à la gare. Tu dois accéder à un compte en ligne (ENT, mail, banque). Comment tu te connectes habituellement ?",
+    text: "📶 Tu es dans un café et tu dois consulter tes notes sur l’ENT ou vérifier ton solde bancaire. Le WiFi est ouvert. Que fais‑tu habituellement ?",
     type: "scenario",
-    preview: "WiFi public disponible, gratuit, sans mot de passe.\nTon accès mobile est limité ou plus lent.",
-    question: "Ce que tu fais en général ?",
+    preview: "Le réseau WiFi ne demande pas de mot de passe. Ton forfait mobile est limité.",
+    question: "Quel est ton comportement le plus fréquent ?",
     options: [
-      "Je me connecte au WiFi public — c'est plus rapide et ça économise mes données",
-      "Je me connecte au WiFi mais j'évite de saisir des mots de passe si je peux attendre",
-      "Je me connecte au WiFi uniquement avec un VPN actif",
-      "Je préfère utiliser mes données mobiles ou un hotspot personnel plutôt que le WiFi public"
+      "Je me connecte au WiFi sans réfléchir, c’est plus pratique",
+      "Je me connecte mais j’évite les opérations sensibles si possible",
+      "J’active un VPN avant d’utiliser le WiFi public",
+      "Je préfère utiliser mes données mobiles, même si le forfait est presque épuisé"
     ],
-    scores: [0, 3, 8, 10], correctIndex: 3,
+    scores: [2, 5, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Sur un WiFi ouvert, le trafic non chiffré est lisible par toute personne sur le même réseau. Une attaque Man-in-the-Middle ne nécessite aucun équipement spécialisé — juste un laptop et Wireshark." },
-      { type:"warning", text:"⚠️ Éviter la saisie de mots de passe aide, mais ton trafic reste visible : sites visités, cookies de session, données transmises. Une session déjà ouverte peut être hijackée." },
-      { type:"warning", text:"✅ Un VPN fiable chiffre l'ensemble du trafic sortant. Évite les VPN gratuits — ils monétisent souvent tes données. Proton VPN (gratuit) ou Mullvad sont des options sérieuses." },
-      { type:"correct", text:"🏆 Les données mobiles 4G/5G sont chiffrées au niveau réseau par ton opérateur. C'est significativement plus sûr qu'un WiFi public, même avec VPN." }
+      { type:"info", text:"La commodité prime sur la sécurité. Sur un réseau ouvert, le trafic peut être intercepté par d’autres utilisateurs." },
+      { type:"info", text:"Tu fais preuve de discernement en limitant les actions critiques, ce qui réduit déjà les risques." },
+      { type:"info", text:"Tu ajoutes une couche de chiffrement avec un VPN. Cela protège tes données des regards indiscrets sur le réseau local." },
+      { type:"info", text:"Tu évites complètement le WiFi public pour les usages sensibles. Le réseau mobile est généralement plus sûr." }
     ]
   },
   {
     id: "q_mises_a_jour",
     theme: "logiciel", diff: "easy",
-    text: "🔄 Quand une notification de mise à jour de sécurité apparaît sur ton ordinateur ou téléphone, quel est ton comportement habituel ?",
+    text: "🔄 Une notification de mise à jour système apparaît sur ton ordinateur ou ton téléphone. Tu es en pleine période de révisions. Comment réagis‑tu ?",
     type: "scenario",
-    preview: "La notification apparaît au mauvais moment — tu es en plein TP,\nen train de regarder quelque chose, ou tu as juste la flemme.",
-    question: "Ce que tu fais en général ?",
+    preview: "La mise à jour est signalée comme importante pour la sécurité. Elle nécessite un redémarrage.",
+    question: "Quelle est ton attitude générale face aux mises à jour ?",
     options: [
-      "Je la ferme et je l'oublie — ça finit par s'installer tout seul ou je le ferai plus tard",
-      "Je la reporte de quelques jours ou semaines, le temps d'avoir une occasion calme",
-      "Je l'installe dès que je peux, généralement le même jour ou le lendemain",
-      "J'ai activé les mises à jour automatiques et je n'attends pas les notifications manuelles"
+      "Je les ignore ou les reporte indéfiniment, ça tombe toujours au mauvais moment",
+      "Je les installe quand j’y pense, parfois plusieurs semaines après",
+      "Je les planifie pour le soir ou le week‑end dès que possible",
+      "Les mises à jour automatiques sont activées, je ne m’en occupe pas"
     ],
-    scores: [0, 3, 8, 10], correctIndex: 3,
+    scores: [2, 4, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Les correctifs de sécurité publiés sont souvent la réponse à des failles déjà activement exploitées. Chaque jour sans mise à jour est une fenêtre d'exploitation ouverte — en particulier pour les systèmes connectés à Internet." },
-      { type:"warning", text:"⚠️ Reporter de quelques semaines laisse le temps aux attaquants d'exploiter la faille documentée publiquement. Les CVE (failles connues) sont publiées dès la sortie du patch." },
-      { type:"warning", text:"✅ Installer le jour même est une bonne discipline. Les mises à jour automatiques suppriment le risque lié à l'oubli ou à la procrastination." },
-      { type:"correct", text:"🏆 Les mises à jour automatiques sont la protection la plus efficace contre les exploits connus. À activer pour l'OS, le navigateur et les applications critiques." }
+      { type:"info", text:"Tu remets à plus tard les correctifs de sécurité. Les vulnérabilités connues sont rapidement exploitées après la publication d’un correctif." },
+      { type:"info", text:"Tu finis par mettre à jour, mais avec un délai qui peut laisser une fenêtre d’exposition." },
+      { type:"info", text:"Tu intègres les mises à jour dans ta routine sans trop perturber ton travail." },
+      { type:"info", text:"Tu laisses le système gérer automatiquement, ce qui garantit une protection à jour sans effort." }
     ]
   },
   {
     id: "q_2fa",
     theme: "logiciel", diff: "medium",
-    text: "📲 Il est 3h du matin. Tu reçois un SMS avec un code de vérification que tu n'as pas demandé. Qu'est-ce que tu ferais ?",
+    text: "📲 As‑tu activé la double authentification (2FA) sur tes comptes importants (mail, ENT, réseaux sociaux) ?",
     type: "scenario",
-    preview: "SMS reçu :\n'Ton code de vérification est : 847291\nNe le partage avec personne.'\n\nTu dormais. Tu n'as rien initié.",
-    question: "Ta réaction honnête ?",
+    preview: "La double authentification demande un code supplémentaire après le mot de passe.",
+    question: "Quelle est ta pratique actuelle ?",
     options: [
-      "Je note le code au cas où, et je me rendors — ça doit être une erreur",
-      "Je cherche un lien dans le SMS pour annuler la tentative de connexion",
-      "Je me lève et je change le mot de passe du compte concerné sur le site officiel",
-      "Je change le mot de passe immédiatement sur le site officiel ET j'active une méthode 2FA par application (pas SMS) si ce n'est pas encore fait"
+      "Non, je n’utilise pas la double authentification",
+      "Oui, par SMS pour les comptes où c’est proposé",
+      "Oui, avec une application d’authentification (Google Authenticator, Authy) sur les comptes sensibles",
+      "Oui, j’utilise une application et une clé physique pour les comptes les plus critiques"
     ],
-    scores: [0, 0, 7, 10], correctIndex: 3,
+    scores: [2, 6, 9, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Ce n'est pas une erreur : quelqu'un connaît ton mot de passe et tente de se connecter maintenant. Ignorer laisse la porte entrouverte — le code expire, mais l'attaquant peut réessayer." },
-      { type:"wrong",   text:"❌ Le SMS ne contient pas de lien. Si tu en vois un, c'est du phishing. Ne clique jamais sur un lien dans un SMS non sollicité — même pour 'annuler'." },
-      { type:"warning", text:"✅ Changer le mot de passe sur le site officiel est la bonne réaction immédiate. Passer d'un 2FA par SMS à une application (Google Authenticator, Aegis) renforce encore plus la sécurité." },
-      { type:"correct", text:"🏆 Réaction complète : mot de passe changé + migration vers 2FA applicatif. Le 2FA par SMS est vulnérable au SIM swapping — les apps TOTP comme Aegis (open source) sont plus robustes." }
+      { type:"info", text:"Tu te reposes uniquement sur le mot de passe. En cas de fuite, ton compte est directement accessible." },
+      { type:"info", text:"Le 2FA par SMS est un premier niveau de protection, même s’il existe des attaques ciblées (SIM swapping)." },
+      { type:"info", text:"L’application d’authentification est plus résistante que le SMS et montre une bonne conscience du risque." },
+      { type:"info", text:"Tu as adopté les méthodes les plus fortes. Cela protège même contre des tentatives de phishing sophistiquées." }
     ]
   },
   {
     id: "q_url",
     theme: "logiciel", diff: "medium",
-    text: "🌐 Tu veux te connecter à ta banque CIH depuis un résultat Google. Laquelle de ces URL choisis-tu instinctivement ?",
+    text: "🌐 Tu veux te connecter à ton espace bancaire en ligne (CIH, Attijari, etc.). Quelle est ta manière habituelle d’y accéder ?",
     type: "scenario",
-    preview: "Tu googles 'CIH Bank connexion' et plusieurs résultats apparaissent.\nObserve chaque URL attentivement avant de répondre.",
-    question: "Ton choix instinctif ?",
+    preview: "Tu es sur ton ordinateur personnel, à la maison ou à l’école.",
+    question: "Comment procèdes‑tu le plus souvent ?",
     options: [
-      "https://cih-banque.secure-login.net/compte",
-      "https://www.cihbank.ma",
-      "http://cihbank.ma.verification-id.com",
-      "https://clhbank.ma"
+      "Je tape le nom de la banque dans Google et je clique sur le premier résultat",
+      "Je vérifie que l’adresse commence par 'https' et qu’elle contient le nom de la banque",
+      "Je lis attentivement le nom de domaine pour m’assurer que c’est bien le site officiel (.ma par exemple)",
+      "J’utilise un favori enregistré ou je saisis directement l’adresse que je connais par cœur"
     ],
-    scores: [0, 10, 0, 0], correctIndex: 1,
+    scores: [2, 4, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Le domaine réel ici est 'secure-login.net' — 'cih-banque' est juste un sous-domaine. L'affichage ressemble au nom de la banque mais l'adresse appartient à quelqu'un d'autre." },
-      { type:"correct", text:"🏆 'cihbank.ma' est le domaine officiel marocain, servi en HTTPS. Règle générale : le vrai domaine est ce qui précède le premier slash, après le dernier point significatif." },
-      { type:"wrong",   text:"❌ Technique du faux sous-domaine : 'cihbank.ma' est ici dans le chemin de l'URL, pas dans le domaine. Le vrai domaine est 'verification-id.com'." },
-      { type:"wrong",   text:"❌ Typosquatting : 'clhbank' au lieu de 'cihbank' — le 'i' et le 'l' sont inversés. Ces domaines sont achetés spécifiquement pour capturer les fautes de frappe." }
+      { type:"info", text:"Tu fais confiance au moteur de recherche. Les résultats sponsorisés ou malveillants peuvent apparaître en tête." },
+      { type:"info", text:"Tu as le réflexe de vérifier le cadenas, mais HTTPS seul ne garantit pas que le site est légitime." },
+      { type:"info", text:"Tu analyses le domaine, ce qui est une compétence clé pour éviter les sites d’hameçonnage." },
+      { type:"info", text:"Tu court‑circuites la recherche en utilisant une source fiable. C’est la méthode la plus sûre pour les sites sensibles." }
     ]
   },
   {
     id: "q_telechargement",
     theme: "logiciel", diff: "medium",
-    text: "📥 Tu as besoin d'un logiciel (Adobe Reader, VLC, WinRAR…). Comment tu le télécharges habituellement ?",
+    text: "📥 Tu as besoin d’un logiciel gratuit (VLC, 7‑Zip, etc.). Où vas‑tu le chercher habituellement ?",
     type: "scenario",
-    preview: "Tu googles le nom du logiciel + 'téléchargement gratuit'.\nPlusieurs options apparaissent dans les résultats.",
-    question: "Ce que tu fais en général ?",
+    preview: "Une simple recherche donne plusieurs sites de téléchargement, parfois avec des publicités.",
+    question: "Quelle source utilises‑tu le plus souvent ?",
     options: [
-      "Je clique sur le premier lien ou la première annonce — c'est le plus rapide",
-      "Je télécharge depuis un site agrégateur connu (01net, Clubic, Softonic)",
-      "Je vais directement sur le site officiel de l'éditeur",
-      "Je vais sur le site officiel ET je vérifie que l'URL est correcte avant de télécharger"
+      "Je clique sur le premier lien qui propose le téléchargement, souvent sponsorisé",
+      "Je prends le logiciel sur des sites connus comme 01net, Softonic ou Clubic",
+      "Je cherche le site officiel de l’éditeur (ex: videolan.org) et je télécharge depuis là",
+      "J’utilise un gestionnaire de paquets (winget, apt) ou le store officiel de l’OS"
     ],
-    scores: [0, 5, 8, 10], correctIndex: 3,
+    scores: [2, 5, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Les annonces Google Ads pour des logiciels populaires sont régulièrement achetées par des acteurs malveillants pour distribuer des trojans. Ce vecteur a permis des compromissions massives en 2022-2024." },
-      { type:"warning", text:"⚠️ Les agrégateurs modifient parfois les installateurs pour y inclure des bundlewares ou des adwares. Certains sont légitimes, d'autres non — difficile de faire la différence." },
-      { type:"warning", text:"✅ Le site officiel est la bonne source. La vérification de l'URL avant de cliquer protège contre les sites d'imitation référencés juste sous le vrai site." },
-      { type:"correct", text:"🏆 Site officiel + vérification de l'URL = protection complète. Exemple : 'adobe-reader-gratuit.com' ou 'vlc-download.net' sont des sites d'imitation courants. L'URL officielle de VLC est videolan.org." }
+      { type:"info", text:"La rapidité l’emporte. Les liens sponsorisés peuvent rediriger vers des versions modifiées contenant des logiciels indésirables." },
+      { type:"info", text:"Les sites généralistes sont pratiques, mais certains ajoutent des programmes supplémentaires lors de l’installation." },
+      { type:"info", text:"Tu privilégies la source originale, ce qui réduit fortement le risque d’installer un logiciel altéré." },
+      { type:"info", text:"Tu utilises des canaux vérifiés et automatisés. C’est la méthode la plus fiable pour maintenir ses logiciels à jour et intègres." }
     ]
   },
   {
     id: "q_https_mythe",
     theme: "logiciel", diff: "hard",
-    text: "🔒 Un camarade dit : 'Ce site a le cadenas HTTPS donc c'est sûr, tu peux entrer ton mot de passe.' Comment tu réagis ?",
+    text: "🔒 Selon toi, que signifie vraiment le petit cadenas vert (HTTPS) dans la barre d’adresse de ton navigateur ?",
     type: "scenario",
-    preview: "Il te montre un site de connexion à ce qui ressemble à votre ENT.\nL'URL commence par https:// et le cadenas est bien affiché.",
-    question: "Ta réaction ?",
+    preview: "Tu navigues sur un site qui affiche le cadenas et 'https://'.",
+    question: "Quelle est ta compréhension personnelle de cet indicateur ?",
     options: [
-      "Je suis d'accord — HTTPS + cadenas, c'est la garantie que le site est légitime",
-      "Je lui explique que HTTPS chiffre la connexion mais ne garantit pas que le site est honnête",
-      "Je vérifie l'URL complète et le domaine exact avant de conclure quoi que ce soit",
-      "Je lui explique la nuance HTTPS ≠ légitimité, je vérifie le domaine ET je lui montre comment identifier les techniques de typosquatting ou sous-domaine trompeur"
+      "Cela veut dire que le site est sécurisé et qu’on peut lui faire confiance",
+      "Cela garantit que mes données sont chiffrées entre mon navigateur et le site",
+      "Cela prouve que le site appartient bien à l’organisation qu’il prétend représenter",
+      "C’est juste un indicateur de chiffrement, pas une preuve d’identité ou de fiabilité"
     ],
-    scores: [0, 7, 7, 10], correctIndex: 3,
+    scores: [2, 6, 4, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ C'est l'un des malentendus les plus répandus sur la sécurité web. Des dizaines de milliers de sites de phishing actifs utilisent HTTPS avec un certificat valide. Le cadenas ne prouve que le chiffrement du transport, pas l'identité du serveur." },
-      { type:"warning", text:"✅ Tu as la bonne compréhension théorique. Le compléter par une vérification concrète de l'URL est l'étape qui protège réellement." },
-      { type:"warning", text:"✅ Vérifier l'URL est le geste concret essentiel. Expliquer pourquoi à quelqu'un d'autre renforce aussi ta propre compréhension." },
-      { type:"correct", text:"🏆 Enseigner la nuance + montrer la technique de détection concrète = le meilleur niveau de réponse. Les deux techniques à connaître : typosquatting (paypa1.com) et faux sous-domaine (paypal.com.evil.net)." }
+      { type:"info", text:"Beaucoup de personnes associent à tort cadenas et confiance. Un site de phishing peut très bien avoir un certificat HTTPS." },
+      { type:"info", text:"Tu as compris que la connexion est chiffrée, mais tu sembles penser que cela suffit pour identifier le site." },
+      { type:"info", text:"Tu sais que le cadenas ne garantit pas l’identité. La confusion est fréquente, car les navigateurs ont longtemps entretenu cette ambiguïté." },
+      { type:"info", text:"Tu fais bien la distinction entre chiffrement et identité. C’est une nuance importante pour ne pas se faire piéger par des sites frauduleux en HTTPS." }
     ]
   },
   {
     id: "q_ingenierie_sociale",
     theme: "logiciel", diff: "hard",
-    text: "☎️ Tu reçois un appel d'une personne qui se présente comme du service informatique de l'école. Elle dit détecter une activité suspecte sur ton compte et demande ton mot de passe ou que tu valides une notification. Comment tu réagis ?",
+    text: "☎️ Tu reçois un appel d’une personne se présentant comme le support informatique de ton école. Elle connaît ton nom, ta filière et dit qu’il y a un problème urgent sur ton compte ENT. Elle te demande ton mot de passe pour le résoudre. Comment réagis‑tu ?",
     type: "scenario",
-    preview: "'Bonjour, je suis du service IT. On a une alerte sur votre compte.\nJ'ai besoin de votre mot de passe pour corriger ça maintenant — c'est urgent.'",
-    question: "Ta réaction honnête ?",
+    preview: "L’appelant est convaincant et parle d’une suspension imminente de ton accès si tu ne coopères pas.",
+    question: "Quelle serait ta réaction la plus probable ?",
     options: [
-      "Je lui donne ce qu'il demande — c'est le service informatique, ils ont besoin d'accès pour aider",
-      "Je lui donne mon identifiant mais pas mon mot de passe — un compromis raisonnable",
-      "Je valide la notification push — ça ne donne pas mon mot de passe directement",
-      "Je raccroche sans rien donner, puis je contacte le service IT via l'adresse officielle de l'école pour vérifier"
+      "Je lui donne mon mot de passe, après tout il connaît déjà beaucoup de choses sur moi",
+      "Je lui donne mon identifiant mais pas le mot de passe, pour l’aider sans trop risquer",
+      "Je lui demande un numéro pour le rappeler plus tard, le temps de vérifier",
+      "Je raccroche et je contacte moi‑même le vrai service informatique via les coordonnées officielles"
     ],
-    scores: [0, 3, 0, 10], correctIndex: 3,
+    scores: [2, 4, 7, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Aucun service IT légitime ne demande jamais un mot de passe par téléphone. C'est une règle absolue, universelle. L'urgence et l'autorité apparente sont les deux leviers classiques de l'ingénierie sociale." },
-      { type:"warning", text:"⚠️ Un identifiant + quelques informations publiques (école, filière, e-mail) peuvent suffire pour des attaques de reset de mot de passe ou d'accès à d'autres systèmes." },
-      { type:"wrong",   text:"❌ Valider une notification MFA non sollicitée équivaut à ouvrir toi-même la porte à l'attaquant. C'est l'attaque MFA Fatigue — elle a compromis des entreprises comme Uber et Microsoft." },
-      { type:"correct", text:"🏆 Raccrocher + vérification par canal officiel = réponse correcte. La règle : l'urgence imposée par téléphone est toujours un signal d'alarme. Un vrai problème IT peut attendre 5 minutes le temps que tu rappelles." }
+      { type:"info", text:"Tu fais confiance à l’appelant sur la base des informations qu’il possède. Ces données sont souvent publiques et utilisées pour te mettre en confiance." },
+      { type:"info", text:"Tu essaies de limiter les dégâts, mais un identifiant seul peut suffire pour tenter une réinitialisation de mot de passe." },
+      { type:"info", text:"Tu cherches à valider l’information par un autre canal. C’est un bon réflexe, à condition de ne pas rappeler le numéro fourni par l’appelant." },
+      { type:"info", text:"Tu appliques la règle d’or : ne jamais communiquer d’identifiants par téléphone et toujours vérifier via un canal officiel. Un service informatique légitime ne demandera jamais ton mot de passe." }
     ]
   },
   {
     id: "q_vpn_mythe",
     theme: "logiciel", diff: "hard",
-    text: "🕵️ Un ami utilise un VPN gratuit et dit : 'Avec ça je suis anonyme, je peux tout faire.' Quelle est ta réponse ?",
+    text: "🔐 Quelle est ton opinion ou ton utilisation des VPN (réseaux privés virtuels) ?",
     type: "scenario",
-    preview: "Il télécharge un VPN gratuit très populaire depuis le Play Store.\n'C'est magique, maintenant personne ne me voit.'",
-    question: "Ta réponse ?",
+    preview: "De nombreux services VPN existent, gratuits ou payants, avec des promesses variées.",
+    question: "Quelle affirmation te correspond le mieux ?",
     options: [
-      "Je valide — un VPN ça cache bien l'IP et les activités, c'est suffisant pour être anonyme",
-      "Je lui explique que le VPN déplace la confiance vers le fournisseur, qui peut voir et enregistrer tout son trafic",
-      "Je lui explique la limite + je lui dis que les VPN gratuits monétisent souvent les données utilisateur",
-      "Je lui explique les limites du VPN, le modèle économique des gratuits, et je lui recommande une alternative open source avec politique no-log vérifiée"
+      "Je n’utilise pas de VPN, je ne vois pas l’intérêt pour mon usage quotidien",
+      "J’utilise un VPN gratuit trouvé sur le Play Store pour accéder à des contenus bloqués ou me sentir plus anonyme",
+      "J’utilise un VPN payant ou open source, surtout quand je suis sur un WiFi public",
+      "Je choisis mes VPN en fonction de leur politique de confidentialité (no‑logs) et de leurs audits indépendants"
     ],
-    scores: [0, 5, 8, 10], correctIndex: 3,
+    scores: [4, 2, 8, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Un VPN masque l'IP vis-à-vis des sites visités et chiffre le trafic local — mais le fournisseur VPN voit tout. L'anonymat total n'existe pas avec un VPN commercial." },
-      { type:"warning", text:"⚠️ C'est la nuance essentielle. Déplacer la confiance de son FAI vers un VPN n'est utile que si le VPN est plus digne de confiance que le FAI." },
-      { type:"warning", text:"✅ Identifier le modèle économique des gratuits est crucial. Des études ont montré que des VPN gratuits populaires revendaient les données ou injectaient des publicités dans le trafic." },
-      { type:"correct", text:"🏆 Niveau expert : comprendre les limites techniques + identifier le modèle économique + recommander une alternative vérifiable. Proton VPN (gratuit, open source, basé en Suisse) ou Mullvad sont des références sérieuses." }
+      { type:"info", text:"Tu considères que le VPN n’est pas nécessaire. Sur un réseau domestique ou mobile, c’est souvent vrai, mais en WiFi public il peut apporter une couche de protection." },
+      { type:"info", text:"Les VPN gratuits ont souvent un modèle économique basé sur la collecte de données. La promesse d’anonymat est rarement tenue." },
+      { type:"info", text:"Tu utilises un VPN de manière ciblée, ce qui est une approche pragmatique. La confiance dans le fournisseur reste importante." },
+      { type:"info", text:"Tu recherches des garanties de confidentialité vérifiables. Cela montre une compréhension avancée des limites des VPN." }
     ]
   },
   {
     id: "q_mdp_reutilise",
     theme: "logiciel", diff: "hard",
-    text: "🔁 Un site sur lequel tu avais un compte il y a quelques années vient de subir une fuite de données. Ton e-mail et mot de passe de l'époque sont dedans. Comment tu réagis ?",
+    text: "🔁 Imagines que le site d’un petit forum où tu t’étais inscrit il y a longtemps se fasse pirater et que ton mot de passe (que tu utilisais aussi ailleurs) soit diffusé. Quel impact cela aurait‑il sur tes autres comptes ?",
     type: "scenario",
-    preview: "Tu reçois un e-mail de HaveIBeenPwned ou tu lis la news.\nLe mot de passe concerné — tu t'en souviens — tu l'utilises peut-être encore ailleurs.",
-    question: "Ce que tu ferais honnêtement ?",
+    preview: "Tu as tendance à réutiliser le même mot de passe ou des variantes proches sur plusieurs services.",
+    question: "D’après toi, quelle est la conséquence la plus probable de cette réutilisation ?",
     options: [
-      "Je ne fais rien — c'était un vieux compte sans importance, le mot de passe était banal",
-      "Je change le mot de passe sur le site compromis uniquement",
-      "Je cherche sur quels autres sites j'utilise ce même mot de passe et je les change",
-      "Je change ce mot de passe sur tous les sites concernés ET j'audite tous mes comptes via un gestionnaire de mots de passe pour éliminer les réutilisations"
+      "Rien de grave, ce n’est qu’un forum sans importance",
+      "Les pirates pourraient essayer ce mot de passe sur d’autres sites, mais ils ne tomberont que sur des comptes peu importants",
+      "Ils pourraient accéder à ma messagerie principale et à mes réseaux sociaux si le mot de passe est le même",
+      "Avec un seul mot de passe, ils peuvent potentiellement réinitialiser tous mes comptes, y compris bancaires, en quelques heures"
     ],
-    scores: [0, 3, 7, 10], correctIndex: 3,
+    scores: [2, 4, 7, 10], correctIndex: 3,
     feedbacks: [
-      { type:"wrong",   text:"❌ Les bases de données de fuites sont revendues sur des marchés privés et utilisées pour du credential stuffing automatique — des outils testent des millions de combinaisons par heure sur des centaines de services simultanément." },
-      { type:"warning", text:"⚠️ Changer uniquement sur le site compromis ne protège pas les autres comptes où le même mot de passe est utilisé. C'est là que se trouve le vrai risque." },
-      { type:"warning", text:"✅ Identifier et changer tous les comptes concernés est la bonne approche. Un gestionnaire de mots de passe rend cet audit systématique et automatique." },
-      { type:"correct", text:"🏆 Audit complet + gestionnaire de mots de passe = protection systémique. Bitwarden (gratuit, open source) permet d'identifier les mots de passe réutilisés et les comptes compromis depuis un tableau de bord unique." }
+      { type:"info", text:"Tu minimises le risque. Un mot de passe réutilisé est une clé qui peut ouvrir plusieurs portes, même si la première serrure semble anodine." },
+      { type:"info", text:"Tu imagines que les attaquants ne cibleront que les gros comptes, mais les outils automatisés testent des centaines de services." },
+      { type:"info", text:"Tu identifies le danger principal : la propagation vers la messagerie, qui sert souvent de moyen de récupération pour tous les autres comptes." },
+      { type:"info", text:"Tu mesures pleinement l’effet domino. La réutilisation de mots de passe est la cause première de nombreuses usurpations d’identité." }
     ]
   },
 
-  /* ──────── BONUS ──────── */
+  /* ── BONUS ── */
   {
     id: "gestionnaire_mdp",
-    text: "🗝️ Est-ce que tu utilises un gestionnaire de mots de passe ?",
+    text: "🗝️ Utilises‑tu un gestionnaire de mots de passe (Bitwarden, Keepass, celui de Google/Apple, etc.) ?",
     type: "radio", diff: "info",
     options: [
-      "Oui — Bitwarden, 1Password, ou autre",
-      "Non — je mémorise mes mots de passe",
-      "Non — j'utilise souvent les mêmes mots de passe",
-      "Parfois — pour certains comptes seulement"
+      "Oui, systématiquement",
+      "Non, je retiens mes mots de passe de tête",
+      "Non, je les note dans un carnet ou un fichier",
+      "Parfois, pour certains comptes seulement"
     ],
     correct: null
   },
   {
     id: "commentaire",
-    text: "💬 Un commentaire, une observation ou une question ? (optionnel)",
+    text: "💬 Un commentaire ou une observation sur la sécurité numérique dans ton quotidien d’étudiant ? (optionnel)",
     type: "comment", diff: "info"
   }
 ];
