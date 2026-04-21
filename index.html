@@ -540,7 +540,7 @@
 </div>
 
 <script>
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw1bqtZpbDhMl7AZkYu4MF_geG9vFBYmkaOmivb4-9LW2sbCeHvjJJNkF6ldLmBCPEtbA/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwUxK2XW5EVwYbKn-Jpf3iH-8WrcKLYk_yPSv-mv-Dmdsp0gLOSdTr6HQweVgvnnyK-Og/exec";
 
 // ═══════════════════════════════════════════════════════
 //  SECTION METADATA
@@ -603,22 +603,6 @@ const GLOBAL_TITLES = [
 //  Questions are framed around real behaviour, not hypothetical best practice.
 // ═══════════════════════════════════════════════════════
 const questions = [
-
-  /* ── DÉMOGRAPHIQUE ── */
-  {
-    id: "genre",
-    text: "Quel est ton genre ?",
-    type: "radio", diff: "info",
-    options: ["♂ Masculin", "♀ Féminin"],
-    correct: null
-  },
-  {
-    id: "filiere",
-    text: "Quelle est ta filière ?",
-    type: "select", diff: "info",
-    options: ["2AP1","2AP2","GCSE","BDAI","GI","GSTR","GM","SCM","GC"],
-    allowCustom: true, correct: null
-  },
 
   /* ═══════════════════════════════════════
      OSINT — EXPOSITION & IDENTITÉ EN LIGNE
@@ -863,48 +847,6 @@ const questions = [
     ]
   },
   {
-    id: "q_wifi_public",
-    theme: "logiciel", diff: "easy",
-    text: "📶 Tu es dans un café et tu dois consulter tes notes sur l’ENT ou vérifier ton solde bancaire. Le WiFi est ouvert. Que fais‑tu habituellement ?",
-    type: "scenario",
-    preview: "Le réseau WiFi ne demande pas de mot de passe. Ton forfait mobile est limité.",
-    question: "Quel est ton comportement le plus fréquent ?",
-    options: [
-      "Je me connecte au WiFi sans réfléchir, c’est plus pratique",
-      "Je me connecte mais j’évite les opérations sensibles si possible",
-      "J’active un VPN avant d’utiliser le WiFi public",
-      "Je préfère utiliser mes données mobiles, même si le forfait est presque épuisé"
-    ],
-    scores: [2, 5, 8, 10], correctIndex: 3,
-    feedbacks: [
-      { type:"info", text:"La commodité prime sur la sécurité. Sur un réseau ouvert, le trafic peut être intercepté par d’autres utilisateurs." },
-      { type:"info", text:"Tu fais preuve de discernement en limitant les actions critiques, ce qui réduit déjà les risques." },
-      { type:"info", text:"Tu ajoutes une couche de chiffrement avec un VPN. Cela protège tes données des regards indiscrets sur le réseau local." },
-      { type:"info", text:"Tu évites complètement le WiFi public pour les usages sensibles. Le réseau mobile est généralement plus sûr." }
-    ]
-  },
-  {
-    id: "q_mises_a_jour",
-    theme: "logiciel", diff: "easy",
-    text: "🔄 Une notification de mise à jour système apparaît sur ton ordinateur ou ton téléphone. Tu es en pleine période de révisions. Comment réagis‑tu ?",
-    type: "scenario",
-    preview: "La mise à jour est signalée comme importante pour la sécurité. Elle nécessite un redémarrage.",
-    question: "Quelle est ton attitude générale face aux mises à jour ?",
-    options: [
-      "Je les ignore ou les reporte indéfiniment, ça tombe toujours au mauvais moment",
-      "Je les installe quand j’y pense, parfois plusieurs semaines après",
-      "Je les planifie pour le soir ou le week‑end dès que possible",
-      "Les mises à jour automatiques sont activées, je ne m’en occupe pas"
-    ],
-    scores: [2, 4, 8, 10], correctIndex: 3,
-    feedbacks: [
-      { type:"info", text:"Tu remets à plus tard les correctifs de sécurité. Les vulnérabilités connues sont rapidement exploitées après la publication d’un correctif." },
-      { type:"info", text:"Tu finis par mettre à jour, mais avec un délai qui peut laisser une fenêtre d’exposition." },
-      { type:"info", text:"Tu intègres les mises à jour dans ta routine sans trop perturber ton travail." },
-      { type:"info", text:"Tu laisses le système gérer automatiquement, ce qui garantit une protection à jour sans effort." }
-    ]
-  },
-  {
     id: "q_2fa",
     theme: "logiciel", diff: "medium",
     text: "📲 As‑tu activé la double authentification (2FA) sur tes comptes importants (mail, ENT, réseaux sociaux) ?",
@@ -944,27 +886,6 @@ const questions = [
       { type:"info", text:"Tu as le réflexe de vérifier le cadenas, mais HTTPS seul ne garantit pas que le site est légitime." },
       { type:"info", text:"Tu analyses le domaine, ce qui est une compétence clé pour éviter les sites d’hameçonnage." },
       { type:"info", text:"Tu court‑circuites la recherche en utilisant une source fiable. C’est la méthode la plus sûre pour les sites sensibles." }
-    ]
-  },
-  {
-    id: "q_telechargement",
-    theme: "logiciel", diff: "medium",
-    text: "📥 Tu as besoin d’un logiciel gratuit (VLC, 7‑Zip, etc.). Où vas‑tu le chercher habituellement ?",
-    type: "scenario",
-    preview: "Une simple recherche donne plusieurs sites de téléchargement, parfois avec des publicités.",
-    question: "Quelle source utilises‑tu le plus souvent ?",
-    options: [
-      "Je clique sur le premier lien qui propose le téléchargement, souvent sponsorisé",
-      "Je prends le logiciel sur des sites connus comme 01net, Softonic ou Clubic",
-      "Je cherche le site officiel de l’éditeur (ex: videolan.org) et je télécharge depuis là",
-      "J’utilise un gestionnaire de paquets (winget, apt) ou le store officiel de l’OS"
-    ],
-    scores: [2, 5, 8, 10], correctIndex: 3,
-    feedbacks: [
-      { type:"info", text:"La rapidité l’emporte. Les liens sponsorisés peuvent rediriger vers des versions modifiées contenant des logiciels indésirables." },
-      { type:"info", text:"Les sites généralistes sont pratiques, mais certains ajoutent des programmes supplémentaires lors de l’installation." },
-      { type:"info", text:"Tu privilégies la source originale, ce qui réduit fortement le risque d’installer un logiciel altéré." },
-      { type:"info", text:"Tu utilises des canaux vérifiés et automatisés. C’est la méthode la plus fiable pour maintenir ses logiciels à jour et intègres." }
     ]
   },
   {
@@ -1030,27 +951,6 @@ const questions = [
       { type:"info", text:"Tu recherches des garanties de confidentialité vérifiables. Cela montre une compréhension avancée des limites des VPN." }
     ]
   },
-  {
-    id: "q_mdp_reutilise",
-    theme: "logiciel", diff: "hard",
-    text: "🔁 Imagines que le site d’un petit forum où tu t’étais inscrit il y a longtemps se fasse pirater et que ton mot de passe (que tu utilisais aussi ailleurs) soit diffusé. Quel impact cela aurait‑il sur tes autres comptes ?",
-    type: "scenario",
-    preview: "Tu as tendance à réutiliser le même mot de passe ou des variantes proches sur plusieurs services.",
-    question: "D’après toi, quelle est la conséquence la plus probable de cette réutilisation ?",
-    options: [
-      "Rien de grave, ce n’est qu’un forum sans importance",
-      "Les pirates pourraient essayer ce mot de passe sur d’autres sites, mais ils ne tomberont que sur des comptes peu importants",
-      "Ils pourraient accéder à ma messagerie principale et à mes réseaux sociaux si le mot de passe est le même",
-      "Avec un seul mot de passe, ils peuvent potentiellement réinitialiser tous mes comptes, y compris bancaires, en quelques heures"
-    ],
-    scores: [2, 4, 7, 10], correctIndex: 3,
-    feedbacks: [
-      { type:"info", text:"Tu minimises le risque. Un mot de passe réutilisé est une clé qui peut ouvrir plusieurs portes, même si la première serrure semble anodine." },
-      { type:"info", text:"Tu imagines que les attaquants ne cibleront que les gros comptes, mais les outils automatisés testent des centaines de services." },
-      { type:"info", text:"Tu identifies le danger principal : la propagation vers la messagerie, qui sert souvent de moyen de récupération pour tous les autres comptes." },
-      { type:"info", text:"Tu mesures pleinement l’effet domino. La réutilisation de mots de passe est la cause première de nombreuses usurpations d’identité." }
-    ]
-  },
 
   /* ── BONUS ── */
   {
@@ -1064,6 +964,22 @@ const questions = [
       "Parfois, pour certains comptes seulement"
     ],
     correct: null
+  },
+
+  /* ── DÉMOGRAPHIQUE ── */
+  {
+    id: "genre",
+    text: "Quel est ton genre ?",
+    type: "radio", diff: "info",
+    options: ["♂ Masculin", "♀ Féminin"],
+    correct: null
+  },
+  {
+    id: "filiere",
+    text: "Quelle est ta filière ?",
+    type: "select", diff: "info",
+    options: ["2AP1","2AP2","GCSE","BDAI","GI","GSTR","GM","SCM","GC"],
+    allowCustom: true, correct: null
   },
   {
     id: "commentaire",
@@ -1403,9 +1319,9 @@ async function submitAll() {
   const requiredScenarioIds = [
     "q_email_phishing", "q_reseaux_sociaux", "q_localisation", "q_osint_identite",
     "q_partage_contact", "q_ecran_verrouille", "q_shoulder_surfing", "q_usb",
-    "q_telephone_oublie", "q_appareil_prete", "q_mdp_facile", "q_wifi_public",
-    "q_mises_a_jour", "q_2fa", "q_url", "q_telechargement", "q_https_mythe",
-    "q_ingenierie_sociale", "q_vpn_mythe", "q_mdp_reutilise"
+    "q_telephone_oublie", "q_appareil_prete", "q_mdp_facile",
+    "q_2fa", "q_url", "q_https_mythe",
+    "q_ingenierie_sociale", "q_vpn_mythe"
   ];
   // S'assurer que chaque champ existe (même vide)
   requiredScenarioIds.forEach(id => {
